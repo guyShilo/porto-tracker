@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    // background: linear-gradient(to right, #ed213a, #93291e);
+    // background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6deff); 
+    background-color: rgb(204, 32, 9);
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    box-shadow: 0px 8px 39px -5px rgba(0,0,0,0.49);
+    // width: 100vw;
+    h4 {
+        color: white;
+        font-weight: bold;
+        margin-top: 0.5rem;
+    }
+    .buttonSection {
+        button {
+            background: none;
+            border: none;
+            color: whitesmoke;
+            padding: 0.2rem;
+            outline: none;
+        }
+        .active {
+            border-bottom: 2px solid #e7e7e7;
+            border-radius: 5px;
+            transition: all 0.2ms;
+        }
+    }
+}
