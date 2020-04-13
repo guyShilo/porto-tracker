@@ -15,8 +15,8 @@ export const Page: React.FC<PageProps> = ({}) => {
   };
 
   return (
-    <div className="container">
-      <div className="mt-5 d-flex justify-content-center">
+    <div className="">
+      <div className="d-flex justify-content-center">
         {functions.funcStorage.RenderPage(pageState, 
           sharedObject, Box, About)}
       </div>

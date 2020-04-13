@@ -1,0 +1,23 @@
+.faqMain {
+  display: flex;
+  justify-content: space-around;
+      .faqHeader {
+        h1 {
+          color: #d9534f;
+          margin-top: 3rem;
+          margin-left: 9rem;
+        }
+        span {
+          align-self: flex-end;
+          color: #d9534f;
+          font-weight: bold;
+          margin-top: 3rem;
+          margin-left: 12rem;
+        }
+      }
+      .faqContent {
+        p {
+
+        }
+      }
+}

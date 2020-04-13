@@ -8,10 +8,9 @@ import { Header } from "../Components/View/Header/Header";
 function App() {
   return (
     <div className="App">
-      <div className="container">
+      <div className="">
         <Router history={history}>
           <Header />
-
           <Routes />
         </Router>
       </div>

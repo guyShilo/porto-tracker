@@ -29,6 +29,7 @@ export const useEmailValidator: Hook = (emailState) => {
       }
     }
     return {
+      emailState,
       errors,
       isValid: errors.emailError.length < 5,
     };

@@ -35,12 +35,14 @@ export const useTrackingValidator: Hook = (trackingNumber) => {
     if (finalNumber.trim() === "") {
       errors.trackingError = "Tracking Number cannot be empty";
     } else {
-      const regEx = /^([0-9])^/;
+      const regEx =/^[0-9]{4}[-][0-9]{4}[-][0-9]{4}$/;
       if (!finalNumber.match(regEx)) {
-        errors.trackingError = "Tracking Number must be a valid Tracking Number";
+        errors.trackingError = "Tracking Number must contain only numbers";
+      }
+      if(finalNumber.length != 14) {
+        errors.trackingError = "Length is wrong";
       }
     }
-    console.log(finalNumber)
     return {
       finalNumber,
       errors,

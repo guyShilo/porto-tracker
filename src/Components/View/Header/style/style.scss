@@ -1,19 +1,18 @@
 .header {
-    display: flex;
-    flex-direction: row;
-    // background: linear-gradient(to right, #ed213a, #93291e);
-    // background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6deff); 
-    background-color: rgb(204, 32, 9);
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    box-shadow: 0px 8px 39px -5px rgba(0,0,0,0.49);
-    // width: 100vw;
+    position: sticky;
+    top: 0;
+    background-color: rgba(16, 186, 0, 0.8);
+    box-shadow: 0px 8px 39px -5px rgba(0,0,0,0.8);
     h4 {
+        display: inline-block;
         color: white;
         font-weight: bold;
         margin-top: 0.5rem;
     }
     .buttonSection {
+        display: block;
+        text-align: start;
+        width: 75vw;
         button {
             background: none;
             border: none;
@@ -27,4 +26,4 @@
             transition: all 0.2ms;
         }
     }
-}
+};

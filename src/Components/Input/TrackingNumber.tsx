@@ -38,58 +38,50 @@ export const TrackingNumber: React.FC<{
       inputBoxOne.current?.focus();
     }
     if (inputBoxOne.current!.value.length === 4) {
-      console.log(inputState);
       setState({
         buildTrackingNum: inputState,
       });
-    //   setTimeout(() => {
-    //     handleSubmit(event, inputState)
-    //   }, 200)
     }
   };
 
   return (
     <div className="trackingNumber d-flex flex-column align-items-center p-1">
-      <p className="text-center text-bold text-light">הכנס מספר מעקב</p>
-      <div className="col-sm-12">
-        <div className="mainTrackingInputs row text-center">
-          <form>
-            <div>
+      <p className="text-center text-bold text-danger">הכנס מספר מעקב</p>
+      <div className="mainTrackingInputs row text-center">
+      <form>
               <input
                 onChange={(event) => handleChange(event)}
                 value={inputState.boxOne}
                 ref={inputBoxOne}
                 className="col-sm-2 "
                 name="boxOne"
-                type="text"
+                type="number"
                 tabIndex={0}
                 maxLength={4}
               />
-              <span className="text-light m-2">-</span>
+                 <span className="text-light m-2">-</span>
               <input
                 onChange={(event) => handleChange(event)}
                 value={inputState.boxTwo}
                 ref={inputBoxTwo}
                 className="col-sm-2"
                 name="boxTwo"
-                type="text"
+                type="number"
                 tabIndex={1}
                 maxLength={4}
               />
-              <span className="text-light m-2">-</span>
+                 <span className="text-light m-2">-</span>
               <input
                 onChange={(event) => handleChange(event)}
                 value={inputState.boxThree}
                 ref={inputBoxThree}
                 className="col-sm-2"
                 name="boxThree"
-                type="text"
+                type="number"
                 tabIndex={2}
                 maxLength={4}
               />
-            </div>
           </form>
-        </div>
       </div>
     </div>
   );

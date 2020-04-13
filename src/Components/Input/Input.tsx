@@ -51,7 +51,7 @@ export const Input: React.FC<InputProps> = ({
   return (
     <div className="p-2 m-1">
         <div className="mainInput d-flex flex-column">
-          <p className="text-bold text-center text-light">{label}</p>
+          <p className="text-bold text-center text-danger">{label}</p>
           <div
             className="text-center"
             style={
@@ -68,7 +68,6 @@ export const Input: React.FC<InputProps> = ({
             type={inputType}
             maxLength={length}
           />
-
       </div>
     </div>
   );

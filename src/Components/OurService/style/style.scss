@@ -1,0 +1,25 @@
+.ourService {
+      height: 100vh;
+      width: 100vw;
+      background-image: url('../../../assets/dopamineMachine.jpg');
+      background-position: center;
+      background-size: 100vw;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      .ourServiceHeader {
+        text-shadow: 1px 1px 8px rgba(148, 150, 150, 1);
+        h1 {
+          color: white;
+          margin-top: 3rem;
+          margin-right: 13rem;
+        }
+        span {
+          align-self: flex-end;
+          color: white;
+          font-weight: bold;
+          margin-top: 3rem;
+          margin-right: 15rem;
+        }
+      }
+}

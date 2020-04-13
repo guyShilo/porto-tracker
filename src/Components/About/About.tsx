@@ -1,14 +1,13 @@
 import React from "react";
 import "./style/style.scss";
 import { Button } from "../Button/Button";
-import { Box } from "../Box/Box";
-import { Overlay } from "../Overlay/Overlay";
+import {Link} from "react-router-dom";
 export const About: React.FC<{}> = ({}) => {
   document.title = "עלינו";
   const [showSignUp, setShowSignUp] = React.useState(false);
   return (
-    <div className="container fadeIn animated">
-      <div className="aboutContainer p-2 mt-5">
+    <div className="">
+      <div className="aboutContainer p-2">
         <h1 className="text-right text-light text-bold">אז קצת עלינו...</h1>
         <hr className="bg-light w-100" />
         <p className="text-right text-light">
@@ -38,14 +37,9 @@ export const About: React.FC<{}> = ({}) => {
           של Lorem Ipsum.
         </p>
         <div className="text-center mt-3 p-2">
-          <Button showFunction={setShowSignUp} onClick={() => null} />
-          {showSignUp ? (
-            <Overlay
-              Component={<Box sharedObject={{}} />}
-              currentState={showSignUp}
-              hide={setShowSignUp}
-            />
-          ) : null}
+          <Link to="/">
+            <Button showFunction={setShowSignUp} onClick={() => null} />
+          </Link>
         </div>
       </div>
     </div>
