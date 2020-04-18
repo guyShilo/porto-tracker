@@ -11,7 +11,26 @@
         color: rgb(199, 10, 10);
     }
     button:hover {
-        background: #3f3f3f;
+        background: rgba(199, 10, 10, 0.5);
+        transition: all 0.3s;
+        color: #f3f3f3;
+    }
+}
+
+.disabledButton {
+    button {
+        background: #ffffff;
+        border: 2px solid #cccccc;
+        border-radius: 0.5rem;
+        padding: 15px 43px;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1.33;
+        letter-spacing: 1.2px;
+        color: rgb(190, 190, 190);
+    }
+    button:hover {
+        background: #d6d6d6;
         transition: all 0.3s;
         color: #f3f3f3;
     }

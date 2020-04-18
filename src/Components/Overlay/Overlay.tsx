@@ -11,14 +11,12 @@ export const Overlay: React.FC<{
 }> = ({ Component, currentState, hide }) => {
   return (
     <div className="Modal">
-      <div className="closeBtn col-sm-12">
-        <div className="col-sm-7">
-          <button onClick={() => hide(!currentState)} className="hide btn">
-            X
-          </button>
-        </div>
+      <div className="col-sm-12">
+        <button onClick={() => hide(!currentState)} className="w-100 hide btn">
+          X
+        </button>
       </div>
-      {Component}
+      <div className="d-flex justify-content-center mt-5">{Component}</div>
     </div>
   );
 };

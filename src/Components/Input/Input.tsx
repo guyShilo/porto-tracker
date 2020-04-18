@@ -1,26 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import "./style/style.scss";
 import { useEmailValidator } from "../InputValidators/EmailValidator";
 import { ValidIndicator } from "../Button/ValidIndicator";
-interface InputProps {
-  label: string;
-  name: string;
-  length: number;
-  currentState: any;
-  setState: React.Dispatch<React.SetStateAction<any>>;
-  inputType: string;
-  errors:
-    | {
-        emailError: string;
-        isValid?: boolean | undefined;
-      }
-    | undefined;
-  buildColors: (validatedObject: { errors: {
-      emailError?: string | undefined;
-      trackingError?: string | undefined; };
-      isValid?: boolean | undefined; }) => void
-  validatedObject:{errors: {emailError: string}, isValid?: boolean};
-}
+import { InputProps } from "./interface";
 
 export const Input: React.FC<InputProps> = ({
   label,
@@ -31,14 +13,15 @@ export const Input: React.FC<InputProps> = ({
   inputType,
   errors,
   buildColors,
-  validatedObject
+  validatedObject,
 }) => {
-  const [showError, setShowError] = React.useState(false);
+  const [showError, setShowError] = useState(false);
 
+  // handles the email input.
   const handleChange = (input: string) => (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    buildColors(validatedObject);
+    buildColors(validatedObject, "emailValid");
     const value = e.target.value;
     if (input === "email") {
       setState(value);
@@ -50,24 +33,24 @@ export const Input: React.FC<InputProps> = ({
   };
   return (
     <div className="p-2 m-1">
-        <div className="mainInput d-flex flex-column">
-          <p className="text-bold text-center text-danger">{label}</p>
-          <div
-            className="text-center"
-            style={
-              errors  && currentState.length < 5
-                ? { display: "none" }
-                : { display: "block" }
-            }
-          >
-            <small className="text-light text-center">{errors?.emailError}</small>
-          </div>
-          <input
-            onChange={handleChange("email")}
-            className="text-center"
-            type={inputType}
-            maxLength={length}
-          />
+      <div className="mainInput d-flex flex-column">
+        <p className="text-bold text-center text-danger">{label}</p>
+        <div
+          className="text-center"
+          style={
+            validatedObject.isValid
+              ? { display: "none" }
+              : { display: "block" }
+          }
+        >
+          <small className="text-danger text-center">{errors?.emailError}</small>
+        </div>
+        <input
+          onChange={handleChange("email")}
+          className="text-center"
+          type={inputType}
+          maxLength={length}
+        />
       </div>
     </div>
   );

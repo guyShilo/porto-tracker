@@ -1,44 +1,40 @@
-import React from "react";
+import React,{useState} from "react";
 import "./style/style.scss";
 import { Button } from "../Button/Button";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import aboutUs from "../../assets/team.svg";
+
 export const About: React.FC<{}> = ({}) => {
   document.title = "עלינו";
-  const [showSignUp, setShowSignUp] = React.useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
   return (
     <div className="">
-      <div className="aboutContainer p-2">
-        <h1 className="text-right text-light text-bold">אז קצת עלינו...</h1>
-        <hr className="bg-light w-100" />
-        <p className="text-right text-light">
-          הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה. Lorem Ipsum היה טקסט
-          <br />
-          סטנדרטי עוד במאה ה-16, כאשר הדפסה לא ידועה לקחה מגש של דפוס ועירבלה
-          <br />
-          אותו כדי ליצור סוג של ספר דגימה. ספר זה שרד לא רק חמש מאות שנים אלא גם
-          את הקפיצה לתוך ההדפסה <br />
-          האלקטרונית, ונותר כמו שהוא ביסודו. ספר זה הפך פופולרי יותר בשנות ה-60
-          עם ההוצאה לאור של גליון פונטי
-          <br /> המכיל פסקאות של Lorem Ipsum. ועוד יותר לאחרונה
-          <br /> עם פרסום תוכנות המחשב האישי כגון Aldus page maker שמכיל גרסאות
-          של Lorem Ipsum.
-        </p>
-        <p className="text-right text-light">
-          הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה. Lorem Ipsum היה טקסט
-          <br />
-          סטנדרטי עוד במאה ה-16, כאשר הדפסה לא ידועה לקחה מגש של דפוס ועירבלה
-          <br />
-          אותו כדי ליצור סוג של ספר דגימה. ספר זה שרד לא רק חמש מאות שנים אלא גם
-          את הקפיצה לתוך ההדפסה <br />
-          האלקטרונית, ונותר כמו שהוא ביסודו. ספר זה הפך פופולרי יותר בשנות ה-60
-          עם ההוצאה לאור של גליון פונטי
-          <br /> המכיל פסקאות של Lorem Ipsum. ועוד יותר לאחרונה
-          <br /> עם פרסום תוכנות המחשב האישי כגון Aldus page maker שמכיל גרסאות
-          של Lorem Ipsum.
-        </p>
+      <div className="aboutContainer p-3">
+        <div className="aboutHeader row">
+          <h1 className="text-light">אז קצת עלינו...</h1>
+          <hr className="bg-light w-100" />
+        </div>
+        <div className="aboutContent row">
+          <p className="flex-fill text-right text-light">
+            PortuBot התחיל כעזרה לקרוב משפחה, שלא יכולתי לראות כמה זמן הוא מבזבז
+            <br />
+            על בדיקת בקשת האזרחות שלו באתר. כך יצא שכתבתי עבורו אפליקציה שתבצע
+            <br />
+            לו את הבדיקה באופן אוטומטי.
+            <br /> משם לקחתי את זה צעד קדימה, ועם עזרה של חבר טוב PortuBot הוא
+            מה שהוא עכשיו.
+          </p>
+          <div className="aboutImage">
+            <img src={aboutUs} alt="aboutUs" />
+          </div>
+        </div>
         <div className="text-center mt-3 p-2">
-          <Link to="/">
-            <Button showFunction={setShowSignUp} onClick={() => null} />
+          <Link to="/registration">
+            <Button
+              label="לחץ להרשמה"
+              showFunction={setShowSignUp}
+              onClick={() => null}
+            />
           </Link>
         </div>
       </div>

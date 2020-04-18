@@ -2,6 +2,9 @@ import React from "react";
 import { Box } from "../Box/Box";
 import { MiscFunctionsContext } from "../../Context/MiscFunctions";
 import { About } from "../About/About";
+import { OurService } from "../OurService/OurService";
+import { FrequentlyAsked } from "../FrequentlyAsked/FrequentlyAsked";
+import { Process } from "../Process/Process";
 interface PageProps {}
 
 export const Page: React.FC<PageProps> = ({}) => {
@@ -16,9 +19,10 @@ export const Page: React.FC<PageProps> = ({}) => {
 
   return (
     <div className="">
-      <div className="d-flex justify-content-center">
-        {functions.funcStorage.RenderPage(pageState, 
-          sharedObject, Box, About)}
+      <div className="">
+        <OurService/>
+        <Box sharedObject={{}}/>
+        <FrequentlyAsked/>
       </div>
     </div>
   );

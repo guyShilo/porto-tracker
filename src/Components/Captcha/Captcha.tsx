@@ -16,6 +16,7 @@ export const Captcha: React.FC<{
   return (
     <ReCAPTCHA
       ref={ref}
+      size="compact"
       sitekey="6LdNMugUAAAAACy5-GpZUgjh4SWHbWcBwUtUpc7z"
       onChange={(param) => handleCaptcha(param || null)}
     />

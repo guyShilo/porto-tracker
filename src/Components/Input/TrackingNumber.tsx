@@ -1,31 +1,26 @@
-import React from "react";
+import React, { useState, createRef, useEffect } from "react";
+import { TrackingNumberComponent } from "./interface";
 
-export const TrackingNumber: React.FC<{
-  currentState: any;
-  setState: React.Dispatch<React.SetStateAction<any>>;
-  // handleSubmit: (e: any, input: { boxOne: string; boxThree: string; boxTwo: string }) => void;
-  handleSubmit: null;
-  buildColors: (validatedObject: {
-    errors: {
-      emailError?: string | undefined;
-      trackingError?: string | undefined;
-    };
-    isValid?: boolean | undefined;
-  }) => void;
-  validatedObject: { errors: { trackingError: string }; isValid?: boolean } | null;
-}> = ({ currentState, setState, handleSubmit }) => {
+export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
+  currentState,
+  setState,
+  handleSubmit,
+  buildColors,
+  validatedObject,
+}) => {
   // handles current tracking number state.
-  const [inputState, setInputState] = React.useState({
-    boxOne: '',
-    boxTwo: '',
-    boxThree: '',
+  const [inputState, setInputState] = useState({
+    boxOne: "",
+    boxTwo: "",
+    boxThree: "",
   });
   // define refs for the inputs to handle changes of focus.
-  const inputBoxOne = React.createRef<HTMLInputElement>();
-  const inputBoxTwo = React.createRef<HTMLInputElement>();
-  const inputBoxThree = React.createRef<HTMLInputElement>();
+  const inputBoxOne = createRef<HTMLInputElement>();
+  const inputBoxTwo = createRef<HTMLInputElement>();
+  const inputBoxThree = createRef<HTMLInputElement>();
   // takes the input name and value and returns an object with the three inputs.
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    buildColors(validatedObject, "trackingValid");
     event.preventDefault();
     const value = event.target.value;
     const name = event.target.name;
@@ -43,45 +38,63 @@ export const TrackingNumber: React.FC<{
       });
     }
   };
+  // Only when the last input is updated fully the state is updated.
+  useEffect(() => {
+    setState({
+      buildTrackingNum: inputState,
+    });
+  }, [inputState.boxOne.length === 4]);
 
   return (
     <div className="trackingNumber d-flex flex-column align-items-center p-1">
-      <p className="text-center text-bold text-danger">הכנס מספר מעקב</p>
-      <div className="mainTrackingInputs row text-center">
-      <form>
-              <input
-                onChange={(event) => handleChange(event)}
-                value={inputState.boxOne}
-                ref={inputBoxOne}
-                className="col-sm-2 "
-                name="boxOne"
-                type="number"
-                tabIndex={0}
-                maxLength={4}
-              />
-                 <span className="text-light m-2">-</span>
-              <input
-                onChange={(event) => handleChange(event)}
-                value={inputState.boxTwo}
-                ref={inputBoxTwo}
-                className="col-sm-2"
-                name="boxTwo"
-                type="number"
-                tabIndex={1}
-                maxLength={4}
-              />
-                 <span className="text-light m-2">-</span>
-              <input
-                onChange={(event) => handleChange(event)}
-                value={inputState.boxThree}
-                ref={inputBoxThree}
-                className="col-sm-2"
-                name="boxThree"
-                type="number"
-                tabIndex={2}
-                maxLength={4}
-              />
-          </form>
+      <div className="w-100">
+        <p className="text-center text-bold text-danger">הכנס מספר מעקב</p>
+        <div
+          className="text-center"
+          style={
+            validatedObject.isValid ? { display: "none" } : { display: "block" }
+          }
+        >
+          <small className="text-danger text-center">
+            {validatedObject.errors?.trackingError}
+          </small>
+        </div>
+      </div>
+      <div className="mainTrackingInputs row text-center col-sm-12">
+        <form>
+          <input
+            onChange={(event) => handleChange(event)}
+            value={inputState.boxOne}
+            ref={inputBoxOne}
+            className="col-sm-2 "
+            name="boxOne"
+            type="number"
+            tabIndex={0}
+            maxLength={4}
+          />
+          <span className="text-danger text-bold m-2">-</span>
+          <input
+            onChange={(event) => handleChange(event)}
+            value={inputState.boxTwo}
+            ref={inputBoxTwo}
+            className="col-sm-2"
+            name="boxTwo"
+            type="number"
+            tabIndex={1}
+            maxLength={4}
+          />
+          <span className="text-danger text-bold m-2">-</span>
+          <input
+            onChange={(event) => handleChange(event)}
+            value={inputState.boxThree}
+            ref={inputBoxThree}
+            className="col-sm-2"
+            name="boxThree"
+            type="number"
+            tabIndex={2}
+            maxLength={4}
+          />
+        </form>
       </div>
     </div>
   );
