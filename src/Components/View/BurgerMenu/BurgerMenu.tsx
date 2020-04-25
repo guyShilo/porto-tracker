@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { styles } from "./JStyles";
 import { useHistory } from "react-router";
 import { motion } from "framer-motion";
 import "./styles.scss";
 import { Link } from "react-router-dom";
-// import MenuState, {Props} from '../../../Context/MenuState'
+import MenuContext from "../../../Context/MenuContext";
 import { animationHelpers } from "../../../Utils";
 import logo from "../../../assets/logo.svg";
 
-export const BurgerMenu: React.FC<{}> = ({}) => {
+export const BurgerMenu: React.FC<{}> = (props) => {
   const history = useHistory();
   const urlPath = history.location.pathname;
   const withoutDeco = "m-1 p-1";
   const withDeco = "m-1 p-1 active";
+  const [isOpen, setisOpen] = useState({
+    isOpen: false
+  })
   const decideStyle = (path: string) =>
     path === urlPath ? withDeco : withoutDeco;
   const btnStyle = {
@@ -23,6 +26,7 @@ export const BurgerMenu: React.FC<{}> = ({}) => {
     padding: "0.2rem",
     outline: "none",
   };
+
   const linksArray = [
     { linkName: "עמוד הבית", path: "/service" },
     { linkName: "הרשמה לשירות", path: "/registration" },
@@ -30,15 +34,22 @@ export const BurgerMenu: React.FC<{}> = ({}) => {
     { linkName: "קצת עלינו", path: "/about" },
     { linkName: "הסבר על תהליך האזרחות", path: "/process" },
   ];
-  // const currentMenuState: Props  = React.useContext(MenuState)
+  const context = useContext(MenuContext);
+
   return (
     <div className="">
-      <Menu isOpen={true} className="text-right" right styles={styles}>
+      <Menu
+        isOpen={context.isMenuOpen}
+        onStateChange={context.stateChangeHandler(isOpen)}
+        className="text-right"
+        right
+        styles={styles}
+      >
         <div className="w-100 shadow-lg mb-1">
           <img
-            style={{ zIndex: 1001}}
-            className="w-100 h-50 text-center"
-            onClick={() => history.push('/service')}
+            style={{ zIndex: 1001 }}
+            className="w-50 h-100 text-center"
+            onClick={() => history.push("/service")}
             src={logo}
             alt="logo"
           />
@@ -46,15 +57,18 @@ export const BurgerMenu: React.FC<{}> = ({}) => {
         {linksArray.map((link, index) => (
           <motion.div
             style={{ outline: "none" }}
+            onClick={() => console.log(props)}
             variants={animationHelpers.createVariants("scale", 0.75, 1)}
             initial="variantA"
             whileHover="variantB"
             className="text-center"
             key={index + 1}
           >
-            <Link to={link.path}>
+            <Link to={link.path} onClick={() => context.toggleMenu()}>
               <button
-                onClick={() => console.log("kaki")}
+                // onClick={() => setIsOpen({
+                //   isOpen: !isOpen
+                // })}
                 className={decideStyle(link.path)}
                 style={btnStyle}
               >

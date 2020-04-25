@@ -8,8 +8,7 @@ export const styles = {
     boxShadow: "0px 8px 39px -5px rgb(1,1,1)",
   },
   bmBurgerBars: {
-    background: "#d9534f",
-    width: "4vw",
+    background: "whitesmoke",
   },
   bmBurgerBarsHover: {
     background: "black",

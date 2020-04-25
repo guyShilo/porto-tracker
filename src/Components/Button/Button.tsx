@@ -15,6 +15,9 @@ export const Button: React.FC<{
 
   useEffect(() => {
     handleDisabled();
+    return () => {
+      handleDisabled()
+    }
   }, [isDisabled]);
 
   return (
@@ -24,7 +27,6 @@ export const Button: React.FC<{
           disabled={disabled}
           onClick={() => {
             // showFunction(true);
-            console.log("click1");
             onClick();
           }}
         >

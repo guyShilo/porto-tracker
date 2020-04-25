@@ -1,96 +1,149 @@
-import React, { useState, createRef, useEffect } from "react";
+import React, { useContext, createRef, useEffect, useState } from "react";
 import { TrackingNumberComponent } from "./interface";
+import StateContext from "../../Context/StateContext";
+import { motion } from "framer-motion";
+import { animationHelpers } from "../../Utils";
 
 export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
-  currentState,
-  setState,
-  handleSubmit,
   buildColors,
   validatedObject,
 }) => {
-  // handles current tracking number state.
-  const [inputState, setInputState] = useState({
+  // initiating tracking number state
+  const [trackingNumberState, setTrackingNumber] = useState({
     boxOne: "",
     boxTwo: "",
     boxThree: "",
   });
+  // If given an Object, this function will return a string.
+  const buildTrackingNumber = (trackingNumber: {
+    boxOne: string;
+    boxTwo: string;
+    boxThree: string;
+  }) => {
+    const numbers = Object.values(trackingNumber);
+    return `${numbers[0]}-${numbers[1]}-${numbers[2]}`;
+  };
+  // build the final number.
+  const number = buildTrackingNumber(trackingNumberState);
+  // Initiate the Context.
+  const context = useContext(StateContext);
   // define refs for the inputs to handle changes of focus.
   const inputBoxOne = createRef<HTMLInputElement>();
   const inputBoxTwo = createRef<HTMLInputElement>();
   const inputBoxThree = createRef<HTMLInputElement>();
+
+  // Handling onPaste event when the client pastes the tracking number.
+  const handlePaste = (event: React.ClipboardEvent<HTMLFormElement>) => {
+    // regex to split 12 Chars to 3 groups of 4.
+    const regex = /.{4}/g;
+    let clipped: any[] | RegExpMatchArray | null = [];
+    let pastedTrackCode = {
+      boxOne: clipped![0],
+      boxTwo: clipped![1],
+      boxThree: clipped![2],
+    };
+    const clipBoardData = event.clipboardData.getData("text");
+    // checks where the tracking number has '-', if it has, split by that. if not. split by regex.
+    if (clipBoardData.indexOf("-") !== -1) {
+      clipped = clipBoardData.split("-");
+    } else if (clipBoardData.indexOf("-") === -1) {
+      clipped = clipBoardData.match(regex);
+    }
+    context.addTrackCode(buildTrackingNumber(pastedTrackCode));
+    setTrackingNumber({
+      boxOne: clipped![0],
+      boxTwo: clipped![1],
+      boxThree: clipped![2],
+    });
+    inputBoxThree.current?.focus();
+  };
+
+  // Checks whether the focus needs to be moved forward.
+  const checkBoxes = () => {
+    if (inputBoxOne.current?.value.length == 4) inputBoxTwo.current?.focus();
+    if (inputBoxTwo.current?.value.length == 4) inputBoxThree.current?.focus();
+  };
   // takes the input name and value and returns an object with the three inputs.
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    buildColors(validatedObject, "trackingValid");
     event.preventDefault();
+    const regex = new RegExp("^[0-9]+$");
+    buildColors(validatedObject, "trackingValid");
     const value = event.target.value;
     const name = event.target.name;
-    setInputState({ ...inputState, [name]: value });
-    // when the length of the value is 4, move focus to the next input.
-    if (inputBoxThree.current!.value.length === 4) {
-      inputBoxTwo.current?.focus();
+    if (event.target.value.length === 4) {
+      checkBoxes();
     }
-    if (inputBoxTwo.current!.value.length === 4) {
-      inputBoxOne.current?.focus();
-    }
-    if (inputBoxOne.current!.value.length === 4) {
-      setState({
-        buildTrackingNum: inputState,
+    if (regex.test(value) || value === "") {
+      setTrackingNumber({
+        ...trackingNumberState,
+        [name]: value,
       });
+    } else {
+      return;
     }
   };
-  // Only when the last input is updated fully the state is updated.
+  // Updates everytime the state updates..
   useEffect(() => {
-    setState({
-      buildTrackingNum: inputState,
-    });
-  }, [inputState.boxOne.length === 4]);
-
+    context.addTrackCode(number);
+  }, [trackingNumberState]);
   return (
     <div className="trackingNumber d-flex flex-column align-items-center p-1">
-      <div className="w-100">
-        <p className="text-center text-bold text-danger">הכנס מספר מעקב</p>
-        <div
-          className="text-center"
-          style={
-            validatedObject.isValid ? { display: "none" } : { display: "block" }
-          }
-        >
-          <small className="text-danger text-center">
-            {validatedObject.errors?.trackingError}
-          </small>
-        </div>
-      </div>
+      <p className="text-center text-bold text-danger">הכנס מספר מעקב</p>
+      <motion.div
+        className="text-center"
+        style={
+          trackingNumberState.boxThree.length !== 0
+            ? { display: "block" }
+            : { display: "none" }
+        }
+        variants={animationHelpers.createVariants("opacity", 0, 1)}
+        initial="variantA"
+        animate="variantB"
+      >
+        <small className="text-danger text-center">
+          {validatedObject.errors?.trackingError}
+        </small>
+      </motion.div>
       <div className="mainTrackingInputs row text-center col-sm-12">
-        <form>
+        <form dir="ltr" onPaste={(event) => handlePaste(event)}>
           <input
-            onChange={(event) => handleChange(event)}
-            value={inputState.boxOne}
+            onChange={(event) => {
+              handleChange(event);
+            }}
+            value={trackingNumberState.boxOne}
             ref={inputBoxOne}
             className="col-sm-2 "
             name="boxOne"
-            type="number"
+            type="text"
+            pattern="/^(?:[1-9]\d*|\d)$/"
             tabIndex={0}
             maxLength={4}
           />
           <span className="text-danger text-bold m-2">-</span>
           <input
-            onChange={(event) => handleChange(event)}
-            value={inputState.boxTwo}
+            onChange={(event) => {
+              handleChange(event);
+            }}
+            value={trackingNumberState.boxTwo}
             ref={inputBoxTwo}
             className="col-sm-2"
             name="boxTwo"
-            type="number"
+            type="text"
+            pattern="/^(?:[1-9]\d*|\d)$/"
             tabIndex={1}
             maxLength={4}
           />
           <span className="text-danger text-bold m-2">-</span>
           <input
-            onChange={(event) => handleChange(event)}
-            value={inputState.boxThree}
+            onChange={(event) => {
+              handleChange(event);
+            }}
+            value={trackingNumberState.boxThree}
             ref={inputBoxThree}
             className="col-sm-2"
             name="boxThree"
-            type="number"
+            type="text"
+            pattern="/^(?:[1-9]\d*|\d)$/"
             tabIndex={2}
             maxLength={4}
           />

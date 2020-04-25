@@ -1,61 +1,41 @@
-import React, { useState, useEffect, createRef } from "react";
+import React, { useState, useEffect, createRef, useContext } from "react";
 import axios from "axios";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
-import { useEmailValidator } from "../InputValidators/EmailValidator";
-import computerImage from "../../assets/computer.svg";
 import "./styles/style.scss";
 import { TrackingNumber } from "../Input/TrackingNumber";
 import { Captcha } from "../Captcha/Captcha";
 import { ValidIndicator } from "../Button/ValidIndicator";
-import { useTrackingValidator } from "../InputValidators/TrackingValidator";
-import { BoxProps, TrackingNumberProps, UserInputProps } from "./interface";
+import { BoxProps } from "./interface";
 import { Alert } from "../Alert/Alert";
 import { SwalFunctions } from "../../Utils";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useHistory } from "react-router";
+// import { Loader } from "../Loader";
+// import { Overlay } from "../Overlay/Overlay";
+import StateContext from "src/Context/StateContext";
+import { ReCAPTCHA } from "react-google-recaptcha";
 
-export const Box: React.FC<BoxProps> = ({ sharedObject }) => {
-  document.title = "ראשי";
+export const Box: React.FC = () => {
+  document.title = "הרשמה";
   const MySwal = withReactContent(Swal);
   const history = useHistory();
+  const context = useContext(StateContext);
+
   // current captcha state
   const [CaptchaState, setCaptchaState] = useState("");
-  // initiating email state as empty string.
-  const [emailState, setEmailState] = useState("");
+  // creating captcha ref
+  let captchaRef: ReCAPTCHA | null = null;
   // handling modal appearance.
-  const [showMessageSent, setShowMessageSent] = useState(true);
-  // initiating tracking number state
-  const [trackingNumberState, setTrackingNumber] = useState<
-    TrackingNumberProps
-  >({
-    buildTrackingNum: {
-      boxOne: "",
-      boxTwo: "",
-      boxThree: "",
-    },
-    trackingNumber: "",
-  });
-  // initiating object that later will be sent to the data base.
-  const [userInput, setUserInput] = useState<UserInputProps>({
-    Email: "",
-    TrackCode: "",
-    Captcha: CaptchaState,
-  });
-  // returning errors object and isValid boolean, to handle UI errors. - Email
-  const validatedEmail = useEmailValidator(emailState);
-  // returning errors object and isValid boolean, to handle UI errors. - Tracking Number
-  const validatedTrackingNumber = useTrackingValidator(trackingNumberState);
+  const [captchaValid, setCaptchaValid] = useState<boolean>(false);
+
   // The state of the Validation Indicator.
   const [colorState, setColorState] = useState({
-    emailValid: !validatedEmail.isValid ? "text-danger" : "text-success",
-    trackingValid: !validatedTrackingNumber.isValid
-      ? "text-danger"
-      : "text-success",
+    emailValid: !context.emailIsValid ? "text-danger" : "text-success",
+    trackingValid: !context.trackCodeIsValid ? "text-danger" : "text-success",
   });
 
-  const captchaRef = createRef<any>();
   // function that gets an object from the validation, hook and decides the state of the indicator.
   const buildColors = (
     validatedObject: {
@@ -74,12 +54,14 @@ export const Box: React.FC<BoxProps> = ({ sharedObject }) => {
       setColorState({ ...colorState, [indicator]: "text-success" });
     }
   };
+
   const updateDB = async () => {
-    const { Email, TrackCode } = userInput;
+    const { finalTrackCode, finalEmail } = context;
+    setCaptchaValid(true);
     try {
       const request = axios.post("http://173.255.115.65/sendData", {
-        Email,
-        TrackCode,
+        Email: finalEmail,
+        TrackCode: finalTrackCode,
         "g-recaptcha-response": CaptchaState,
       });
       const response = await request;
@@ -87,58 +69,40 @@ export const Box: React.FC<BoxProps> = ({ sharedObject }) => {
         SwalFunctions.swalSuccsess(MySwal, history);
       } else {
         SwalFunctions.swalFailed(response.data, MySwal, history);
+        setCaptchaValid(false);
       }
     } catch (error) {
       throw new Error(error);
     }
   };
-  useEffect(
-    () =>
-      setUserInput({
-        Email: validatedEmail.emailState,
-        TrackCode: validatedTrackingNumber.finalNumber,
-      }),
-    [
-      validatedTrackingNumber.isValid &&
-        validatedEmail.isValid &&
-        CaptchaState.length < 2,
-    ]
-  );
+
   return (
     <div className="boxContainer">
       <div className="boxHeader"></div>
       <div className="p-2 mainBox">
         <div className="d-flex flex-column align-items-center">
-          <div className="p2 m-2 d-flex justify-content-center w-100">
-            <ValidIndicator
-              isValid={validatedEmail?.isValid}
-              handleSubmit={undefined}
-            />
+          <div className="p-2 m-2 d-flex justify-content-center ">
+            <ValidIndicator isValid={context.emailIsValid.isValid} />
             <Input
-              currentState={emailState}
-              setState={setEmailState}
+              currentState={context.finalEmail}
               length={99}
               label={"הכנס כתובת דוא״ל"}
               name={"email"}
               inputType={"email"}
               buildColors={buildColors}
-              validatedObject={validatedEmail}
-              errors={validatedEmail?.errors || undefined}
+              validatedObject={context.emailIsValid}
+              errors={context.emailIsValid.errors}
             />
           </div>
-          <div className="p2 m-2 d-flex justify-content-center w-75">
-            <div className="m-auto">
-              <ValidIndicator
-                isValid={validatedTrackingNumber?.isValid}
-                handleSubmit={undefined}
-              />
+          <div className="p-2 m-2 d-flex justify-content-center col-sm-12">
+            <div className="trackingIndicator">
+              <ValidIndicator isValid={context.trackCodeIsValid.isValid} />
             </div>
             <TrackingNumber
               buildColors={buildColors}
               handleSubmit={null}
-              validatedObject={validatedTrackingNumber}
-              currentState={trackingNumberState.buildTrackingNum}
-              setState={setTrackingNumber}
+              validatedObject={context.trackCodeIsValid}
+              currentState={context.finalTrackCode}
             />
           </div>
           <div
@@ -146,7 +110,8 @@ export const Box: React.FC<BoxProps> = ({ sharedObject }) => {
         justify-content-center p-2 mr-4 mb-5"
           >
             <Captcha
-              ref={captchaRef}
+              captchaRef={captchaRef}
+              isValid={captchaValid}
               state={CaptchaState}
               setState={setCaptchaState}
             />
@@ -154,7 +119,7 @@ export const Box: React.FC<BoxProps> = ({ sharedObject }) => {
           <div className="d-flex justify-content-center mt-4 mr-5 p-3">
             <Button
               label="להמשך הרשמה"
-              showFunction={setShowMessageSent}
+              showFunction={() => null}
               isDisabled={CaptchaState.length < 2}
               onClick={() => {
                 updateDB();

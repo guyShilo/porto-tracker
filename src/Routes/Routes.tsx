@@ -5,7 +5,7 @@ import { About } from "../Components/About/About";
 import { OurService } from "../Components/OurService/OurService";
 import { Process } from "../Components/Process/Process";
 import { FrequentlyAsked } from "../Components/FrequentlyAsked/FrequentlyAsked";
-import { Box } from "src/Components/Box/Box";
+import { Box } from "src/Components/RegisterBox/RegisterBox";
 import { Footer } from "src/Components/View/Footer/Footer";
 import { NotFound } from "src/Components/NotFound/NotFound";
 

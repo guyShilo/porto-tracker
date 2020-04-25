@@ -1,21 +1,13 @@
 import React from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
 
-interface IndicatorProps {
+export const ValidIndicator: React.FC<{
   isValid: boolean | undefined;
-  handleSubmit: any;
-}
-export const ValidIndicator: React.FC<IndicatorProps> = ({
-
-  isValid
-}) => {
-
+}> = ({ isValid }) => {
   return (
-    <button
-      className="btn p-2 float-right mt-4"
-      type="submit"
-    >
-      <AiFillCheckCircle className={isValid ? 'text-success' : 'text-danger'} size={38} />
-    </button>
+    <AiFillCheckCircle
+      className={isValid ? "text-success mt-4" : "text-danger mt-4"}
+      size={38}
+    />
   );
 };

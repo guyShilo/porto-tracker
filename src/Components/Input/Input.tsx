@@ -1,15 +1,15 @@
-import React, {useState} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./style/style.scss";
-import { useEmailValidator } from "../InputValidators/EmailValidator";
-import { ValidIndicator } from "../Button/ValidIndicator";
 import { InputProps } from "./interface";
+import { globalReducer, IState, IAction } from "../Reducer";
+import { useEmailValidator } from "../InputValidators/EmailValidator";
+import StateContext from "../../Context/StateContext";
 
 export const Input: React.FC<InputProps> = ({
   label,
   name,
   length,
   currentState,
-  setState,
   inputType,
   errors,
   buildColors,
@@ -17,33 +17,39 @@ export const Input: React.FC<InputProps> = ({
 }) => {
   const [showError, setShowError] = useState(false);
 
+  const handleError = () => {
+    if (validatedObject.isValid === false) {
+      setShowError(true);
+    } else if (context.finalEmail && validatedObject.isValid) {
+      setShowError(false);
+    }
+  };
+  // Importing the context.
+  const context = useContext(StateContext);
   // handles the email input.
   const handleChange = (input: string) => (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     buildColors(validatedObject, "emailValid");
     const value = e.target.value;
-    if (input === "email") {
-      setState(value);
-    } else {
-      setState({
-        [input]: value,
-      });
-    }
+    context.addEmail(value);
   };
   return (
     <div className="p-2 m-1">
       <div className="mainInput d-flex flex-column">
-        <p className="text-bold text-center text-danger">{label}</p>
+        <p
+          onClick={() => console.log(context)}
+          className="text-bold text-center text-danger"
+        >
+          {label}
+        </p>
         <div
           className="text-center"
-          style={
-            validatedObject.isValid
-              ? { display: "none" }
-              : { display: "block" }
-          }
+          style={validatedObject.emailState.length !== 0  ? { display: "block" } : { display: "none" }}
         >
-          <small className="text-danger text-center">{errors?.emailError}</small>
+          <small className="text-danger text-center">
+            {errors?.emailError}
+          </small>
         </div>
         <input
           onChange={handleChange("email")}

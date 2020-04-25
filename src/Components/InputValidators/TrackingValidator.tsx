@@ -1,50 +1,43 @@
 import React, { useCallback, useEffect } from "react";
-import { TrackingNumberProps } from "../Box/interface";
 
 type Hook = (
-  trackingNumber: TrackingNumberProps
+  trackingNumber: string
 ) => {
-  finalNumber: string;
+  trackingNumber: string;
   errors: {
     trackingError: string;
   };
-  isValid?: boolean;
+  isValid: boolean;
 };
 
 interface Errors {
   trackingError: string;
-  isValid?: boolean;
+  isValid: boolean;
 }
 
 export const useTrackingValidator: Hook = (trackingNumber) => {
+
   const validate = useCallback(() => {
     handleValidation();
   }, [trackingNumber]);
 
-  const buildTrackingNumber = () => {
-    console.log(trackingNumber)
-    const numbers = Object.values(trackingNumber.buildTrackingNum);
-    return `${numbers[2]}-${numbers[1]}-${numbers[0]}`;
-  };
-
-  const finalNumber = buildTrackingNumber();
   const handleValidation = () => {
     let errors = {
       trackingError: "",
     };
-    if (finalNumber.trim() === "") {
-      errors.trackingError = "Tracking Number cannot be empty";
+    if (trackingNumber.trim() === "") {
+      errors.trackingError = "מספר המעקב לא יכול להיות ריק";
     } else {
       const regEx = /^[0-9]{4}[-][0-9]{4}[-][0-9]{4}$/;
-      if (!finalNumber.match(regEx)) {
-        errors.trackingError = "Tracking Number must contain only numbers";
+      if (!trackingNumber.match(regEx)) {
+        errors.trackingError = "מספר המעקב יכול להכיל מספרים בלבד";
       }
-      if (finalNumber.length != 14) {
-        errors.trackingError = "Length is wrong";
+      if (trackingNumber.length != 14) {
+        errors.trackingError = "אורכו של מספר המעקב חייב להיות 12 תווים";
       }
     }
     return {
-      finalNumber,
+      trackingNumber,
       errors,
       isValid: errors.trackingError.length < 5,
     };

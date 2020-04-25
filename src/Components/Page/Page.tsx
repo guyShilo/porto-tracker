@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "../Box/Box";
+import { Box } from "../RegisterBox/RegisterBox";
 import { MiscFunctionsContext } from "../../Context/MiscFunctions";
 import { About } from "../About/About";
 import { OurService } from "../OurService/OurService";
@@ -21,7 +21,7 @@ export const Page: React.FC<PageProps> = ({}) => {
     <div className="">
       <div className="">
         <OurService/>
-        <Box sharedObject={{}}/>
+        <Box/>
         <FrequentlyAsked/>
       </div>
     </div>

@@ -2,6 +2,7 @@ import * as React from "react";
 import messageSentImage from "./assets/messageSent.svg";
 import messageFailed from "./assets/messageFailed.svg";
 
+
 export const animationHelpers = {
   createVariants: (
     name: string,
@@ -18,6 +19,9 @@ export const animationHelpers = {
     };
     return variants;
   },
+  createAnimation: () => {
+    
+  }
 };
 
 export const SwalFunctions = {

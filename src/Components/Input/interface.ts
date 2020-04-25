@@ -1,6 +1,6 @@
 export interface TrackingNumberComponent {
   currentState: any;
-  setState: React.Dispatch<React.SetStateAction<any>>;
+  setState?: React.Dispatch<React.SetStateAction<any>>;
   // handleSubmit: (e: any, input: { boxOne: string; boxThree: string; boxTwo: string }) => void;
   handleSubmit: null;
   buildColors: (
@@ -20,27 +20,31 @@ export interface TrackingNumberComponent {
 }
 
 export interface InputProps {
-    label: string;
-    name: string;
-    length: number;
-    currentState: any;
-    setState: React.Dispatch<React.SetStateAction<any>>;
-    inputType: string;
-    errors:
-      | {
-          emailError: string;
-          isValid?: boolean | undefined;
-        }
-      | undefined;
-    buildColors: (
-      validatedObject: {
-        errors: {
-          emailError?: string | undefined;
-          trackingError?: string | undefined;
-        };
+  label: string;
+  name: string;
+  length: number;
+  currentState: any;
+  setState?: React.Dispatch<React.SetStateAction<any>>;
+  inputType: string;
+  errors:
+    | {
+        emailError: string;
         isValid?: boolean | undefined;
-      },
-      indicator: string
-    ) => void;
-    validatedObject: { errors: { emailError: string }; isValid?: boolean };
-  }
+      }
+    | undefined;
+  buildColors: (
+    validatedObject: {
+      errors: {
+        emailError?: string | undefined;
+        trackingError?: string | undefined;
+      };
+      isValid?: boolean | undefined;
+    },
+    indicator: string
+  ) => void;
+  validatedObject: {
+    emailState: string;
+    errors: { emailError: string };
+    isValid?: boolean | undefined;
+  };
+}
