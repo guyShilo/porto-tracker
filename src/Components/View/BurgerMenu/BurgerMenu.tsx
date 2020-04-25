@@ -7,7 +7,7 @@ import "./styles.scss";
 import { Link } from "react-router-dom";
 import MenuContext from "../../../Context/MenuContext";
 import { animationHelpers } from "../../../Utils";
-import logo from "../../../assets/logo.svg";
+import logo from "../../../assets/logo.png";
 
 export const BurgerMenu: React.FC<{}> = (props) => {
   const history = useHistory();
@@ -45,11 +45,14 @@ export const BurgerMenu: React.FC<{}> = (props) => {
         right
         styles={styles}
       >
-        <div className="w-100 shadow-lg mb-1">
+        <div className="w-100 mb-1">
           <img
-            style={{ zIndex: 1001 }}
-            className="w-75 h-100 text-center"
-            onClick={() => history.push("/service")}
+            style={{ zIndex: 1001}}
+            className="w-100 text-center"
+            onClick={() => {
+              history.push("/service")
+              context.toggleMenu()
+            }}
             src={logo}
             alt="logo"
           />
@@ -57,7 +60,6 @@ export const BurgerMenu: React.FC<{}> = (props) => {
         {linksArray.map((link, index) => (
           <motion.div
             style={{ outline: "none" }}
-            onClick={() => console.log(props)}
             variants={animationHelpers.createVariants("scale", 0.75, 1)}
             initial="variantA"
             whileHover="variantB"

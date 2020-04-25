@@ -15,19 +15,16 @@ const GlobalState = ({ children }) => {
   // React use reducer method for state managment.
   const [signUpState, dispatch] = useReducer(globalReducer, initialState);
   const { finalEmail, finalTrackCode } = signUpState;
-
   const addTrackCode = (value) => {
     setTimeout(() => {
       dispatch({ type: "ADD_TRACKCODE", value });
     }, 700);
   };
-
   const resetTrackCode = () => {
     setTimeout(() => {
       dispatch({ type: "RESET_TRACKCODE" });
     }, 700);
   };
-
   const addEmail = (value) => {
     setTimeout(() => {
       dispatch({ type: "ADD_EMAIL", value });
@@ -41,8 +38,7 @@ const GlobalState = ({ children }) => {
   const validateAndBuild = () => {
     const Email = validatedEmail.emailState;
     const TrackCode = validatedTrackingNumber.trackingNumber;
-    if ((validatedTrackingNumber.trackingNumber && validatedEmail.emailState) !== '') {
-      console.log('is not empty')
+    if (validatedTrackingNumber.isValid && validatedEmail.isValid) {
       return {
         Email,
         TrackCode,
@@ -55,7 +51,6 @@ const GlobalState = ({ children }) => {
   useEffect(() => {
     validateAndBuild();
   }, [finalEmail, finalTrackCode]);
-
   return (
     <StateContext.Provider
       value={{
@@ -73,5 +68,4 @@ const GlobalState = ({ children }) => {
     </StateContext.Provider>
   );
 };
-
 export default GlobalState;

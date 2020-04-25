@@ -1,5 +1,5 @@
 import React, {createContext} from 'react';
-
+// Create the Context and export it.
 export default createContext({
     addEmail: email => {},
     addTrackCode: track_code => {},
