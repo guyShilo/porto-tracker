@@ -6,22 +6,23 @@ import { history } from "../history";
 import { BurgerMenu } from "src/Components/View/BurgerMenu/BurgerMenu";
 import GlobalState from "../Context/GlobalState";
 import GlobalMenuState from "../Context/GlobalMenuState";
+import { animationHelpers } from "../Utils";
 
 function App() {
   return (
     <GlobalState>
-        <div className="App">
+      <div className="App">
         <GlobalMenuState>
           <div className="">
             <Router history={history}>
-              <motion.div className="">
+              <motion.div>
                 <BurgerMenu />
               </motion.div>
               <Routes />
             </Router>
           </div>
-          </GlobalMenuState>
-        </div>
+        </GlobalMenuState>
+      </div>
     </GlobalState>
   );
 }

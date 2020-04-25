@@ -3,7 +3,7 @@ export interface TrackingNumberComponent {
   setState?: React.Dispatch<React.SetStateAction<any>>;
   // handleSubmit: (e: any, input: { boxOne: string; boxThree: string; boxTwo: string }) => void;
   handleSubmit: null;
-  buildColors: (
+  buildColors?: (
     validatedObject: {
       errors: {
         emailError?: string | undefined;
@@ -32,7 +32,7 @@ export interface InputProps {
         isValid?: boolean | undefined;
       }
     | undefined;
-  buildColors: (
+  buildColors?: (
     validatedObject: {
       errors: {
         emailError?: string | undefined;

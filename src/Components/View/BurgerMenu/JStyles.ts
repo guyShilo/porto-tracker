@@ -5,13 +5,12 @@ export const styles = {
     height: "30px",
     right: "36px",
     top: "36px",
-    boxShadow: "0px 8px 39px -5px rgb(1,1,1)",
   },
   bmBurgerBars: {
-    background: "whitesmoke",
+    background: '#373a47'
   },
   bmBurgerBarsHover: {
-    background: "black",
+    background: '#a90000'
   },
   bmCrossButton: {
     height: "24px",
@@ -29,6 +28,7 @@ export const styles = {
     background: " #d9534f",
     padding: "2.5em 1.5em 0",
     fontSize: "1.15em",
+    boxShadow: "0px 8px 39px -5px rgb(1,1,1)",
   },
   bmMorphShape: {
     fill: "#373a47",

@@ -7,7 +7,7 @@ type Hook = (
   errors: {
     trackingError: string;
   };
-  isValid: boolean;
+  isValid: boolean | null
 };
 
 interface Errors {
@@ -36,6 +36,17 @@ export const useTrackingValidator: Hook = (trackingNumber) => {
         errors.trackingError = "אורכו של מספר המעקב חייב להיות 12 תווים";
       }
     }
+    const decideIfValid = (stringParam: string) => {
+      const isNotValid = stringParam !== '' && stringParam.length <= 5
+      const isValid = stringParam === ''
+      const deafultValue = null;
+      if(isValid) {
+        return true
+      } else if (isNotValid) {
+        return false
+      } else return deafultValue
+    }
+
     return {
       trackingNumber,
       errors,

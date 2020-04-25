@@ -2,11 +2,15 @@ import React from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
 
 export const ValidIndicator: React.FC<{
-  isValid: boolean | undefined;
+  isValid: boolean | null;
 }> = ({ isValid }) => {
+  const returnClass = () => {
+    if(isValid === true) return 'text-success mt-4'
+    return 'text-dark mt-4'
+  }
   return (
     <AiFillCheckCircle
-      className={isValid ? "text-success mt-4" : "text-danger mt-4"}
+      className={returnClass()}
       size={38}
     />
   );

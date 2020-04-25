@@ -30,7 +30,7 @@ export const Input: React.FC<InputProps> = ({
   const handleChange = (input: string) => (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    buildColors(validatedObject, "emailValid");
+    // buildColors(validatedObject, "emailValid");
     const value = e.target.value;
     context.addEmail(value);
   };
@@ -39,7 +39,7 @@ export const Input: React.FC<InputProps> = ({
       <div className="mainInput d-flex flex-column">
         <p
           onClick={() => console.log(context)}
-          className="text-bold text-center text-danger"
+          className="text-bold text-center text-dark"
         >
           {label}
         </p>

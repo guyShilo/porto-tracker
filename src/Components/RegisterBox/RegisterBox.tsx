@@ -13,7 +13,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useHistory } from "react-router";
 // import { Loader } from "../Loader";
-// import { Overlay } from "../Overlay/Overlay";
+import { Overlay } from "../Overlay/Overlay";
 import StateContext from "src/Context/StateContext";
 import { ReCAPTCHA } from "react-google-recaptcha";
 
@@ -31,35 +31,34 @@ export const Box: React.FC = () => {
   const [captchaValid, setCaptchaValid] = useState<boolean>(false);
 
   // The state of the Validation Indicator.
-  const [colorState, setColorState] = useState({
-    emailValid: !context.emailIsValid ? "text-danger" : "text-success",
-    trackingValid: !context.trackCodeIsValid ? "text-danger" : "text-success",
-  });
+  // const [colorState, setColorState] = useState({
+  //   emailValid: !context.emailIsValid ? "text-danger" : "text-success",
+  //   trackingValid: !context.trackCodeIsValid ? "text-danger" : "text-success",
+  // });
 
   // function that gets an object from the validation, hook and decides the state of the indicator.
-  const buildColors = (
-    validatedObject: {
-      errors: {
-        emailError?: string;
-        trackingError?: string;
-      };
-      isValid?: boolean;
-    },
-    indicator: string
-  ) => {
-    if (validatedObject.isValid === false) {
-      setColorState({ ...colorState, [indicator]: "text-danger" });
-    }
-    if (validatedObject.isValid === true) {
-      setColorState({ ...colorState, [indicator]: "text-success" });
-    }
-  };
+  // const buildColors = (
+  //   validatedObject: {
+  //     errors: {
+  //       emailError?: string;
+  //       trackingError?: string;
+  //     };
+  //     isValid?: boolean;
+  //   },
+  //   indicator: string
+  // ) => {
+  //   if (validatedObject.isValid === false) {
+  //     setColorState({ ...colorState, [indicator]: "text-danger" });
+  //   }
+  //   if (validatedObject.isValid === true) {
+  //     setColorState({ ...colorState, [indicator]: "text-success" });
+  //   }
+  // };
 
   const updateDB = async () => {
     const { finalTrackCode, finalEmail } = context;
-    setCaptchaValid(true);
     try {
-      const request = axios.post("http://173.255.115.65/sendData", {
+      const request = axios.post("https://173.255.115.65/sendData", {
         Email: finalEmail,
         TrackCode: finalTrackCode,
         "g-recaptcha-response": CaptchaState,
@@ -72,24 +71,35 @@ export const Box: React.FC = () => {
         setCaptchaValid(false);
       }
     } catch (error) {
-      throw new Error(error);
+      setCaptchaValid(false);
+      return (
+        <Overlay
+          Component={SwalFunctions.swalFailed(error, MySwal, history)}
+          currentState={captchaValid}
+          hide={() => setCaptchaValid(!captchaValid)}
+        />
+      );
     }
   };
 
   return (
     <div className="boxContainer">
-      <div className="boxHeader"></div>
+      <div className="boxHeader">
+        <h1>הרשמה לשירות שלנו</h1>
+      </div>
       <div className="p-2 mainBox">
         <div className="d-flex flex-column align-items-center">
           <div className="p-2 m-2 d-flex justify-content-center ">
-            <ValidIndicator isValid={context.emailIsValid.isValid} />
+            <div className="mailIndicator">
+              <ValidIndicator isValid={context.emailIsValid.isValid} />
+            </div>
             <Input
               currentState={context.finalEmail}
               length={99}
               label={"הכנס כתובת דוא״ל"}
               name={"email"}
               inputType={"email"}
-              buildColors={buildColors}
+              // buildColors={buildColors}
               validatedObject={context.emailIsValid}
               errors={context.emailIsValid.errors}
             />
@@ -99,7 +109,7 @@ export const Box: React.FC = () => {
               <ValidIndicator isValid={context.trackCodeIsValid.isValid} />
             </div>
             <TrackingNumber
-              buildColors={buildColors}
+              // buildColors={buildColors}
               handleSubmit={null}
               validatedObject={context.trackCodeIsValid}
               currentState={context.finalTrackCode}

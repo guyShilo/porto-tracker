@@ -29,7 +29,6 @@ const GlobalState = ({ children }) => {
   };
 
   const addEmail = (value) => {
-    console.log(value);
     setTimeout(() => {
       dispatch({ type: "ADD_EMAIL", value });
     }, 700);
@@ -42,7 +41,8 @@ const GlobalState = ({ children }) => {
   const validateAndBuild = () => {
     const Email = validatedEmail.emailState;
     const TrackCode = validatedTrackingNumber.trackingNumber;
-    if (validatedTrackingNumber.isValid && validatedEmail.isValid) {
+    if ((validatedTrackingNumber.trackingNumber && validatedEmail.emailState) !== '') {
+      console.log('is not empty')
       return {
         Email,
         TrackCode,

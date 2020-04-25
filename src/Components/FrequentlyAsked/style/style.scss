@@ -1,8 +1,5 @@
 .faqMain {
-  // background: url("../../../assets/question.svg");
-  // background-repeat: no-repeat;
-  // background-size: 45vw;
-  // background-position: 0rem 15rem;
+  width: 100vw;
   height: 100vh;
   .faqHeader {
     display: flex;
@@ -10,6 +7,7 @@
     align-items: flex-start;
     h1 {
       color: #d9534f;
+      margin-top: 1.5rem;
       margin-left: 9rem;
     }
     span {
@@ -17,6 +15,8 @@
       color: #d9534f;
       font-weight: bold;
       margin-left: 37%;
+      margin-top: -1rem;
+      margin-bottom: 1rem;
     }
   }
   .faqContent {

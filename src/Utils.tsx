@@ -68,7 +68,7 @@ export const SwalFunctions = {
         html: (
           <div>
             <img className="w-50" src={messageFailed} alt="signUpComplete" />
-            <p>{errorMessage.msgToUser}</p>
+            <p>{errorMessage.msgToUser || ''}</p>
           </div>
         ),
         icon: "danger",

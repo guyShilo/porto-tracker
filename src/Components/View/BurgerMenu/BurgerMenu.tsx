@@ -15,8 +15,8 @@ export const BurgerMenu: React.FC<{}> = (props) => {
   const withoutDeco = "m-1 p-1";
   const withDeco = "m-1 p-1 active";
   const [isOpen, setisOpen] = useState({
-    isOpen: false
-  })
+    isOpen: false,
+  });
   const decideStyle = (path: string) =>
     path === urlPath ? withDeco : withoutDeco;
   const btnStyle = {
@@ -37,7 +37,7 @@ export const BurgerMenu: React.FC<{}> = (props) => {
   const context = useContext(MenuContext);
 
   return (
-    <div className="">
+    <div>
       <Menu
         isOpen={context.isMenuOpen}
         onStateChange={context.stateChangeHandler(isOpen)}
@@ -48,7 +48,7 @@ export const BurgerMenu: React.FC<{}> = (props) => {
         <div className="w-100 shadow-lg mb-1">
           <img
             style={{ zIndex: 1001 }}
-            className="w-50 h-100 text-center"
+            className="w-75 h-100 text-center"
             onClick={() => history.push("/service")}
             src={logo}
             alt="logo"

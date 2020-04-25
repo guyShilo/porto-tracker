@@ -67,7 +67,7 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     const regex = new RegExp("^[0-9]+$");
-    buildColors(validatedObject, "trackingValid");
+    // buildColors(validatedObject, "trackingValid");
     const value = event.target.value;
     const name = event.target.name;
     if (event.target.value.length === 4) {
@@ -88,7 +88,7 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
   }, [trackingNumberState]);
   return (
     <div className="trackingNumber d-flex flex-column align-items-center p-1">
-      <p className="text-center text-bold text-danger">הכנס מספר מעקב</p>
+      <p className="text-center text-bold text-dark">הכנס מספר מעקב</p>
       <motion.div
         className="text-center"
         style={
@@ -119,7 +119,7 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
             tabIndex={0}
             maxLength={4}
           />
-          <span className="text-danger text-bold m-2">-</span>
+          <span className="text-dark text-bold m-2">-</span>
           <input
             onChange={(event) => {
               handleChange(event);
@@ -133,7 +133,7 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
             tabIndex={1}
             maxLength={4}
           />
-          <span className="text-danger text-bold m-2">-</span>
+          <span className="text-dark text-bold m-2">-</span>
           <input
             onChange={(event) => {
               handleChange(event);
