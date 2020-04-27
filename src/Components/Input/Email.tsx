@@ -1,29 +1,24 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, {  useContext } from "react";
 import "./style/style.scss";
-import { InputProps } from "./interface";
-import { globalReducer, IState, IAction } from "../Reducer";
-import { useEmailValidator } from "../InputValidators/EmailValidator";
+import { InputProps } from "./InputsInterface";
 import StateContext from "../../Context/StateContext";
 
-export const Input: React.FC<InputProps> = ({
-  label,
-  name,
-  length,
-  currentState,
+export const Email: React.FC<InputProps> = ({
   inputType,
   errors,
   buildColors,
   validatedObject,
 }) => {
-  const [showError, setShowError] = useState(false);
+  // const [showError, setShowError] = useState(false);
+  //
+  // const handleError = () => {
+  //   if (validatedObject.isValid === false) {
+  //     setShowError(true);
+  //   } else if (context.finalEmail && validatedObject.isValid) {
+  //     setShowError(false);
+  //   }
+  // };
 
-  const handleError = () => {
-    if (validatedObject.isValid === false) {
-      setShowError(true);
-    } else if (context.finalEmail && validatedObject.isValid) {
-      setShowError(false);
-    }
-  };
   // Importing the context.
   const context = useContext(StateContext);
   // handles the email input.
@@ -39,9 +34,9 @@ export const Input: React.FC<InputProps> = ({
       <div className="mainInput d-flex flex-column">
         <p
           onClick={() => console.log(context)}
-          className="text-bold text-center text-dark"
+          className="text-bold text-center"
         >
-          {label}
+          הכנס כתובת דוא״ל
         </p>
         <div
           className="text-center"
@@ -55,7 +50,7 @@ export const Input: React.FC<InputProps> = ({
           onChange={handleChange("email")}
           className="text-center"
           type={inputType}
-          maxLength={length}
+          required={true}
         />
       </div>
     </div>

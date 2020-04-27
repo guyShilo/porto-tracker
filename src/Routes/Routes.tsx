@@ -5,7 +5,7 @@ import { About } from "../Components/About/About";
 import { OurService } from "../Components/OurService/OurService";
 import { Process } from "../Components/Process/Process";
 import { FrequentlyAsked } from "../Components/FrequentlyAsked/FrequentlyAsked";
-import { Box } from "src/Components/RegisterBox/RegisterBox";
+import { RegisterBox } from "src/Components/RegisterBox/RegisterBox";
 import { Footer } from "src/Components/View/Footer/Footer";
 import { NotFound } from "src/Components/NotFound/NotFound";
 
@@ -20,8 +20,8 @@ export const faq = `${baseUrl}faq/`;
 export const Routes: React.FC<{}> = ({}) => (
   <div>
     <Switch>
-      <Route exact path={baseUrl} component={Main} />
-      <Route path={registration} component={Box} />
+      <Route exact path={baseUrl} component={OurService} />
+      <Route path={registration} component={RegisterBox} />
       <Route path={aboutPage} component={About} />
       <Route path={ourService} component={OurService} />
       <Route path={portoProcess} component={Process} />

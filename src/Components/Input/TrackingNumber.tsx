@@ -1,12 +1,11 @@
 import React, { useContext, createRef, useEffect, useState } from "react";
-import { TrackingNumberComponent } from "./interface";
+import { TrackingNumberComponent } from "./InputsInterface";
 import StateContext from "../../Context/StateContext";
 import { motion } from "framer-motion";
 import { animationHelpers } from "../../Utils";
 
 export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
-  buildColors,
-  validatedObject,
+validatedObject,
 }) => {
   // initiating tracking number state
   const [trackingNumberState, setTrackingNumber] = useState({
@@ -31,11 +30,12 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
   const inputBoxOne = createRef<HTMLInputElement>();
   const inputBoxTwo = createRef<HTMLInputElement>();
   const inputBoxThree = createRef<HTMLInputElement>();
-
+  // regex to split 12 Chars to 3 groups of 4.
+  const splitToGroupsRegex = /.{4}/g;
+  // regex to validate there is only numbers;
+  const onlyNumbersRegex = new RegExp("^[0-9]+$");
   // Handling onPaste event when the client pastes the tracking number.
   const handlePaste = (event: React.ClipboardEvent<HTMLFormElement>) => {
-    // regex to split 12 Chars to 3 groups of 4.
-    const regex = /.{4}/g;
     let clipped: any[] | RegExpMatchArray | null = [];
     let pastedTrackCode = {
       boxOne: clipped![0],
@@ -44,10 +44,11 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
     };
     const clipBoardData = event.clipboardData.getData("text");
     // checks where the tracking number has '-', if it has, split by that. if not. split by regex.
-    if (clipBoardData.indexOf("-") !== -1) {
+    if (clipBoardData.indexOf("-") !== -1){
       clipped = clipBoardData.split("-");
+      console.log('regex test')
     } else if (clipBoardData.indexOf("-") === -1) {
-      clipped = clipBoardData.match(regex);
+      clipped = clipBoardData.match(splitToGroupsRegex);
     }
     context.addTrackCode(buildTrackingNumber(pastedTrackCode));
     setTrackingNumber({
@@ -66,14 +67,13 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
   // takes the input name and value and returns an object with the three inputs.
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    const regex = new RegExp("^[0-9]+$");
     // buildColors(validatedObject, "trackingValid");
     const value = event.target.value;
     const name = event.target.name;
     if (event.target.value.length === 4) {
       checkBoxes();
     }
-    if (regex.test(value) || value === "") {
+    if (onlyNumbersRegex.test(value) || value === "") {
       setTrackingNumber({
         ...trackingNumberState,
         [name]: value,
@@ -82,13 +82,13 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
       return;
     }
   };
-  // Updates everytime the state updates..
+  // Updates every time the state updates.
   useEffect(() => {
     context.addTrackCode(number);
-  }, [trackingNumberState]);
+  }, [context, number]);
   return (
     <div className="trackingNumber d-flex flex-column align-items-center p-1">
-      <p className="text-center text-bold text-dark">הכנס מספר מעקב</p>
+      <p className="text-center text-bold ">הכנס מספר מעקב</p>
       <motion.div
         className="text-center"
         style={
@@ -119,7 +119,7 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
             tabIndex={0}
             maxLength={4}
           />
-          <span className="text-dark text-bold m-2">-</span>
+          <span className=" text-bold m-2">-</span>
           <input
             onChange={(event) => {
               handleChange(event);
@@ -133,7 +133,7 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
             tabIndex={1}
             maxLength={4}
           />
-          <span className="text-dark text-bold m-2">-</span>
+          <span className=" text-bold m-2">-</span>
           <input
             onChange={(event) => {
               handleChange(event);

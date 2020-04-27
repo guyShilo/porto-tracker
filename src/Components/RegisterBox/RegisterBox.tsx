@@ -1,12 +1,11 @@
 import React, { useState, useEffect, createRef, useContext } from "react";
 import axios from "axios";
-import { Input } from "../Input/Input";
+import { Email } from "../Input/Email";
 import { Button } from "../Button/Button";
 import "./styles/style.scss";
 import { TrackingNumber } from "../Input/TrackingNumber";
 import { Captcha } from "../Captcha/Captcha";
 import { ValidIndicator } from "../Button/ValidIndicator";
-import { BoxProps } from "./interface";
 import { Alert } from "../Alert/Alert";
 import { SwalFunctions } from "../../Utils";
 import Swal from "sweetalert2";
@@ -16,8 +15,9 @@ import { useHistory } from "react-router";
 import { Overlay } from "../Overlay/Overlay";
 import StateContext from "src/Context/StateContext";
 import { ReCAPTCHA } from "react-google-recaptcha";
+import destinations from '../../assets/destinations.svg'
 
-export const Box: React.FC = () => {
+export const RegisterBox: React.FC = () => {
   document.title = "הרשמה";
   const MySwal = withReactContent(Swal);
   const history = useHistory();
@@ -58,27 +58,21 @@ export const Box: React.FC = () => {
   const updateDB = async () => {
     const { finalTrackCode, finalEmail } = context;
     try {
-      const request = axios.post("https://173.255.115.65/sendData", {
+      setCaptchaValid(true);
+      const request = axios.post("http://173.255.115.65/sendData", {
         Email: finalEmail,
         TrackCode: finalTrackCode,
         "g-recaptcha-response": CaptchaState,
       });
       const response = await request;
       if (response.data.isValid) {
-        SwalFunctions.swalSuccsess(MySwal, history);
+        await SwalFunctions.swalSuccess(MySwal, history);
       } else {
-        SwalFunctions.swalFailed(response.data, MySwal, history);
+        await SwalFunctions.swalFailed(response.data, MySwal, history);
         setCaptchaValid(false);
       }
     } catch (error) {
-      setCaptchaValid(false);
-      return (
-        <Overlay
-          Component={SwalFunctions.swalFailed(error, MySwal, history)}
-          currentState={captchaValid}
-          hide={() => setCaptchaValid(!captchaValid)}
-        />
-      );
+      alert(error)
     }
   };
 
@@ -93,11 +87,7 @@ export const Box: React.FC = () => {
             <div className="mailIndicator">
               <ValidIndicator isValid={context.emailIsValid.isValid} />
             </div>
-            <Input
-              currentState={context.finalEmail}
-              length={99}
-              label={"הכנס כתובת דוא״ל"}
-              name={"email"}
+            <Email
               inputType={"email"}
               // buildColors={buildColors}
               validatedObject={context.emailIsValid}
@@ -122,8 +112,7 @@ export const Box: React.FC = () => {
             <Captcha
               captchaRef={captchaRef}
               isValid={captchaValid}
-              state={CaptchaState}
-              setState={setCaptchaState}
+              setCaptcha={setCaptchaState}
             />
           </div>
           <div className="d-flex justify-content-center mt-4 mr-5 p-3">
@@ -138,6 +127,7 @@ export const Box: React.FC = () => {
           </div>
         </div>
       </div>
+      <img className="registerPic"  src={destinations} />
     </div>
   );
 };

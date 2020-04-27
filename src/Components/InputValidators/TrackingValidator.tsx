@@ -18,10 +18,6 @@ interface Errors {
 export const useTrackingValidator: Hook = (trackingNumber) => {
 
   const validate = useCallback(() => {
-    handleValidation();
-  }, [trackingNumber]);
-
-  const handleValidation = () => {
     let errors = {
       trackingError: "",
     };
@@ -32,31 +28,20 @@ export const useTrackingValidator: Hook = (trackingNumber) => {
       if (!trackingNumber.match(regEx)) {
         errors.trackingError = "מספר המעקב יכול להכיל מספרים בלבד";
       }
-      if (trackingNumber.length != 14) {
+      if (trackingNumber.length !== 14) {
         errors.trackingError = "אורכו של מספר המעקב חייב להיות 12 תווים";
       }
     }
-    const decideIfValid = (stringParam: string) => {
-      const isNotValid = stringParam !== '' && stringParam.length <= 5
-      const isValid = stringParam === ''
-      const deafultValue = null;
-      if(isValid) {
-        return true
-      } else if (isNotValid) {
-        return false
-      } else return deafultValue
-    }
-
     return {
       trackingNumber,
       errors,
       isValid: errors.trackingError.length < 5,
     };
-  };
+  }, [trackingNumber]);
 
   useEffect(() => {
     validate();
   });
 
-  return handleValidation();
+  return validate();
 };

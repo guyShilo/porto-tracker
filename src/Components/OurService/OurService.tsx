@@ -1,13 +1,9 @@
-import { ContentLinks } from "./ContentLinks";
 import React from "react";
 import "./style/style.scss";
 import backgroundImage from "../../assets/siteHeader.jpg";
+import { ContentLinks } from "./ContentLinks";
 
 export const OurService: React.FC = () => {
-  const variants = {
-    variantA: { scale: 0.9 },
-    variantB: { scale: 1 },
-  };
   return (
     <div>
       <div className="ourService">
@@ -20,17 +16,17 @@ export const OurService: React.FC = () => {
         </div>
         <img
             style={{
-              width: "100%",
-              height: '100%',
+              width: "100vw",
+              height: '100vh',
               zIndex: 1,
               position: 'fixed',
             }}
             src={backgroundImage}
             alt="image"
           />
-        <div className="ourSerivceContent">
+        <div className="ourServiceContent">
           <p className="content-heading text-center">שלום לכם</p>
-          <p className="text-center">
+          <p className="text-center text-light">
             <b>
               PortuTrack יתעדכן במצב תהליך הגשת הבקשה שלכם <br />
             </b>
@@ -42,7 +38,7 @@ export const OurService: React.FC = () => {
             החל ממייל זה, נמשיך לבדוק מדי יום – אך נעדכן אתכם רק כאשר יהיה משהו
             חדש. ההרשמה פשוטה ביותר, למה אתם מחכים? הישארו מעודכנים!
           </p>
-          <ContentLinks variants={variants} />
+          <ContentLinks />
         </div>
       </div>
     </div>

@@ -2,17 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "../Button/Button";
 import { Link } from "react-router-dom";
+import {animationHelpers} from "../../Utils";
 
-export const ContentLinks: React.FC<{
-  variants: {
-    variantA: {
-      scale: number;
-    };
-    variantB: {
-      scale: number;
-    };
-  };
-}> = ({ variants }) => {
+export const ContentLinks: React.FC = () => {
+    const variants = animationHelpers.createVariants('scale',0.9, 1);
   return (
     <div className="content-links">
       <motion.div variants={variants} initial="variantA" whileHover="variantB">

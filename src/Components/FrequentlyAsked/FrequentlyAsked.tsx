@@ -1,17 +1,16 @@
 import React, { useState, createRef, useEffect } from "react";
 import "./style/style.scss";
 import axios from "axios";
-import { Question } from "./Question";
 import faqPic from "../../assets/question.svg";
 
 export const FrequentlyAsked: React.FC = () => {
   return (
     <div className="faqMain container ">
-      <div className="faqHeader w-100">
+      <div className="faqHeader">
         <h1 className="p-1">אז אנחנו מניחים שיש לכם קצת שאלות....</h1>
         <span className="p-1">חשבנו על כמה מהן וענינו לכם מראש ;)</span>
       </div>
-      <div className="h-75 mb-5">
+      <div className="faqContent mb-5">
         <p className="text-right">
           <b>זה בחינם?</b> לחלוטין. <b>למה?</b> ראשית, השירות הזה התחיל כעזרה
           לקרוב משפחה, שלא יכולתי לראות כמה זמן הוא מבזבז על בדיקת בקשת האזרחות
@@ -21,11 +20,11 @@ export const FrequentlyAsked: React.FC = () => {
           משם לקחתי את זה צעד קדימה, כפרויקט שגם יתרום לכלל. <br />
         </p>
         <p className="text-right">
-          <b>אז איך נרשמים?</b> ההרשמה לשירות פשוטה ביותר, ונעשית באמצעות מספר
+          <b>אז איך נרשמים?</b> <br/> ההרשמה לשירות פשוטה ביותר, ונעשית באמצעות מספר
           המעקב וכתובת האימייל שלכם.
         </p>
         <p className="text-right">
-          <b>איזה עדכונים אני אקבל ממכם?</b> אנו לא רוצים להעמיס עליכם בעדכונים
+          <b>איזה עדכונים אני אקבל ממכם?</b> <br/> אנו לא רוצים להעמיס עליכם בעדכונים
           מיותרים ולכן, נעדכן אותך רק בשינויים במצב הבקשה שלך. נשלח אליכם אימל
           מהסיבות הבאות:
           <ul>
@@ -41,7 +40,7 @@ export const FrequentlyAsked: React.FC = () => {
           </ul>
         </p>
         <p className="text-right">
-          <b>חוששים לשתף איתנו את מספר המעקב?</b> כמה מילים בנושא פרטיות – עניין
+          <b>חוששים לשתף איתנו את מספר המעקב?</b> <br/> כמה מילים בנושא פרטיות – עניין
           הפרטיות הוא הדבר הראשון שחשבנו עליו והוא חשוב לנו מאוד. מספר המעקב
           שלכם אמנם נדרש, אבל יהיה גלוי אך ורק למנהל הפרויקט. <br /> אחסון
           הנתונים נעשה בצורה מאובטחת, ובוצעו כל ההתאמות בכדי להבטיח שמירה על
@@ -50,17 +49,18 @@ export const FrequentlyAsked: React.FC = () => {
           בכל שלב יהיה באפשרותכם להסיר את הרשמתכם לשירות.
         </p>
         <p className="text-right">
-        <b> אני רוצה להסיר את הרשמתי. </b>חבל לנו שלא התרשמת לטובה. תוכל לבצע
+        <b> אני רוצה להסיר את הרשמתי. </b> <br/> חבל לנו שלא התרשמת לטובה. תוכל לבצע
         זאת בלינק הזה נשמח לקבל ממך גם משוב מדוע החלטת להסיר את הרשמתך.
       </p>
       </div>
-      <div className="faqBottom">
-        <img
+      {/*<div className="faqBottom">*/}
+
+      {/*</div>*/}
+      <img
           className="mr-auto ml-5"
           src={faqPic}
           alt="frequentlyAsked"
-        />
-      </div>
+      />
     </div>
   );
 };

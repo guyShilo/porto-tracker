@@ -1,48 +1,45 @@
+@import "../../../include-media.scss";
+$breakpoints: (
+        phone: 320px,
+        largePhone: 575px,
+        tablet: 768px,
+        desktop: 1075px,
+);
+
 .faqMain {
   width: 100vw;
   height: 100vh;
   .faqHeader {
+    width: 75vw;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     h1 {
       color: #d9534f;
       margin-top: 1.5rem;
       margin-left: 9rem;
     }
     span {
-      align-self: flex-start;
+      align-self: center;
       color: #d9534f;
       font-weight: bold;
-      margin-left: 37%;
       margin-top: -1rem;
       margin-bottom: 1rem;
     }
   }
   .faqContent {
-    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    flex-wrap: wrap;
     margin: 1rem;
-    width: 75%;
+    width: 100%;
     margin-bottom: 1rem;
-    border-radius: 0.2rem;
-    .expand-block {
-      span {
-        font-size: 14px;
-        margin: 0.2rem;
-      }
-    }
-    .answer {
-      display: none;
-      z-index: 1;
-      width: 50%;
-      box-shadow: 0px 7px 14px 4px rgba(0, 0, 0, 0.05);
-      background-color: whitesmoke;
-      p {
-        color: rgb(180, 0, 0);
-      }
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: rgb(47,47,47);
+    p {
+      color: whitesmoke;
     }
   }
   .faqBottom {
@@ -51,36 +48,85 @@
     align-items: flex-end;
     background-color: rgba(36, 36, 36, 0.9);
     border-radius: 2rem;
+
+  }
+  img {
+    width: 35%;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+@include media("<phone"){
+  .faqMain {
+    .faqHeader {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      h1 {
+        font-size: 2rem;
+        margin: auto;
+        padding: 2rem;
+      }
+      span {
+        display: none;
+      }
+    }
     img {
-      height: 30vh;
-      position: fixed;
-      z-index: 1;
-      bottom: 0;
-      left: 0;
+      display: none;
     }
   }
 }
 
-@media only screen and (min-device-width: 375px) and (min-device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+// SMALL PHONES TO LARGER PHONES
+@include media(">=phone", "<=largePhone") {
   .faqMain {
     .faqHeader {
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
       align-items: center;
-      width: 100vw;
+      margin: 1.5rem;
       h1 {
-        margin: 0;
-        margin-top: 4rem;
+        font-size: 2rem;
+        margin: 3rem 0 2rem 0
       }
       span {
         margin: 0;
-        margin: auto
+        margin-right: 2.5rem;
       }
     }
-    .faqBottom {
-      align-items: center;
-      background: none;
-      img {
-        display: none;
-      }
+    .faqContent {
+      width: 95%;
+    }
+    img {
+      display: none;
     }
   }
 }
+// LARGER PHONES TO DESKTOP
+@include media(">=largePhone", "<=desktop") {
+  .faqMain {
+    .faqHeader {
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+      align-items: center;
+      margin: 1.5rem;
+      h1 {
+        margin: 0;
+        margin-top: 1.5rem;
+      }
+      span {
+        margin: 0;
+        text-align: center;
+      }
+    }
+    img {
+      display: none;
+    }
+  }
+}
+

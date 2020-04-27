@@ -10,15 +10,23 @@ import { animationHelpers } from "../../../Utils";
 import logo from "../../../assets/logo.png";
 
 export const BurgerMenu: React.FC<{}> = (props) => {
-  const history = useHistory();
-  const urlPath = history.location.pathname;
-  const withoutDeco = "m-1 p-1";
-  const withDeco = "m-1 p-1 active";
-  const [isOpen, setisOpen] = useState({
+  // Importing the Menu context.
+  const context = useContext(MenuContext);
+  // Initiating the menu state.
+  const [isOpen] = useState({
     isOpen: false,
   });
+  // Importing history object with useHistory hook.
+  const history = useHistory();
+  // Extracting the path name to a variable for reuse.
+  const urlPath = history.location.pathname;
+  // Defining decorations for the menu buttons.
+  const withoutDeco = "m-1 p-1";
+  const withDeco = "m-1 p-1 active";
+  // A function that decide if decoration is in need.
   const decideStyle = (path: string) =>
     path === urlPath ? withDeco : withoutDeco;
+  // Inline styling for the menu buttons.
   const btnStyle = {
     background: "none",
     border: "none",
@@ -26,7 +34,7 @@ export const BurgerMenu: React.FC<{}> = (props) => {
     padding: "0.2rem",
     outline: "none",
   };
-
+  // Defining an Array which will be mapped over in order to display the buttons.
   const linksArray = [
     { linkName: "עמוד הבית", path: "/service" },
     { linkName: "הרשמה לשירות", path: "/registration" },
@@ -34,8 +42,6 @@ export const BurgerMenu: React.FC<{}> = (props) => {
     { linkName: "קצת עלינו", path: "/about" },
     { linkName: "הסבר על תהליך האזרחות", path: "/process" },
   ];
-  const context = useContext(MenuContext);
-
   return (
     <div>
       <Menu
@@ -68,9 +74,6 @@ export const BurgerMenu: React.FC<{}> = (props) => {
           >
             <Link to={link.path} onClick={() => context.toggleMenu()}>
               <button
-                // onClick={() => setIsOpen({
-                //   isOpen: !isOpen
-                // })}
                 className={decideStyle(link.path)}
                 style={btnStyle}
               >

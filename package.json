@@ -17,6 +17,7 @@
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "framer-motion": "^1.10.3",
+    "include-media": "^1.4.9",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-burger-menu": "^2.6.13",

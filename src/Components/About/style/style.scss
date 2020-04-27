@@ -1,9 +1,40 @@
+@import "../../../include-media.scss";
+$breakpoints: (
+  phone: 340px,
+  largePhone: 575px,
+  tablet: 768px,
+  desktop: 1024px,
+);
+
 .aboutContainer {
-  //border-radius: 0.5rem;
   width: 100vw;
   height: 100vh;
   background-color: rgb(204, 32, 9);
   box-shadow: 0px 8px 39px -5px rgba(0, 0, 0, 0.49);
+  section.developers {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(47, 47, 47, 0.7);
+    padding: 1rem;
+    margin: 1.2rem;
+    border-radius: 1rem;
+    width: 65vw;
+    .aboutDeveloper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        color: white;
+      }
+      .linkedInPic {
+        margin-bottom: 0.3rem;
+        
+        img {
+          margin: 0.2rem;
+        }
+      }
+    }
+  }
   .aboutHeader {
     h1 {
       margin-right: 10rem;
@@ -14,14 +45,10 @@
   .aboutContent {
     padding: 1rem;
     width: 70vw;
-    height: 50vh;
+    
+    // height: 60%;
   }
   .aboutImage {
-    // // display: flex;
-    // // flex-direction: column-reverse;
-    // // justify-content: center;
-    // // align-items: center;
-    // width: 30vw;
     img {
       position: fixed;
       left: 1rem;
@@ -30,30 +57,108 @@
     }
   }
 }
-
-@media only screen and (min-device-width: 375px) and (min-device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+// VERY SMALL PHONES EDGE CASES 
+@include media("<phone") {
   .aboutContainer {
-    height: 100%;
+    section.developers {
+      display: none;
+    }
+    .aboutImage {
+      display: none;
+    }
+  }
+}
+// SMALL PHONES TO LARGER PHONES
+@include media(">phone", "<=largePhone") {
+  .aboutContainer {
+    height: 100vh;
+    section.developers {
+      height: 40vh;
+      width: 80vw;
+      padding: 1rem;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+      .aboutDeveloper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        p {
+          font-size: smaller;
+          margin: 1.5rem;
+        }
+        .linkedInPic {
+          display: none;
+        }
+      }
+    }
     .aboutHeader {
-      margin-right: 0;
-      text-align: center;
+      height: 15vh;
+      h1 {
+        margin: 0;
+        margin-right: 6rem;
+        margin-top: 0.6rem;
+      }
     }
     .aboutContent {
       width: 100vw;
-      height: 100%;
-      section.developers {
-        margin-top: 1rem;
-        display: flex;
-        flex-direction: column;
-        height: 65vh;
-      }
-    }
-    .aboutButton {
-      
+      height: 30vh;
     }
     .aboutImage {
       padding: 1rem;
       display: none;
+    }
+    .registerLink {
+
+    }
+  }
+}
+// LARGER PHONES TO DESKTOP
+@include media(">=largePhone", "<=desktop") {
+  .aboutContainer {
+    height: 100vh;
+    section.developers {
+      height: 40vh;
+      width: 80vw;
+      padding: 1rem;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      .aboutDeveloper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        p {
+          font-size: smaller;
+          margin: 1.5rem;
+        }
+        .linkedInPic {
+        }
+      }
+    }
+    .aboutHeader {
+      height: 15vh;
+      h1 {
+        margin: 0;
+        margin-right: 6rem;
+        margin-top: 0.6rem;
+      }
+    }
+    .aboutContent {
+      width: 100vw;
+      height: 30vh;
+    }
+    .aboutImage {
+      padding: 1rem;
+      display: none;
+    }
+    .registerLink {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: center;
     }
   }
 }

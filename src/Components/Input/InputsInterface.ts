@@ -20,10 +20,6 @@ export interface TrackingNumberComponent {
 }
 
 export interface InputProps {
-  label: string;
-  name: string;
-  length: number;
-  currentState: any;
   setState?: React.Dispatch<React.SetStateAction<any>>;
   inputType: string;
   errors:

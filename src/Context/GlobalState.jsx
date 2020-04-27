@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useCallback } from "react";
 import { useEmailValidator } from "../Components/InputValidators/EmailValidator";
 import { useTrackingValidator } from "../Components/InputValidators/TrackingValidator";
 import { globalReducer } from "../Components/Reducer";
@@ -12,7 +12,7 @@ const GlobalState = ({ children }) => {
     emailIsValid: false,
     trackCodeIsValid: false,
   };
-  // React use reducer method for state managment.
+  // React use reducer method for state management.
   const [signUpState, dispatch] = useReducer(globalReducer, initialState);
   const { finalEmail, finalTrackCode } = signUpState;
   const addTrackCode = (value) => {
@@ -35,7 +35,7 @@ const GlobalState = ({ children }) => {
   // returning errors object and isValid boolean, to handle UI errors. - Tracking Number
   const validatedTrackingNumber = useTrackingValidator(finalTrackCode || "");
   // Build new Email and Tracking Code after validation.
-  const validateAndBuild = () => {
+  const validateAndBuild = useCallback(() => {
     const Email = validatedEmail.emailState;
     const TrackCode = validatedTrackingNumber.trackingNumber;
     if (validatedTrackingNumber.isValid && validatedEmail.isValid) {
@@ -46,11 +46,11 @@ const GlobalState = ({ children }) => {
     } else {
       return initialState;
     }
-  };
-  // Building the state everytime the Email and TrackCode changes.
+  }, [initialState, validatedEmail.emailState, validatedEmail.isValid, validatedTrackingNumber.isValid, validatedTrackingNumber.trackingNumber]);
+  // Building the state every time the Email and TrackCode changes.
   useEffect(() => {
     validateAndBuild();
-  }, [finalEmail, finalTrackCode]);
+  }, [finalEmail, finalTrackCode, validateAndBuild]);
   return (
     <StateContext.Provider
       value={{

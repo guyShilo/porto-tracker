@@ -1,17 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import {typeState, typeAction} from "./ReducerProps";
 
-export interface IState {
-    Email: string;
-    TrackCode: string;
-    Captcha?: string;
-}
-
-export interface IAction {
-    type: string;
-    value: string;
-}
+// Setting the Mail to the state.
 const addEmail = (
-    state: IState,
+    state: typeState,
     Email: string
     ) => {
     const finalEmail = Email;
@@ -20,9 +12,9 @@ const addEmail = (
         finalEmail,
     };
 };
-
+// Setting the Track Code to the state.
 const addTrackCode = (
-    state: IState,
+    state: typeState,
     TrackCode: string
     ) => {
     const finalTrackCode = TrackCode;
@@ -31,9 +23,9 @@ const addTrackCode = (
         finalTrackCode,
     };
 };
-
+// IN PROGRESS //
 const resetTrackCode = (
-    state: IState,
+    state: typeState,
     TrackCode: string
     ) => {
     return {
@@ -42,7 +34,7 @@ const resetTrackCode = (
     };
 };
 
-export const globalReducer = (state: IState, action: IAction) => {
+export const globalReducer = (state: typeState, action: typeAction) => {
     switch (action.type) {
         case "ADD_TRACKCODE":
             return addTrackCode(state, action.value);
@@ -51,7 +43,6 @@ export const globalReducer = (state: IState, action: IAction) => {
         case "RESET_TRACKCODE":
             return resetTrackCode(state, '');
         default: 
-            return state
-        break;
-}
+            return state;
+    }
 };

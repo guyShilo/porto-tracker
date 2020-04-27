@@ -1,18 +1,22 @@
+@import "../../../include-media.scss";
+$breakpoints: (phone: 320px, largePhone: 575px ,tablet: 768px, desktop: 1024px);
+$inputColor: whitesmoke;
+
 .mainInput {
   input {
     direction: ltr;
     margin: 0;
     border: none;
-    border-bottom: 2px solid #292b2c;
+    border-bottom: 2px solid $inputColor;
     font-size: 15px;
     outline: none;
     background-color: transparent;
     width: 25vw;
-    color: #292b2c;
+    color: $inputColor;
   }
   p {
     width: 25vw;
-    color: #343538;
+    color: $inputColor;
     text-transform: uppercase;
     font-size: 17px;
     display: block;
@@ -21,13 +25,18 @@
 }
 
 .trackingNumber {
+  .mainTrackingInputs {
+    span {
+      color: $inputColor
+    }
+  }
   input {
     padding: 0.8rem 1rem;
     margin: 0;
     border: none;
-    border-bottom: 2px solid #292b2c;
+    border-bottom: 2px solid $inputColor;
     font-size: 1rem;
-    color: #292b2c;
+    color: $inputColor;
     outline: none;
     background-color: transparent;
     height: 2vh;
@@ -36,16 +45,39 @@
   }
   p {
     // width: 25vw;
-    color: #343538;
+    color: $inputColor;
     text-transform: uppercase;
     font-size: 17px;
     display: block;
     font-weight: 600;
   }
 }
-
-@media only screen and (min-device-width: 375px) and (min-device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+@include media('>phone', '<=largePhone') {
   .mainInput {
+    input {
+      width: 40vw;
+    }
+    p {
+      margin-right: 2rem;
+    }
+  }
+  .trackingNumber {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    input {
+      width: 13vw;
+      font-size: 0.7rem;
+    }
+    p {
+      margin-left: 1rem;
+    }
+  }
+}
+
+@include media('<largePhone','<=tablet') {
+  .mainInput {
+    display: none;
     input {
       width: 40vw;
     }

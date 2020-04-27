@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect, useCallback} from "react";
 
 type Hook = (
   emailState: string
@@ -9,35 +9,37 @@ type Hook = (
   };
   isValid: boolean;
 };
-interface Errors {
-  emailError: string;
-  isValid: boolean;
-}
+
 export const useEmailValidator: Hook = (emailState) => {
-  // The type of the value and function are inferred
-  const handleValidation = () => {
-    let errors = {
-      emailError: "",
-    };
-    // Checking whether the email is empty or not.
-    if (emailState.trim() === "") {
-      errors.emailError = "כתובת דוא״ל לא יכולה להיות ריק";
-    } else {
-      // Checking whether the email matching the regex.
-      const regEx = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
-      if (!emailState.match(regEx)) {
-        errors.emailError = "אימייל בפורמט לא תקין";
-      }
-    }
-    return {
-      emailState,
-      errors,
-      isValid: errors.emailError.length < 5,
-    };
-  };
+
+  const handleValidation = useCallback(
+      () => {
+            // Initiating an empty error.
+            let errors = {
+              emailError: "",
+            };
+            // Checking whether the email is empty or not, if it is, assign an error.
+            if (emailState.trim() === "") {
+              errors.emailError = "כתובת דוא״ל לא יכולה להיות ריק";
+            } else {
+              const regEx = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
+                // Checking whether the email matches the regex. If not, assign an error.
+              if (!emailState.match(regEx)) {
+                errors.emailError = "אימייל בפורמט לא תקין";
+              }
+            }
+            // Return the final email, errors object, and boolean.
+         return {
+              emailState,
+              errors,
+              isValid: errors.emailError.length < 5,
+        };
+      },
+      [emailState],
+  );
   // Validate based on Email changes.
   useEffect(() => {
     handleValidation();
-  }, [emailState]);
+  }, [emailState, handleValidation]);
   return handleValidation();
 };

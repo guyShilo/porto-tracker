@@ -13,14 +13,10 @@ function App() {
     <GlobalState>
       <div className="App">
         <GlobalMenuState>
-          <div className="">
             <Router history={history}>
-              <motion.div>
                 <BurgerMenu />
-              </motion.div>
               <Routes />
             </Router>
-          </div>
         </GlobalMenuState>
       </div>
     </GlobalState>
