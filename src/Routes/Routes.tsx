@@ -1,12 +1,10 @@
 import * as React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Main } from "../Components/View/Main/Main";
 import { About } from "../Components/About/About";
 import { OurService } from "../Components/OurService/OurService";
 import { Process } from "../Components/Process/Process";
 import { FrequentlyAsked } from "../Components/FrequentlyAsked/FrequentlyAsked";
 import { RegisterBox } from "src/Components/RegisterBox/RegisterBox";
-import { Footer } from "src/Components/View/Footer/Footer";
 import { NotFound } from "src/Components/NotFound/NotFound";
 
 // const slugUrl = ":slug([a-z-0-9]+)/:id([0-9]+)/";
@@ -17,7 +15,7 @@ export const aboutPage = `${baseUrl}about/`;
 export const registration = `${baseUrl}registration/`;
 export const faq = `${baseUrl}faq/`;
 
-export const Routes: React.FC<{}> = ({}) => (
+export const Routes: React.FC = () => (
   <div>
     <Switch>
       <Route exact path={baseUrl} component={OurService} />

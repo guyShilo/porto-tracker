@@ -19,8 +19,25 @@ export const animationHelpers = {
     };
     return variants;
   },
-  createAnimation: () => {
-    
+   containerAnimation: {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delay: 0.3,
+        when: "beforeChildren",
+        staggerChildren: 0.2,
+      },
+    },
+  },
+   itemAnimation: {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+    hover: {scale: 1.25}
   }
 };
 

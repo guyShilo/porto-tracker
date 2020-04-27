@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef, useContext } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { Email } from "../Input/Email";
 import { Button } from "../Button/Button";
@@ -6,13 +6,10 @@ import "./styles/style.scss";
 import { TrackingNumber } from "../Input/TrackingNumber";
 import { Captcha } from "../Captcha/Captcha";
 import { ValidIndicator } from "../Button/ValidIndicator";
-import { Alert } from "../Alert/Alert";
 import { SwalFunctions } from "../../Utils";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useHistory } from "react-router";
-// import { Loader } from "../Loader";
-import { Overlay } from "../Overlay/Overlay";
 import StateContext from "src/Context/StateContext";
 import { ReCAPTCHA } from "react-google-recaptcha";
 import destinations from '../../assets/destinations.svg'
@@ -79,7 +76,8 @@ export const RegisterBox: React.FC = () => {
   return (
     <div className="boxContainer">
       <div className="boxHeader">
-        <h1>הרשמה לשירות שלנו</h1>
+        <h1>הרשמה לשירות</h1>
+        {/* <hr className="bg-dark w-100" /> */}
       </div>
       <div className="p-2 mainBox">
         <div className="d-flex flex-column align-items-center">

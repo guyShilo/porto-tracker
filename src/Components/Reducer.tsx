@@ -1,4 +1,3 @@
-import React from "react";
 import {typeState, typeAction} from "./ReducerProps";
 
 // Setting the Mail to the state.

@@ -1,6 +1,8 @@
 import React from "react";
 import "./style/style.scss";
-interface ProgressBarProps {}
+interface ProgressBarProps {
+  
+}
 
 export const ProgressBar: React.FC<ProgressBarProps> = ({}) => {
   return (

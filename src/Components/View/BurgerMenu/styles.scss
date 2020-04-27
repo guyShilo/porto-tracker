@@ -4,3 +4,10 @@
     font-weight: bold;
     transition: all 0.2ms;
 }
+
+.newBurgerMenu {
+    outline: none !important;
+    button:focus {
+        outline: none !important;
+    }
+}

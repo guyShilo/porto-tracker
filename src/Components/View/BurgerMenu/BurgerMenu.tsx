@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { styles } from "./JStyles";
 import { useHistory } from "react-router";
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import MenuContext from "../../../Context/MenuContext";
 import { animationHelpers } from "../../../Utils";
 import logo from "../../../assets/logo.png";
+import { AiOutlineMenu } from "react-icons/ai";
 
 export const BurgerMenu: React.FC<{}> = (props) => {
   // Importing the Menu context.
@@ -33,6 +34,7 @@ export const BurgerMenu: React.FC<{}> = (props) => {
     color: "whitesmoke",
     padding: "0.2rem",
     outline: "none",
+    listStyle: "none",
   };
   // Defining an Array which will be mapped over in order to display the buttons.
   const linksArray = [
@@ -50,8 +52,15 @@ export const BurgerMenu: React.FC<{}> = (props) => {
         className="text-right"
         right
         styles={styles}
+        customBurgerIcon={
+          <AiOutlineMenu
+            className="btn"
+            style={{ outline: "none !important" }}
+            size={30}
+          />
+        }
       >
-        <div className="w-100 mb-1">
+        {/* <div className="w-100 mb-1">
           <img
             style={{ zIndex: 1001}}
             className="w-100 text-center"
@@ -62,26 +71,39 @@ export const BurgerMenu: React.FC<{}> = (props) => {
             src={logo}
             alt="logo"
           />
-        </div>
-        {linksArray.map((link, index) => (
-          <motion.div
-            style={{ outline: "none" }}
-            variants={animationHelpers.createVariants("scale", 0.75, 1)}
-            initial="variantA"
-            whileHover="variantB"
-            className="text-center"
-            key={index + 1}
-          >
-            <Link to={link.path} onClick={() => context.toggleMenu()}>
-              <button
-                className={decideStyle(link.path)}
-                style={btnStyle}
-              >
-                {link.linkName}
-              </button>
+        </div> */}
+        <motion.ul
+          style={{ outline: "none" }}
+          variants={animationHelpers.containerAnimation}
+          initial="hidden"
+          animate="visible"
+          className="text-center"
+        >
+          {linksArray.map((link, index) => (
+            <Link
+              className="btn"
+              to={link.path}
+              onClick={() => {
+                context.toggleMenu();
+              }}
+              key={index + 1}
+            >
+              <motion.div variants={animationHelpers.itemAnimation}>
+                <motion.li
+                  onClick={() => {
+                    context.toggleMenu();
+                    history.push(link.path);
+                  }}
+                  className={decideStyle(link.path)}
+                  key={index + 1}
+                  style={btnStyle}
+                >
+                  {link.linkName}
+                </motion.li>
+              </motion.div>
             </Link>
-          </motion.div>
-        ))}
+          ))}
+        </motion.ul>
       </Menu>
     </div>
   );

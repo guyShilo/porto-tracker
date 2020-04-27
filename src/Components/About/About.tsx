@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style/style.scss";
 import { Button } from "../Button/Button";
 import { Link } from "react-router-dom";
 import aboutUs from "../../assets/team.svg";
+import aboutUsAlt from "../../assets/upToDate.svg";
 import { AiFillLinkedin } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { animationHelpers } from "../../Utils";
@@ -22,29 +23,40 @@ export const About: React.FC = () => {
   };
   return (
     <div className="">
-      <div className="aboutContainer p-3">
-        <div className="aboutHeader row">
-          <h1 className="text-light">אז קצת עלינו...</h1>
-          <hr className="bg-light w-100" />
+      <div className="aboutContainer">
+        <div className="aboutHeader">
+          <h1 className="">אז קצת עלינו...</h1>
+          {/* <hr className="bg-dark w-100" /> */}
         </div>
-        <div className="aboutContent row">
-          <div className="flex-fill text-center mr-4 text-light">
+        <div className="aboutContent">
+          <div className="content-text flex-fill">
             <p>
-              PortuBot התחיל כעזרה לקרוב משפחה, שלא יכולתי לראות כמה זמן הוא
-              מבזבז
+              <b>PortuTrack</b> התחיל כעזרה לקרוב משפחה, שלא יכולתי לראות כמה
+              זמן הוא מבזבז
               <br />
               על בדיקת בקשת האזרחות שלו באתר. כך יצא שכתבתי עבורו אפליקציה שתבצע
-              <br />
               לו את הבדיקה באופן אוטומטי.
-              <br /> משם לקחתי את זה צעד קדימה, ועם עזרה של חבר טוב PortuBot הוא
-              מה שהוא עכשיו.
+              <br /> משם לקחתי את זה צעד קדימה, ועוד כמה צעדים, ויחד עם עזרה של
+              חברים טובים, תוך כדי למידה, מסירות, והנאה - <b>PortuTrack</b>{" "}
+              נוצר.
               <br />
-              חשוב שתדעו, השירות PortuTrack ניתן ללא תמורה ותחת הוצאות תחזוקה.
+              <br />
+              חשוב שתדעו, השירות <b>PortuTrack</b> ניתן ללא תמורה ותחת הוצאות
+              תחזוקה.
             </p>
           </div>
         </div>
         {/* <hr className="bg-light w-50 mr-auto" /> */}
-        <section className="developers">
+        <motion.section
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 90,
+            damping: 20,
+          }}
+          className="developers"
+        >
           <div className="aboutDeveloper">
             <p>
               <b>נדב טרגן</b>
@@ -122,18 +134,24 @@ export const About: React.FC = () => {
               </a>
             </motion.div>
           </div>
-        </section>
-        <div className="aboutImage">
-          <img src={aboutUs} alt="aboutUs" />
-        </div>
-        <div className="registerLink">
+        </motion.section>
+        <motion.div
+          className="aboutImage"
+        >
+          {/* <img src={aboutUs} alt="aboutUs" /> */}
+          <motion.img           initial={{ scale: 0, opacity: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 90,
+            damping: 20,
+          }} src={aboutUsAlt} alt="aboutUs" />
+        </motion.div>
+        {/* <div className="registerLink">
           <Link className="text-center" to="/registration">
-            <Button
-                label="לחץ להרשמה"
-                onClick={() => null}
-            />
+            <Button label="לחץ להרשמה" onClick={() => null} />
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );
