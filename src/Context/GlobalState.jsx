@@ -46,7 +46,7 @@ const GlobalState = ({ children }) => {
     } else {
       return initialState;
     }
-  }, [initialState, validatedEmail.emailState, validatedEmail.isValid, validatedTrackingNumber.isValid, validatedTrackingNumber.trackingNumber]);
+  }, [validatedEmail, validatedTrackingNumber]);
   // Building the state every time the Email and TrackCode changes.
   useEffect(() => {
     validateAndBuild();

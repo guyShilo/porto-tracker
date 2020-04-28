@@ -21,7 +21,6 @@ export interface TrackingNumberComponent {
 
 export interface InputProps {
   setState?: React.Dispatch<React.SetStateAction<any>>;
-  inputType: string;
   errors:
     | {
         emailError: string;
@@ -38,7 +37,7 @@ export interface InputProps {
     },
     indicator: string
   ) => void;
-  validatedObject: {
+  validatedObject?: {
     emailState: string;
     errors: { emailError: string };
     isValid?: boolean | undefined;

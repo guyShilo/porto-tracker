@@ -1,29 +1,58 @@
+@import "../../../../include-media.scss";
+$breakpoints: (
+  phone: 340px,
+  largePhone: 575px,
+  tablet: 768px,
+  desktop: 1024px,
+);
+
 .header {
-    position: sticky;
-    top: 0;
-    background-color: rgba(16, 186, 0, 0.8);
-    box-shadow: 0px 8px 39px -5px rgba(0,0,0,0.8);
-    h4 {
-        display: inline-block;
-        color: white;
-        margin-top: 0.5rem;
+  width: 100%;
+  background-color: rgba(224, 224, 224, 0.8);
+  box-shadow: 0px 8px 39px -5px rgba(0, 0, 0, 0.8);
+  z-index: 100;
+  height: 10vh;
+  position: sticky;
+  img.logoImage {
+    // position: fixed;
+    width: 20%;
+    // top: -1.3rem;
+    // left: 4.5rem;
+    left: 4.5;
+    margin-top: -5rem;
+    text-decoration: none;
+    outline: "none !important"
+  }
+}
+@include media(">=phone", "<=largePhone") {
+    .header {
+      img.logoImage {
+          position: relative;
+          top: -0.5rem;
+          width: 40%;
+          left: 1rem;
+      }
     }
-    .buttonSection {
-        display: block;
-        text-align: start;
-        width: 75vw;
-        button {
-            background: none;
-            border: none;
-            color: whitesmoke;
-            padding: 0.2rem;
-            outline: none;
-        }
-        .active {
-            border-bottom: 2px solid #e7e7e7;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.2ms;
-        }
+  }
+
+@include media(">=largePhone", "<=tablet") {
+  .header {
+    img.logoImage {
+        // position: relative;
+        top: -0.5rem;
+        width: 40%;
+        left: 1rem;
     }
-};
+  }
+}
+
+@include media(">=tablet", "<=desktop") {
+    .header {
+      img.logoImage {
+          // position: relative;
+          top: -0.5rem;
+          width: 28%;
+          left: 1rem;
+      }
+    }
+  }

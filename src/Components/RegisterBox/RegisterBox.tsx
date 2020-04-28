@@ -15,7 +15,8 @@ import { ReCAPTCHA } from "react-google-recaptcha";
 import destinations from '../../assets/destinations.svg'
 
 export const RegisterBox: React.FC = () => {
-  document.title = "הרשמה";
+  document.title = "PortuTrack | הרשמה";
+  
   const MySwal = withReactContent(Swal);
   const history = useHistory();
   const context = useContext(StateContext);
@@ -86,7 +87,6 @@ export const RegisterBox: React.FC = () => {
               <ValidIndicator isValid={context.emailIsValid.isValid} />
             </div>
             <Email
-              inputType={"email"}
               // buildColors={buildColors}
               validatedObject={context.emailIsValid}
               errors={context.emailIsValid.errors}

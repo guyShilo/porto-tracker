@@ -60,18 +60,6 @@ export const BurgerMenu: React.FC<{}> = (props) => {
           />
         }
       >
-        {/* <div className="w-100 mb-1">
-          <img
-            style={{ zIndex: 1001}}
-            className="w-100 text-center"
-            onClick={() => {
-              history.push("/service")
-              context.toggleMenu()
-            }}
-            src={logo}
-            alt="logo"
-          />
-        </div> */}
         <motion.ul
           style={{ outline: "none" }}
           variants={animationHelpers.containerAnimation}
@@ -81,7 +69,7 @@ export const BurgerMenu: React.FC<{}> = (props) => {
         >
           {linksArray.map((link, index) => (
             <Link
-              className="btn"
+              style={{outline: 'none', textDecoration: 'none'}}
               to={link.path}
               onClick={() => {
                 context.toggleMenu();

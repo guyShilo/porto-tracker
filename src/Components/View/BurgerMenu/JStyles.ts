@@ -1,10 +1,10 @@
 export const styles = {
   bmBurgerButton: {
-    position: "fixed",
+    // position: "fixed",
     width: "10rem",
     height: "3.5rem",
     right: "0",
-    top: "1.6rem",
+    top: "0.5rem",
     textDecoration: "none",
     outline: "none !important"
   },

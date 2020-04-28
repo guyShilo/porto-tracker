@@ -4,6 +4,8 @@ import faqPic from "../../assets/question.svg";
 import { motion } from "framer-motion";
 import {animationHelpers} from '../../Utils'
 export const FrequentlyAsked: React.FC = () => {
+  document.title = 'PortuTrack | שאלות ותשובות'
+
   const {containerAnimation, itemAnimation} = animationHelpers
   
   const listItems = [

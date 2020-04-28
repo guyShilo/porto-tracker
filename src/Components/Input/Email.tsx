@@ -4,21 +4,10 @@ import { InputProps } from "./InputsInterface";
 import StateContext from "../../Context/StateContext";
 
 export const Email: React.FC<InputProps> = ({
-  inputType,
   errors,
   buildColors,
   validatedObject,
 }) => {
-  // const [showError, setShowError] = useState(false);
-  //
-  // const handleError = () => {
-  //   if (validatedObject.isValid === false) {
-  //     setShowError(true);
-  //   } else if (context.finalEmail && validatedObject.isValid) {
-  //     setShowError(false);
-  //   }
-  // };
-
   // Importing the context.
   const context = useContext(StateContext);
   // handles the email input.
@@ -38,18 +27,18 @@ export const Email: React.FC<InputProps> = ({
         >
           הכנס כתובת דוא״ל
         </p>
-        <div
+        {/* <div
           className="text-center"
           style={validatedObject.emailState.length !== 0  ? { display: "block" } : { display: "none" }}
         >
           <small className="text-danger text-center">
             {errors?.emailError}
           </small>
-        </div>
+        </div> */}
         <input
           onChange={handleChange("email")}
           className="text-center"
-          type={inputType}
+          type='email'
           required={true}
         />
       </div>

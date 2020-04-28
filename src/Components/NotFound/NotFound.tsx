@@ -4,6 +4,7 @@ import { Button } from "../Button/Button";
 import { Link } from "react-router-dom";
 
 export const NotFound: React.FC<{}> = ({}) => {
+    document.title = 'PortuTrack | 404 עמוד לא נמצא'
     return (
     <div className="notFoundContainer">
         <div className="text">

@@ -7,13 +7,14 @@ import aboutUsAlt from "../../assets/upToDate.svg";
 import { AiFillLinkedin } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { animationHelpers } from "../../Utils";
+import { Email } from "../Input/Email";
 const NadavsLinkedIn =
   "https://media-exp1.licdn.com/dms/image/C5603AQH_HYYqC_kRuA/profile-displayphoto-shrink_200_200/0?e=1593043200&v=beta&t=qXLJY4ig3Yf1hqCcH1rchBl6KNvw80q61Wg5wCAKhus";
 const GuysLinkedIn =
   "https://media-exp1.licdn.com/dms/image/C4E03AQGFX8l9rHPNCg/profile-displayphoto-shrink_200_200/0?e=1593043200&v=beta&t=29CJcwhKzIrpdWvUv4h4UPMPzliwm0mTdutXfJz_4Io";
 
 export const About: React.FC = () => {
-  document.title = "עלינו";
+  document.title = 'PortuTrack | קצת עלינו'
 
   const profileImgStyle = {
     borderRadius: "50%",
@@ -135,17 +136,19 @@ export const About: React.FC = () => {
             </motion.div>
           </div>
         </motion.section>
-        <motion.div
-          className="aboutImage"
-        >
+        <motion.div className="aboutImage">
           {/* <img src={aboutUs} alt="aboutUs" /> */}
-          <motion.img           initial={{ scale: 0, opacity: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 90,
-            damping: 20,
-          }} src={aboutUsAlt} alt="aboutUs" />
+          <motion.img
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 90,
+              damping: 20,
+            }}
+            src={aboutUsAlt}
+            alt="aboutUs"
+          />
         </motion.div>
         {/* <div className="registerLink">
           <Link className="text-center" to="/registration">

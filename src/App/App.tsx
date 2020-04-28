@@ -5,6 +5,7 @@ import { history } from "../history";
 import { BurgerMenu } from "src/Components/View/BurgerMenu/BurgerMenu";
 import GlobalState from "../Context/GlobalState";
 import GlobalMenuState from "../Context/GlobalMenuState";
+import { Header } from "src/Components/View/Header/Header";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <div className="App">
         <GlobalMenuState>
             <Router history={history}>
-                <BurgerMenu />
+                {/* <BurgerMenu /> */}
+                <Header/>
               <Routes />
             </Router>
         </GlobalMenuState>

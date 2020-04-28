@@ -7,7 +7,9 @@
 
 .newBurgerMenu {
     outline: none !important;
+    text-decoration: none !important;
     button:focus {
         outline: none !important;
+        text-decoration: none !important;
     }
 }

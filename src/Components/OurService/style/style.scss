@@ -7,7 +7,7 @@ $breakpoints: (
 );
 
 .ourService {
-  height: 100vh;
+  height: 90vh;
   width: 100vw;
   background-color: rgb(227, 227, 227);
   display: flex;
@@ -19,9 +19,10 @@ $breakpoints: (
     height: 30vh;
     justify-content: center;
     text-shadow: 1px 1px 8px rgba(148, 150, 150, 1);
-    box-shadow: 0px 8px 39px -5px rgba(1, 1, 1, 0.3);
+    box-shadow: 0px 8px 39px -5px rgba(1, 1, 1, 0.7);
     text-align: center;
-    z-index: 100;
+    z-index: 3;
+    background-color: #ba0018;
     h1 {
       color: white;
       margin-top: 0rem;
@@ -40,14 +41,12 @@ $breakpoints: (
   .ourServiceContent {
     box-shadow: 0px 8px 39px -5px rgba(1, 1, 1, 0.3);
     align-self: center;
-    margin-top: 2rem;
-    // border-radius: 2rem;
-    // width: 80vw;
+    margin-top: -0.5rem;
     width: 100%;
     background-color: rgba(47, 47, 47, 0.8);
 
     height: 45vh;
-    z-index: 100;
+    z-index: 2;
     padding: 1rem;
     p.content-heading {
       font-size: 38px;

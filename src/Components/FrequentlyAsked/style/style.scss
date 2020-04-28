@@ -8,24 +8,19 @@ $breakpoints: (
 
 .faqMain {
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   .faqHeader {
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
-    height: 15vh;
+    height: 14vh;
     background-color: #ba0018;
     box-shadow: 0px 8px 39px -5px rgba(0, 0, 0, 0.7);
-
-
     h1 {
       align-self: flex-start;
-      margin-top: 1.4rem;
+      padding-top: 1rem;
       margin-right: 10rem;
-      // color: rgb(47, 47, 47);
-
       color: whitesmoke;
     }
     span {
@@ -34,7 +29,6 @@ $breakpoints: (
       font-weight: bold;
       margin-top: -1rem;
       margin-right: 15rem;
-
       color: whitesmoke;
     }
   }
@@ -81,9 +75,8 @@ $breakpoints: (
       justify-content: center;
       align-items: center;
       h1 {
-        font-size: 2rem;
-        margin: auto;
-        padding: 2rem;
+        font-size: 1.1rem;
+        margin: auto
       }
       span {
         display: none;
@@ -102,22 +95,15 @@ $breakpoints: (
 @include media(">=phone", "<=largePhone") {
   .faqMain {
     .faqHeader {
-      display: flex;
-      flex-wrap: wrap;
-      text-align: center;
       align-items: center;
       width: 100vw;
       h1 {
-        font-size: 2rem;
-        margin-right: 3.9rem;
+        font-size: 1.3rem;
+        margin: auto
       }
       span {
-        margin-right: 8rem;
+        margin: auto
       }
-    }
-    .faqContent {
-      width: 90%;
-      margin: 0 2rem;
     }
     img {
       display: none;
@@ -127,14 +113,18 @@ $breakpoints: (
 // LARGER PHONES TO DESKTOP
 @include media(">=largePhone", "<=desktop") {
   .faqMain {
+    
     .faqHeader {
-      display: flex;
-      flex-wrap: wrap;
       text-align: center;
-      align-items: center;
-    }
-    .faqContent {
-      margin: 0 2rem;
+      h1 {
+        margin-top: 0.5rem;
+        margin: auto;
+        font-size: 2rem;
+      }
+      span {
+        text-align: center;
+        margin: auto;
+      }
     }
     img {
       display: none;

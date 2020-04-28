@@ -13,6 +13,7 @@ export const Main: React.FC<{}> = ({}) => {
         <About/>
         <FrequentlyAsked/>
         <Process/>
+        
     </div>
   );
 };
