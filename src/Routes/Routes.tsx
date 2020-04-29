@@ -1,4 +1,5 @@
 import * as React from "react";
+import { motion } from "framer-motion";
 import { Route, Switch } from "react-router-dom";
 import { About } from "../Components/About/About";
 import { OurService } from "../Components/OurService/OurService";
@@ -16,8 +17,7 @@ export const registration = `${baseUrl}registration/`;
 export const faq = `${baseUrl}faq/`;
 
 export const Routes: React.FC = () => (
-  <div>
-    <Switch>
+  <Switch>
       <Route exact path={baseUrl} component={OurService} />
       <Route path={registration} component={RegisterBox} />
       <Route path={aboutPage} component={About} />
@@ -25,9 +25,7 @@ export const Routes: React.FC = () => (
       <Route path={portoProcess} component={Process} />
       <Route path={faq} component={FrequentlyAsked} />
       <Route component={NotFound} />
-    </Switch>
-    {/* <Footer/> */}
-  </div>
+  </Switch>
 );
 
 export default Routes;

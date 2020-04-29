@@ -35,18 +35,20 @@ export const BurgerMenu: React.FC<{}> = (props) => {
     padding: "0.2rem",
     outline: "none",
     listStyle: "none",
+    fontSize: '1.3rem'
   };
   // Defining an Array which will be mapped over in order to display the buttons.
   const linksArray = [
-    { linkName: "עמוד הבית", path: "/service" },
+    { linkName: "עמוד הבית", path: "/" },
     { linkName: "הרשמה לשירות", path: "/registration" },
     { linkName: "שאלות ותשובות", path: "/faq" },
     { linkName: "קצת עלינו", path: "/about" },
-    { linkName: "הסבר על תהליך האזרחות", path: "/process" },
+    { linkName: "הסבר על התהליך", path: "/process" },
   ];
   return (
     <div>
       <Menu
+        burgerButtonClassName="customButton"
         isOpen={context.isMenuOpen}
         onStateChange={context.stateChangeHandler(isOpen)}
         className="text-right"
@@ -55,7 +57,6 @@ export const BurgerMenu: React.FC<{}> = (props) => {
         customBurgerIcon={
           <AiOutlineMenu
             className="btn"
-            style={{ outline: "none !important" }}
             size={30}
           />
         }
@@ -69,7 +70,7 @@ export const BurgerMenu: React.FC<{}> = (props) => {
         >
           {linksArray.map((link, index) => (
             <Link
-              style={{outline: 'none', textDecoration: 'none'}}
+              style={{ outline: "none", textDecoration: "none" }}
               to={link.path}
               onClick={() => {
                 context.toggleMenu();
@@ -88,6 +89,7 @@ export const BurgerMenu: React.FC<{}> = (props) => {
                 >
                   {link.linkName}
                 </motion.li>
+                <hr className="bg-light"/>
               </motion.div>
             </Link>
           ))}

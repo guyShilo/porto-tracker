@@ -5,8 +5,8 @@ import { ContentLinks } from "./ContentLinks";
 import logo from "../../assets/logo.png";
 
 export const OurService: React.FC = () => {
-  document.title = 'PortuTrack | ראשי'
-  
+  document.title = "PortuTrack | ראשי";
+
   return (
     <div>
       <div className="ourService">
@@ -18,28 +18,27 @@ export const OurService: React.FC = () => {
           </span>
         </div>
         <img
-            style={{
-              width: "100vw",
-              height: '90vh',
-              zIndex: 1,
-              position: 'fixed',
-            }}
-            src={backgroundImage}
-            alt="image"
-          />
+          style={{
+            width: "100vw",
+            height: "90vh",
+            zIndex: 1,
+            position: "fixed",
+          }}
+          src={backgroundImage}
+          alt="image"
+        />
         <div className="ourServiceContent">
           <p className="content-heading text-center">שלום</p>
           <p className="text-center text-light">
             <b>
-              PortuTrack יתעדכן במצב תהליך הגשת הבקשה שלכם <br />
+              באופן אוטומטי, מדי יום PortuTrack יתעדכן במצב תהליך הגשת הבקשה
+              שלכם! <br />
             </b>
-            מכיוון שאף אחד לא אוהב אימלים לא חשובים, PortuTrack יעדכן אתכם רק
-            כשיש עדכון בתהליך שלכם.
-            <br />
-            לאחר הרשמתכם לשירות, תוך 24 שעות, תקבלו מייל שמציין את מצבכם הנוכחי.
-            <br />
-            החל ממייל זה, נמשיך לבדוק מדי יום – אך נעדכן אתכם רק כאשר יהיה משהו
-            חדש. ההרשמה פשוטה ביותר, למה אתם מחכים? הישארו מעודכנים!
+            מכיוון שאף אחד לא אוהב מיילים לא חשובים, PortuTrack יעדכן אתכם רק
+            כשיש עדכון בתהליך שלכם.<br/> לאחר הרשמתכם לשירות, תוך 24 שעות, תקבלו מייל
+            שמציין את מצבכם הנוכחי.<br/> החל ממייל זה, נמשיך לבדוק – אך נעדכן אתכם רק
+            כאשר יהיה משהו חדש.<br/> ההרשמה פשוטה ביותר, למה אתם מחכים? <b>הישארו
+            מעודכנים!</b>
           </p>
           <ContentLinks />
         </div>

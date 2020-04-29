@@ -107,6 +107,7 @@ export const About: React.FC = () => {
               whileHover="variantB"
             >
               <img
+                id="guyPic"
                 style={profileImgStyle}
                 src={GuysLinkedIn}
                 alt="GuysLinkedIn"

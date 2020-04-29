@@ -113,7 +113,6 @@ $breakpoints: (
 // LARGER PHONES TO DESKTOP
 @include media(">=largePhone", "<=desktop") {
   .faqMain {
-    
     .faqHeader {
       text-align: center;
       h1 {
@@ -125,6 +124,9 @@ $breakpoints: (
         text-align: center;
         margin: auto;
       }
+    }
+    .faqContent {
+      height: 80vh;
     }
     img {
       display: none;

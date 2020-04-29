@@ -1,15 +1,13 @@
 export const styles = {
   bmBurgerButton: {
-    // position: "fixed",
-    width: "10rem",
-    height: "3.5rem",
-    right: "0",
-    top: "0.5rem",
-    textDecoration: "none",
+    height: "8vh",
+    // margin: 'auto',
+    textDecoration: "none !important",
     outline: "none !important"
   },
   bmBurgerBars: {
     background: "#373a47",
+    textDecoration: "none !important",
     outline: "none !important"
   },
   bmBurgerBarsHover: {

@@ -76,30 +76,55 @@ $breakpoints: (
     }
   }
 }
-// VERY SMALL PHONES EDGE CASES 
-@include media("<phone") {
-  .aboutContainer {
-    section.developers {
-      display: none;
-    }
-    .aboutHeader {
-      height: 10vh;
-      h1 { 
-        margin: 0;
-        padding-top: 0.5rem;
-        text-align: center;
-      }
-    }
-    .aboutContent {
-      height: 80vh;
-    }
-    .aboutImage {
-      display: none;
-    }
-  }
-}
+// // VERY SMALL PHONES EDGE CASES 
+// @include media("<phone") {
+//   .aboutContainer {
+//     height: 90vh;
+//     section.developers {
+//       height: 30vh;
+//       width: 100vw;
+//       padding: 1rem;
+//       margin: auto;
+//       display: flex;
+//       flex-direction: column;
+//       border-radius: 0;
+//       .aboutDeveloper {
+//         display: flex;
+//         flex-direction: row;
+//         align-items: center;
+//         justify-content: space-around;
+//         p {
+//           font-size: smaller;
+//           margin: 1.5rem;
+//         }
+//         .linkedInPic {
+//           display: none;
+//         }
+//       }
+//     }
+//     .aboutHeader {
+//       height: 10vh;
+//       h1 {
+//         margin: 0;
+//         margin-right: 6rem;
+//       }
+//     }
+//     .aboutContent {
+//       width: 100vw;
+//       height: 50vh;
+//     }
+//     .aboutImage {
+//       padding: 1rem;
+//       display: none;
+//     }
+//     // .registerLink {
+
+//     // }
+//   }
+// }
+// "<=phone", 
 // SMALL PHONES TO LARGER PHONES
-@include media(">phone", "<=largePhone") {
+@include media("<=largePhone") {
   .aboutContainer {
     height: 90vh;
     section.developers {
@@ -134,6 +159,11 @@ $breakpoints: (
     .aboutContent {
       width: 100vw;
       height: 50vh;
+      .content-text {
+        p {
+          font-size: 0.95rem;
+        }
+      }
     }
     .aboutImage {
       padding: 1rem;
@@ -165,6 +195,11 @@ $breakpoints: (
         p {
           font-size: smaller;
           margin: 1.5rem;
+        }
+        .linkedInPic {
+          #guyPic {
+            transform: translateX(3.5rem);
+          }
         }
         // .linkedInPic {
         // }

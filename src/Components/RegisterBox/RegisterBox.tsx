@@ -12,11 +12,11 @@ import withReactContent from "sweetalert2-react-content";
 import { useHistory } from "react-router";
 import StateContext from "src/Context/StateContext";
 import { ReCAPTCHA } from "react-google-recaptcha";
-import destinations from '../../assets/destinations.svg'
+import destinations from "../../assets/destinations.svg";
 
 export const RegisterBox: React.FC = () => {
   document.title = "PortuTrack | הרשמה";
-  
+
   const MySwal = withReactContent(Swal);
   const history = useHistory();
   const context = useContext(StateContext);
@@ -70,7 +70,7 @@ export const RegisterBox: React.FC = () => {
         setCaptchaValid(false);
       }
     } catch (error) {
-      alert(error)
+      alert(error);
     }
   };
 
@@ -78,11 +78,10 @@ export const RegisterBox: React.FC = () => {
     <div className="boxContainer">
       <div className="boxHeader">
         <h1>הרשמה לשירות</h1>
-        {/* <hr className="bg-dark w-100" /> */}
       </div>
-      <div className="p-2 mainBox">
-        <div className="d-flex flex-column align-items-center">
-          <div className="p-2 m-2 d-flex justify-content-center ">
+      <div className="mainBox">
+        <div className="InputsContainer">
+          <div className="EmailInputDiv">
             <div className="mailIndicator">
               <ValidIndicator isValid={context.emailIsValid.isValid} />
             </div>
@@ -92,7 +91,7 @@ export const RegisterBox: React.FC = () => {
               errors={context.emailIsValid.errors}
             />
           </div>
-          <div className="p-2 m-2 d-flex justify-content-center col-sm-12">
+          <div className="trackingNumberDiv">
             <div className="trackingIndicator">
               <ValidIndicator isValid={context.trackCodeIsValid.isValid} />
             </div>
@@ -103,17 +102,14 @@ export const RegisterBox: React.FC = () => {
               currentState={context.finalTrackCode}
             />
           </div>
-          <div
-            className="captchaSection row d-flex
-        justify-content-center p-2 mr-4 mb-5"
-          >
+          <div className="captchaSection">
             <Captcha
               captchaRef={captchaRef}
               isValid={captchaValid}
               setCaptcha={setCaptchaState}
             />
           </div>
-          <div className="d-flex justify-content-center mt-4 mr-5 p-3">
+          <div className="submitDiv ">
             <Button
               label="להמשך הרשמה"
               showFunction={() => null}
@@ -125,7 +121,7 @@ export const RegisterBox: React.FC = () => {
           </div>
         </div>
       </div>
-      <img className="registerPic"  src={destinations} />
+      <img className="registerPic" src={destinations} />
     </div>
   );
 };

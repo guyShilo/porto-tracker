@@ -1,3 +1,11 @@
+@import '../../../include-media.scss';
+$breakpoints: (
+  phone: 340px,
+  largePhone: 575px,
+  tablet: 768px,
+  desktop: 1700px,
+);
+
 .active {
     border-bottom: 2px solid #e7e7e7;
     border-radius: 5px;
@@ -13,3 +21,28 @@
         text-decoration: none !important;
     }
 }
+
+.customButton {
+    width: 10vw;
+    transform: translateY(0.5rem);
+    svg {
+        outline: none !important;
+        text-decoration: none !important;
+    }
+}
+
+// @include media(">=phone", "<=largePhone") {
+//     .header {
+//     }
+//   }
+
+// @include media(">=largePhone", "<=tablet") {
+//   .header {
+//   }
+// }
+
+@include media(">=tablet", "<=desktop") {
+    .customButton {
+        // transform: translateY(-3rem);
+    }
+  }

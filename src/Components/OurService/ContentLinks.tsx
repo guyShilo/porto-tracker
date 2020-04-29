@@ -10,7 +10,7 @@ export const ContentLinks: React.FC = () => {
     <div className="content-links">
       <motion.div variants={variants} initial="variantA" whileHover="variantB">
         <Link to="/registration">
-          <Button onClick={() => null} label="להרשמה לחצו כאן" />
+          <Button onClick={() => null} label="להרשמה" />
         </Link>
       </motion.div>
       <motion.div variants={variants} initial="variantA" whileHover="variantB">

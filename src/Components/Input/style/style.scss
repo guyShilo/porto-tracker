@@ -52,19 +52,20 @@ $inputColor: whitesmoke;
     font-weight: 600;
   }
 }
+
 @include media('>phone', '<=largePhone') {
   .mainInput {
     input {
       width: 40vw;
     }
     p {
-      margin-right: 2rem;
+      margin-right: 1.5rem;
     }
   }
   .trackingNumber {
     display: flex;
     flex-wrap: wrap;
-    width: 100vw;
+    width: auto !important;
     input {
       width: 13vw;
       font-size: 0.7rem;
@@ -75,7 +76,7 @@ $inputColor: whitesmoke;
   }
 }
 
-@include media('<largePhone','<=tablet') {
+@include media('<=largePhone','<=tablet') {
   .mainInput {
     display: none;
     input {

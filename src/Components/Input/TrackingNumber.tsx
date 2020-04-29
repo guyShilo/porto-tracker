@@ -104,7 +104,7 @@ validatedObject,
           {validatedObject.errors?.trackingError}
         </small>
       </motion.div>
-      <div className="mainTrackingInputs row text-center col-sm-12">
+      <div className="mainTrackingInputs text-center col-sm-12">
         <form dir="ltr" onPaste={(event) => handlePaste(event)}>
           <input
             onChange={(event) => {
