@@ -11,7 +11,6 @@ type Hook = (
 };
 
 export const useEmailValidator: Hook = (emailState) => {
-
   const handleValidation = useCallback(
       () => {
             // Initiating an empty error.

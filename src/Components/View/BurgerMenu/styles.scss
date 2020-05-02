@@ -1,6 +1,6 @@
 @import '../../../include-media.scss';
 $breakpoints: (
-  phone: 340px,
+  phone: 320px,
   largePhone: 575px,
   tablet: 768px,
   desktop: 1700px,
@@ -31,18 +31,21 @@ $breakpoints: (
     }
 }
 
-// @include media(">=phone", "<=largePhone") {
-//     .header {
-//     }
-//   }
+@include media(">=phone", "<=largePhone") {
+    .customButton {
+        svg {
+            width: 20vw !important;
+        }
+    }
+  }
 
-// @include media(">=largePhone", "<=tablet") {
+@include media("<=largePhone", "<=tablet") {
 //   .header {
 //   }
-// }
+}
 
 @include media(">=tablet", "<=desktop") {
-    .customButton {
-        // transform: translateY(-3rem);
-    }
+    // .customButton {
+    //     // transform: translateY(-3rem);
+    // }
   }

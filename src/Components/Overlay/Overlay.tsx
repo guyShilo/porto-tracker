@@ -1,22 +1,25 @@
 import React from "react";
 import "./style/style.scss";
-// interface OverlayProps {
+import { GiExitDoor } from "react-icons/gi";
+import {motion} from 'framer-motion'
+import { OverlayProps } from "./OverlayProps";
 
-// }
-
-export const Overlay: React.FC<{
-  Component: any;
-  currentState: boolean;
-  hide: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ Component, currentState, hide }) => {
+export const Overlay: React.FC<OverlayProps> = ({ Component, currentState, hide }) => {
   return (
-    <div className="Modal">
-      <div className="col-sm-12">
-        <button onClick={() => hide(!currentState)} className="w-100 hide btn">
-          X
+    <motion.div initial={{opacity: 0 }}
+    animate={{ opacity: 1}}
+    transition={{
+      type: "spring",
+      stiffness: 90,
+      damping: 20,
+    }}  className="Modal">
+      <div className="w-100 text-center">
+        <button onClick={() => hide(!currentState)} className="m-3 hide btn">
+          <GiExitDoor className="text-light" size={40} />
+          <small className="p-1 text-light"> חזרה לעמוד</small>
         </button>
       </div>
       <div className="d-flex justify-content-center mt-5">{Component}</div>
-    </div>
+    </motion.div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { styles } from "./JStyles";
 import { useHistory } from "react-router";
@@ -7,10 +7,9 @@ import "./styles.scss";
 import { Link } from "react-router-dom";
 import MenuContext from "../../../Context/MenuContext";
 import { animationHelpers } from "../../../Utils";
-import logo from "../../../assets/logo.png";
 import { AiOutlineMenu } from "react-icons/ai";
 
-export const BurgerMenu: React.FC<{}> = (props) => {
+export const BurgerMenu: React.FC<{}> = () => {
   // Importing the Menu context.
   const context = useContext(MenuContext);
   // Initiating the menu state.

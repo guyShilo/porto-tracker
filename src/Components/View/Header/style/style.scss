@@ -1,6 +1,6 @@
 @import "../../../../include-media.scss";
 $breakpoints: (
-  phone: 340px,
+  phone: 320px,
   largePhone: 575px,
   tablet: 768px,
   desktop: 1024px,
@@ -14,15 +14,11 @@ $breakpoints: (
   height: 10vh;
   position: static;
   .headerMainDiv {
-    // display: flex;
-    // justify-content: space-between;
-    // align-items: center;
     .logoDiv {
       height: 8vh;
     }
     img.logoImage {
       width: 24vw;
-      // left: 4.5;
       transform: translateY(-1.6rem);
       text-decoration: none;
       outline: "none !important";
@@ -34,8 +30,8 @@ $breakpoints: (
     .headerMainDiv {
       .logoDiv { 
         img.logoImage {
-          width: 37vw;
-          margin-top: -2.5rem;
+          width: 75vw;
+          transform: translateY(-5rem);
         }
       }
     }
@@ -62,6 +58,18 @@ $breakpoints: (
         img.logoImage {
           margin: 1rem;
           width: 30vw;
+        }
+      }
+    }
+  }
+}
+
+@include media(">=desktop"){
+  .headerMain {
+    .headerMainDiv {
+      .logoDiv {
+        img.logoImage {
+          transform: translateY(-2rem);
         }
       }
     }

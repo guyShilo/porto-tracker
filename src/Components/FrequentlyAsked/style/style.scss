@@ -39,14 +39,9 @@ $breakpoints: (
     flex-wrap: wrap;
     padding: 1rem;
     background-color: rgb(47,47,47);
-
-    // margin: 2rem 4rem;
-    // width: 90vw;
-    // margin-bottom: 1rem;
-    // border-radius: 0.5rem;
-
     width: 100vw;
     p {
+      margin-right:1rem;
       color: whitesmoke;
     }
   }
@@ -124,9 +119,6 @@ $breakpoints: (
         text-align: center;
         margin: auto;
       }
-    }
-    .faqContent {
-      height: 80vh;
     }
     img {
       display: none;

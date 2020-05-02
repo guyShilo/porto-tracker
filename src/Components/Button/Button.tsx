@@ -25,7 +25,6 @@ export const Button: React.FC<ButtonProps> = ({ showFunction, onClick, isDisable
         <button
           disabled={disabled}
           onClick={() => {
-            // showFunction(true);
             onClick();
           }}
         >

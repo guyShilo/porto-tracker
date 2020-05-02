@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MenuContext from "./MenuContext";
 const GlobalMenuState = ({ children }) => {
   // Initiating a state which will be used to handle the menu current state (close / open)

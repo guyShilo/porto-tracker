@@ -1,13 +1,9 @@
 import React from "react";
 import "./style/style.scss";
-import { Button } from "../Button/Button";
-import { Link } from "react-router-dom";
-import aboutUs from "../../assets/team.svg";
 import aboutUsAlt from "../../assets/upToDate.svg";
 import { AiFillLinkedin } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { animationHelpers } from "../../Utils";
-import { Email } from "../Input/Email";
 const NadavsLinkedIn =
   "https://media-exp1.licdn.com/dms/image/C5603AQH_HYYqC_kRuA/profile-displayphoto-shrink_200_200/0?e=1593043200&v=beta&t=qXLJY4ig3Yf1hqCcH1rchBl6KNvw80q61Wg5wCAKhus";
 const GuysLinkedIn =
@@ -22,12 +18,12 @@ export const About: React.FC = () => {
     width: "45%",
     margin: "auto",
   };
+
   return (
     <div className="">
       <div className="aboutContainer">
         <div className="aboutHeader">
           <h1 className="">אז קצת עלינו...</h1>
-          {/* <hr className="bg-dark w-100" /> */}
         </div>
         <div className="aboutContent">
           <div className="content-text flex-fill">
@@ -47,7 +43,6 @@ export const About: React.FC = () => {
             </p>
           </div>
         </div>
-        {/* <hr className="bg-light w-50 mr-auto" /> */}
         <motion.section
           initial={{ scale: 0, opacity: 0 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -91,6 +86,7 @@ export const About: React.FC = () => {
                 className="text-light"
                 href="https://www.linkedin.com/in/nadavtaragan/"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <AiFillLinkedin size={40} />
               </a>
@@ -131,6 +127,7 @@ export const About: React.FC = () => {
                 className="linkedInLinks text-light"
                 href="https://www.linkedin.com/in/guyshilo/"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <AiFillLinkedin size={40} />
               </a>
@@ -138,7 +135,6 @@ export const About: React.FC = () => {
           </div>
         </motion.section>
         <motion.div className="aboutImage">
-          {/* <img src={aboutUs} alt="aboutUs" /> */}
           <motion.img
             initial={{ scale: 0, opacity: 0 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -151,11 +147,6 @@ export const About: React.FC = () => {
             alt="aboutUs"
           />
         </motion.div>
-        {/* <div className="registerLink">
-          <Link className="text-center" to="/registration">
-            <Button label="לחץ להרשמה" onClick={() => null} />
-          </Link>
-        </div> */}
       </div>
     </div>
   );

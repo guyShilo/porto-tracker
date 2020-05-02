@@ -92,9 +92,9 @@ $breakpoints: (
     }
     .mainBox {
       padding: 1rem;
-      .EmailInputDiv {
-        // transform: translateX(1.8rem);
-      }
+      // .EmailInputDiv {
+      //   // transform: translateX(1.8rem);
+      // }
     }
     div.trackingIndicator {
       transform: translateY(0.1rem) translateX(0.1rem);
@@ -103,7 +103,7 @@ $breakpoints: (
       transform: translateY(1.7rem);
     }
     .registerPic {
-
+      display: none;
     }
   }
 }
@@ -131,6 +131,7 @@ $breakpoints: (
       }
     }
     .registerPic {
+      display: none;
       width: 55%;
       bottom: 0;
     }

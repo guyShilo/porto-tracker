@@ -2,7 +2,6 @@ import React from "react";
 import "./style/style.scss";
 import backgroundImage from "../../assets/siteHeader.jpg";
 import { ContentLinks } from "./ContentLinks";
-import logo from "../../assets/logo.png";
 
 export const OurService: React.FC = () => {
   document.title = "PortuTrack | ראשי";
@@ -25,7 +24,7 @@ export const OurService: React.FC = () => {
             position: "fixed",
           }}
           src={backgroundImage}
-          alt="image"
+          alt="backgroundImage"
         />
         <div className="ourServiceContent">
           <p className="content-heading text-center">שלום</p>

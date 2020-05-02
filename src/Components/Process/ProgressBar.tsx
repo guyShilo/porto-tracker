@@ -1,51 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style/style.scss";
-interface ProgressBarProps {
-  
-}
+import { Overlay } from "../Overlay/Overlay";
+import { ViewStep } from "./ViewStep";
+import { Steps } from "./steps";
+import { motion } from "framer-motion";
+import { animationHelpers } from "src/Utils";
 
-export const ProgressBar: React.FC<ProgressBarProps> = ({}) => {
+export const ProgressBar: React.FC = () => {
+  const [showStep, setShowStep] = useState(false);
+
+  const [currentStep, setCurrentStep] = useState({});
+
+  const decideStep = (id: number) => {
+    const filteredStep = Steps.filter((step) => step.id === id);
+    filteredStep.map((step) => setCurrentStep(step));
+    setShowStep(!showStep);
+  };
   return (
     <div className="progressBarContainer">
       <p className="text-light text-center">
         לחצו על שלב הבקשה הנוכחי שקיבלתם מ PortuTrack באימייל
       </p>
       <section className="stepIndicator">
-        <div className="eachStep step1 active-1">
-          <div className="stepIcon">1</div>
-          <p>הבקשה התקבלה</p>
-        </div>
-        <div className="indicator-line active"></div>
-        <div className="eachStep step2 active-1">
-          <div className="stepIcon">2</div>
-          <p>רישום הבקשה</p>
-        </div>
-        <div className="indicator-line active"></div>
-        <div className="eachStep step3 active-1">
-          <div className="stepIcon">3</div>
-          <p>עיבוד הבקשה</p>
-        </div>
-        <div className="indicator-line active"></div>
-        <div className="eachStep step4 active-3">
-          <div className="stepIcon">4</div>
-          <p>אימות מסמכים</p>
-        </div>
-        <div className="indicator-line active"></div>
-        <div className="eachStep step5 active-2">
-          <div className="stepIcon">5</div>
-          <p>הבקשה באנליזה</p>
-        </div>
-        <div className="indicator-line active"></div>
-        <div className="eachStep step6 active-2">
-          <div className="stepIcon">6</div>
-          <p>קבלת החלטה</p>
-        </div>
-        <div className="indicator-line active"></div>
-        <div className="eachStep step7 active-2">
-          <div className="stepIcon">7</div>
-          <p>רישום האזרחות</p>
-        </div>
+        {Steps.map((eachStep) => (
+          <>
+            <motion.div
+              variants={animationHelpers.createVariants("scale", 0.95, 1.05)}
+              initial="variantA"
+              whileHover="variantB"
+              onClick={() => {
+                decideStep(eachStep.id);
+              }}
+              className="eachStep"
+            >
+              <div className="stepIcon bg-primary">{eachStep.id}</div>
+              <p>{eachStep.step_progress_bar_name}</p>
+            </motion.div>
+            {eachStep.id !== 7 ? (
+              <div className="indicator-line active"></div>
+            ) : null}
+          </>
+        ))}
+        )}
       </section>
+      {showStep ? (
+        <Overlay
+          Component={<ViewStep currentStep={currentStep} />}
+          currentState={showStep}
+          hide={() => setShowStep(!showStep)}
+        />
+      ) : null}
     </div>
   );
 };

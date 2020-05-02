@@ -121,7 +121,7 @@ export const RegisterBox: React.FC = () => {
           </div>
         </div>
       </div>
-      <img className="registerPic" src={destinations} />
+      <img alt="registerPic" className="registerPic" src={destinations} />
     </div>
   );
 };

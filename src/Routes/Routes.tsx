@@ -1,5 +1,4 @@
 import * as React from "react";
-import { motion } from "framer-motion";
 import { Route, Switch } from "react-router-dom";
 import { About } from "../Components/About/About";
 import { OurService } from "../Components/OurService/OurService";

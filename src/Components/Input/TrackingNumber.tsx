@@ -34,6 +34,8 @@ validatedObject,
   const splitToGroupsRegex = /.{4}/g;
   // regex to validate there is only numbers;
   const onlyNumbersRegex = new RegExp("^[0-9]+$");
+  // regex to numbers and Hyphen;
+  const regexWith = new RegExp('^[0-9]+$')
   // Handling onPaste event when the client pastes the tracking number.
   const handlePaste = (event: React.ClipboardEvent<HTMLFormElement>) => {
     let clipped: any[] | RegExpMatchArray | null = [];
@@ -46,7 +48,6 @@ validatedObject,
     // checks where the tracking number has '-', if it has, split by that. if not. split by regex.
     if (clipBoardData.indexOf("-") !== -1){
       clipped = clipBoardData.split("-");
-      console.log('regex test')
     } else if (clipBoardData.indexOf("-") === -1) {
       clipped = clipBoardData.match(splitToGroupsRegex);
     }

@@ -16,7 +16,6 @@ interface Errors {
 }
 
 export const useTrackingValidator: Hook = (trackingNumber) => {
-
   const validate = useCallback(() => {
     let errors = {
       trackingError: "",
