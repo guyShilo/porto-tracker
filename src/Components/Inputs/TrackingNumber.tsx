@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { animationHelpers } from "../../Utils";
 
 export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
-validatedObject,
+  validatedObject,
 }) => {
   // initiating tracking number state
   const [trackingNumberState, setTrackingNumber] = useState({
@@ -35,7 +35,7 @@ validatedObject,
   // regex to validate there is only numbers;
   const onlyNumbersRegex = new RegExp("^[0-9]+$");
   // regex to numbers and Hyphen;
-  const regexWith = new RegExp('^[0-9]+$')
+  const regexWith = new RegExp("^[0-9]+$");
   // Handling onPaste event when the client pastes the tracking number.
   const handlePaste = (event: React.ClipboardEvent<HTMLFormElement>) => {
     let clipped: any[] | RegExpMatchArray | null = [];
@@ -46,7 +46,7 @@ validatedObject,
     };
     const clipBoardData = event.clipboardData.getData("text");
     // checks where the tracking number has '-', if it has, split by that. if not. split by regex.
-    if (clipBoardData.indexOf("-") !== -1){
+    if (clipBoardData.indexOf("-") !== -1) {
       clipped = clipBoardData.split("-");
     } else if (clipBoardData.indexOf("-") === -1) {
       clipped = clipBoardData.match(splitToGroupsRegex);
@@ -87,67 +87,61 @@ validatedObject,
   useEffect(() => {
     context.addTrackCode(number);
   }, [context, number]);
+  // Initiating an Inputs Array for cleaner code.
+  const InputsArray = [
+    {
+      name: "boxOne",
+      ref: inputBoxOne,
+      value: trackingNumberState.boxOne,
+    },
+    {
+      name: "boxTwo",
+      ref: inputBoxTwo,
+      value: trackingNumberState.boxTwo,
+    },
+    {
+      name: "boxThree",
+      ref: inputBoxThree,
+      value: trackingNumberState.boxThree,
+    },
+  ];
+  // Extracting the fade in animation from the utils file.
+  const { FadeInAnimation } = animationHelpers;
+
   return (
     <div className="trackingNumber d-flex flex-column align-items-center p-1">
       <p className="text-center text-bold ">הכנס מספר מעקב</p>
       <motion.div
-        className="text-center"
+        className="errorBox"
         style={
           trackingNumberState.boxThree.length !== 0
             ? { display: "block" }
             : { display: "none" }
         }
-        variants={animationHelpers.createVariants("opacity", 0, 1)}
-        initial="variantA"
-        animate="variantB"
       >
-        <small className="text-danger text-center">
-          {validatedObject.errors?.trackingError}
-        </small>
+        <small>{validatedObject.errors?.trackingError}</small>
       </motion.div>
       <div className="mainTrackingInputs text-center col-sm-12">
         <form dir="ltr" onPaste={(event) => handlePaste(event)}>
-          <input
-            onChange={(event) => {
-              handleChange(event);
-            }}
-            value={trackingNumberState.boxOne}
-            ref={inputBoxOne}
-            className="col-sm-2 "
-            name="boxOne"
-            type="text"
-            pattern="/^(?:[1-9]\d*|\d)$/"
-            tabIndex={0}
-            maxLength={4}
-          />
-          <span className=" text-bold m-2">-</span>
-          <input
-            onChange={(event) => {
-              handleChange(event);
-            }}
-            value={trackingNumberState.boxTwo}
-            ref={inputBoxTwo}
-            className="col-sm-2"
-            name="boxTwo"
-            type="text"
-            pattern="/^(?:[1-9]\d*|\d)$/"
-            tabIndex={1}
-            maxLength={4}
-          />
-          <span className=" text-bold m-2">-</span>
-          <input
-            onChange={(event) => {
-              handleChange(event);
-            }}
-            value={trackingNumberState.boxThree}
-            ref={inputBoxThree}
-            className="col-sm-2"
-            name="boxThree"
-            type="text"
-            pattern="/^(?:[1-9]\d*|\d)$/"
-            tabIndex={2}
-            maxLength={4}
-          />
+          {InputsArray.map((eachInput, index) => (
+            <>
+              <input
+                onChange={(event) => {
+                  handleChange(event);
+                }}
+                pattern="/^(?:[1-9]\d*|\d)$/"
+                className="col-sm-2"
+                type="text"
+                value={eachInput.value}
+                ref={eachInput.ref}
+                name={eachInput.name}
+                tabIndex={index}
+                maxLength={4}
+                key={index + 1}
+              />
+              {index !== 2 ? <span className=" text-bold m-2">-</span> : null}
+            </>
+          ))}
         </form>
       </div>
     </div>

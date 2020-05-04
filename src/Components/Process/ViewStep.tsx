@@ -8,11 +8,11 @@ interface ViewStepProps {
 
 export const ViewStep: React.FC<ViewStepProps> = ({ currentStep }) => {
   const { step_name, steps_list } = currentStep;
-  const { containerAnimation, itemAnimation } = animationHelpers;
+  const { containerAnimation, itemAnimation, FadeInAnimation } = animationHelpers;
   return (
     <motion.div
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
+      initial={FadeInAnimation.initialDefs}
+      animate={FadeInAnimation.animationDefs}
       transition={{
         type: "spring",
         stiffness: 130,

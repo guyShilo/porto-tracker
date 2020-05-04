@@ -12,7 +12,7 @@ export const NotFound: React.FC = () => {
             <h1>404</h1>
             <h1>העמוד לא נמצא</h1>
             <img className="w-25 mb-2" alt="notFound" src={notFoundImage} />
-            <Link to="/serivce">
+            <Link to="/">
                 <Button label="לעמוד הראשי" onClick={() => null} />
             </Link>
         </div>

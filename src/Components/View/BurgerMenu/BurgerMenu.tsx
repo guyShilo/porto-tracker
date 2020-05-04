@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import { slide as Menu } from "react-burger-menu";
-import { styles } from "./JStyles";
 import { useHistory } from "react-router";
 import { motion } from "framer-motion";
-import "./styles.scss";
 import { Link } from "react-router-dom";
-import MenuContext from "../../../Context/MenuContext";
+import { styles } from "./JStyles";
 import { animationHelpers } from "../../../Utils";
 import { AiOutlineMenu } from "react-icons/ai";
+import MenuContext from "../../../Context/MenuContext";
+import "./styles.scss";
 
 export const BurgerMenu: React.FC<{}> = () => {
   // Importing the Menu context.
@@ -34,7 +34,7 @@ export const BurgerMenu: React.FC<{}> = () => {
     padding: "0.2rem",
     outline: "none",
     listStyle: "none",
-    fontSize: '1.3rem'
+    fontSize: "1.3rem",
   };
   // Defining an Array which will be mapped over in order to display the buttons.
   const linksArray = [
@@ -43,9 +43,11 @@ export const BurgerMenu: React.FC<{}> = () => {
     { linkName: "שאלות ותשובות", path: "/faq" },
     { linkName: "קצת עלינו", path: "/about" },
     { linkName: "הסבר על התהליך", path: "/process" },
+    { linkName: "תקנון האתר", path: "/regulations" },
   ];
+  const [Animation, setAnimation] = useState(false);
   return (
-    <div>
+    <div onClick={() => setAnimation(!Animation)}>
       <Menu
         burgerButtonClassName="customButton"
         isOpen={context.isMenuOpen}
@@ -64,7 +66,7 @@ export const BurgerMenu: React.FC<{}> = () => {
           style={{ outline: "none" }}
           variants={animationHelpers.containerAnimation}
           initial="hidden"
-          animate="visible"
+          animate={Animation ? "visible" : "hidden"}
           className="text-center"
         >
           {linksArray.map((link, index) => (
@@ -73,23 +75,25 @@ export const BurgerMenu: React.FC<{}> = () => {
               to={link.path}
               onClick={() => {
                 context.toggleMenu();
+                setAnimation(!Animation);
               }}
               key={index + 1}
             >
-              <motion.div variants={animationHelpers.itemAnimation}>
-                <motion.li
-                  onClick={() => {
-                    context.toggleMenu();
-                    history.push(link.path);
-                  }}
-                  className={decideStyle(link.path)}
-                  key={index + 1}
-                  style={btnStyle}
-                >
-                  {link.linkName}
-                </motion.li>
-                <hr className="bg-light"/>
-              </motion.div>
+              <motion.li
+                onClick={() => {
+                  context.toggleMenu();
+                  history.push(link.path);
+                }}
+                key={index + 1}
+                style={btnStyle}
+                variants={animationHelpers.itemAnimation}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className={decideStyle(link.path)}
+              >
+                {link.linkName}
+              </motion.li>
+              {index !== 5 ? <motion.hr className="bg-light" /> : null}
             </Link>
           ))}
         </motion.ul>

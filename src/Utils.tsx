@@ -9,15 +9,14 @@ export const animationHelpers = {
     initialNumber: number,
     afterVariantNumber: number
   ) => {
-    const variants = {
-      variantA: {
-        [name]: initialNumber,
-      },
-      variantB: {
-        [name]: afterVariantNumber,
-      },
+      return {
+        variantA: {
+            [name]: initialNumber,
+        },
+        variantB: {
+            [name]: afterVariantNumber,
+        },
     };
-    return variants;
   },
    containerAnimation: {
     hidden: { opacity: 1, scale: 0 },
@@ -38,6 +37,17 @@ export const animationHelpers = {
       opacity: 1,
     },
     hover: {scale: 1.25}
+  },
+  FadeInAnimation : {
+    initialDefs: {
+       scale: 0, opacity: 0 
+    },
+    animationDefs: { opacity: 1, scale: 1 },
+    transitionDefs: {
+      type: "spring",
+      stiffness: 90,
+      damping: 20,
+    }
   }
 };
 

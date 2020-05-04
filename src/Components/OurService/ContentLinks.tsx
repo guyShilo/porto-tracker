@@ -2,27 +2,33 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "../Button/Button";
 import { Link } from "react-router-dom";
-import {animationHelpers} from "../../Utils";
+import { animationHelpers } from "../../Utils";
 
 export const ContentLinks: React.FC = () => {
-    const variants = animationHelpers.createVariants('scale',0.9, 1);
+  const ButtonsArray = [
+    { linkName: "להרשמה", path: "/registration" },
+    { linkName: "קצת עלינו", path: "/about" },
+    { linkName: "שאלות ותשובות", path: "/faq" },
+  ];
+  const { FadeInAnimation } = animationHelpers;
   return (
-    <div className="content-links">
-      <motion.div variants={variants} initial="variantA" whileHover="variantB">
-        <Link to="/registration">
-          <Button onClick={() => null} label="להרשמה" />
-        </Link>
-      </motion.div>
-      <motion.div variants={variants} initial="variantA" whileHover="variantB">
-          <Link to="/about">
-        <Button label="קצת עלינו" onClick={() => null} />
-        </Link>
-      </motion.div>
-      <motion.div variants={variants} initial="variantA" whileHover="variantB">
-      <Link to="/faq">
-        <Button label="שאלות ותשובות" onClick={() => null} />
-        </Link>
-      </motion.div>
-    </div>
+    <motion.div
+      initial={FadeInAnimation.initialDefs}
+      animate={FadeInAnimation.animationDefs}
+      transition={FadeInAnimation.transitionDefs}
+      className="content-links"
+    >
+      {ButtonsArray.map((eachButton) => (
+        <motion.div
+          variants={animationHelpers.createVariants("scale", 0.9, 1)}
+          initial="variantA"
+          whileHover="variantB"
+        >
+          <Link to={eachButton.path}>
+            <Button onClick={() => null} label={eachButton.linkName} />
+          </Link>
+        </motion.div>
+      ))}
+    </motion.div>
   );
 };

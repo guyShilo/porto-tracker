@@ -3,6 +3,7 @@ import "./style/style.scss";
 import { ProgressBar } from "./ProgressBar";
 
 export const Process: React.FC = () => {
+  document.title = 'PortuTrack | תהליך האזרחות'
   return (
     <div className="portoProcess">
       <div className="processHeader">

@@ -1,32 +1,38 @@
 import React, { useState, useContext } from "react";
-import axios from "axios";
-import { Email } from "../Input/Email";
+import { useHistory } from "react-router";
+import { Email } from "../Inputs/Email";
 import { Button } from "../Button/Button";
-import "./styles/style.scss";
-import { TrackingNumber } from "../Input/TrackingNumber";
+import { TrackingNumber } from "../Inputs/TrackingNumber";
 import { Captcha } from "../Captcha/Captcha";
 import { ValidIndicator } from "../Button/ValidIndicator";
-import { SwalFunctions } from "../../Utils";
+import { SwalFunctions, animationHelpers } from "../../Utils";
+import { ReCAPTCHA } from "react-google-recaptcha";
+import { Loader } from "../Loader";
+import { Overlay } from "../Overlay/Overlay";
+import { motion, AnimatePresence } from "framer-motion";
+import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { useHistory } from "react-router";
 import StateContext from "src/Context/StateContext";
-import { ReCAPTCHA } from "react-google-recaptcha";
+
 import destinations from "../../assets/destinations.svg";
+import "./styles/style.scss";
 
 export const RegisterBox: React.FC = () => {
   document.title = "PortuTrack | הרשמה";
-
+  const { FadeInAnimation } = animationHelpers;
   const MySwal = withReactContent(Swal);
   const history = useHistory();
   const context = useContext(StateContext);
 
-  // current captcha state
+  // Current captcha state
   const [CaptchaState, setCaptchaState] = useState("");
-  // creating captcha ref
+  // Creating captcha ref
   let captchaRef: ReCAPTCHA | null = null;
-  // handling modal appearance.
+  // Handling modal appearance.
   const [captchaValid, setCaptchaValid] = useState<boolean>(false);
+  // Handling the loader state
+  const [loading, setLoading] = useState(false);
 
   // The state of the Validation Indicator.
   // const [colorState, setColorState] = useState({
@@ -55,6 +61,7 @@ export const RegisterBox: React.FC = () => {
 
   const updateDB = async () => {
     const { finalTrackCode, finalEmail } = context;
+    setLoading(true);
     try {
       setCaptchaValid(true);
       const request = axios.post("http://173.255.115.65/sendData", {
@@ -64,8 +71,10 @@ export const RegisterBox: React.FC = () => {
       });
       const response = await request;
       if (response.data.isValid) {
+        setLoading(false);
         await SwalFunctions.swalSuccess(MySwal, history);
       } else {
+        setLoading(false);
         await SwalFunctions.swalFailed(response.data, MySwal, history);
         setCaptchaValid(false);
       }
@@ -79,48 +88,62 @@ export const RegisterBox: React.FC = () => {
       <div className="boxHeader">
         <h1>הרשמה לשירות</h1>
       </div>
-      <div className="mainBox">
-        <div className="InputsContainer">
-          <div className="EmailInputDiv">
-            <div className="mailIndicator">
-              <ValidIndicator isValid={context.emailIsValid.isValid} />
+      {loading ? (
+        <Overlay
+          Component={<Loader />}
+          currentState={loading}
+          hide={() => setLoading(false)}
+          hideExitButton={true}
+        />
+      ) : (
+        <div className="mainBox">
+          <div className="InputsContainer">
+            <div className="EmailInputDiv">
+              <div className="mailIndicator">
+                <ValidIndicator isValid={context.emailIsValid.isValid} />
+              </div>
+              <Email
+                // buildColors={buildColors}
+                validatedObject={context.emailIsValid}
+                errors={context.emailIsValid.errors}
+              />
             </div>
-            <Email
-              // buildColors={buildColors}
-              validatedObject={context.emailIsValid}
-              errors={context.emailIsValid.errors}
-            />
-          </div>
-          <div className="trackingNumberDiv">
-            <div className="trackingIndicator">
-              <ValidIndicator isValid={context.trackCodeIsValid.isValid} />
+            <div className="trackingNumberDiv">
+              <div className="trackingIndicator">
+                <ValidIndicator isValid={context.trackCodeIsValid.isValid} />
+              </div>
+              <TrackingNumber
+                // buildColors={buildColors}
+                handleSubmit={null}
+                validatedObject={context.trackCodeIsValid}
+                currentState={context.finalTrackCode}
+              />
             </div>
-            <TrackingNumber
-              // buildColors={buildColors}
-              handleSubmit={null}
-              validatedObject={context.trackCodeIsValid}
-              currentState={context.finalTrackCode}
-            />
-          </div>
-          <div className="captchaSection">
-            <Captcha
-              captchaRef={captchaRef}
-              isValid={captchaValid}
-              setCaptcha={setCaptchaState}
-            />
-          </div>
-          <div className="submitDiv ">
-            <Button
-              label="להמשך הרשמה"
-              showFunction={() => null}
-              isDisabled={CaptchaState.length < 2}
-              onClick={() => {
-                updateDB();
-              }}
-            />
+            <motion.div
+              initial={FadeInAnimation.initialDefs}
+              animate={FadeInAnimation.animationDefs}
+              transition={FadeInAnimation.transitionDefs}
+              className="captchaSection"
+            >
+              <Captcha
+                captchaRef={captchaRef}
+                isValid={captchaValid}
+                setCaptcha={setCaptchaState}
+              />
+            </motion.div>
+            <div className="submitDiv ">
+              <Button
+                label="להמשך הרשמה"
+                showFunction={() => null}
+                isDisabled={CaptchaState.length < 2}
+                onClick={() => {
+                  updateDB();
+                }}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <img alt="registerPic" className="registerPic" src={destinations} />
     </div>
   );

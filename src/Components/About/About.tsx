@@ -1,16 +1,16 @@
 import React from "react";
-import "./style/style.scss";
-import aboutUsAlt from "../../assets/upToDate.svg";
-import { AiFillLinkedin } from "react-icons/ai";
 import { motion } from "framer-motion";
-import { animationHelpers } from "../../Utils";
+import { Developers } from "./Developers";
+import { animationHelpers } from "src/Utils";
+import aboutUsAlt from "../../assets/upToDate.svg";
+import "./style/style.scss";
 const NadavsLinkedIn =
   "https://media-exp1.licdn.com/dms/image/C5603AQH_HYYqC_kRuA/profile-displayphoto-shrink_200_200/0?e=1593043200&v=beta&t=qXLJY4ig3Yf1hqCcH1rchBl6KNvw80q61Wg5wCAKhus";
 const GuysLinkedIn =
   "https://media-exp1.licdn.com/dms/image/C4E03AQGFX8l9rHPNCg/profile-displayphoto-shrink_200_200/0?e=1593043200&v=beta&t=29CJcwhKzIrpdWvUv4h4UPMPzliwm0mTdutXfJz_4Io";
 
 export const About: React.FC = () => {
-  document.title = 'PortuTrack | קצת עלינו'
+  document.title = "PortuTrack | קצת עלינו";
 
   const profileImgStyle = {
     borderRadius: "50%",
@@ -18,7 +18,8 @@ export const About: React.FC = () => {
     width: "45%",
     margin: "auto",
   };
-
+  // Extracting the fade in animation from the utils file.
+  const {FadeInAnimation} = animationHelpers
   return (
     <div className="">
       <div className="aboutContainer">
@@ -43,106 +44,16 @@ export const About: React.FC = () => {
             </p>
           </div>
         </div>
-        <motion.section
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 90,
-            damping: 20,
-          }}
-          className="developers"
-        >
-          <div className="aboutDeveloper">
-            <p>
-              <b>נדב טרגן</b>
-            </p>
-            <motion.div
-              className="linkedInPic row p-1"
-              variants={animationHelpers.createVariants("scale", 1, 1.15)}
-              initial="variantA"
-              whileHover="variantB"
-            >
-              <img
-                style={profileImgStyle}
-                src={NadavsLinkedIn}
-                alt="NadavsLinkedIn"
-              />
-            </motion.div>
-            <div className="row">
-              <p className="flex-fill text-center">
-                מקים השירות - <br />
-                מתכנת העוסק בפיתוח תוכנה ובפרט בשירותי אוטומציה, <br /> סטודנט
-                מצטיין למדעי המחשב וצאצא למגורשי ספרד.
-              </p>
-            </div>
-            <motion.div
-              className="linkedInIcon"
-              variants={animationHelpers.createVariants("scale", 1, 1.35)}
-              initial="variantA"
-              whileHover="variantB"
-            >
-              <a
-                className="text-light"
-                href="https://www.linkedin.com/in/nadavtaragan/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AiFillLinkedin size={40} />
-              </a>
-            </motion.div>
-          </div>
-          <div className="aboutDeveloper">
-            <p>
-              <b>גיא שילה</b>
-            </p>
-            <motion.div
-              className="linkedInPic row p-1"
-              variants={animationHelpers.createVariants("scale", 1, 1.15)}
-              initial="variantA"
-              whileHover="variantB"
-            >
-              <img
-                id="guyPic"
-                style={profileImgStyle}
-                src={GuysLinkedIn}
-                alt="GuysLinkedIn"
-              />
-            </motion.div>
-            <div className="row">
-              <p className="flex-fill text-center">
-                מפתח צד לקוח - <br />
-                מתכנת FullStack.
-                <br />
-                בוגר NetCraft Academy.
-              </p>
-            </div>
-            <motion.div
-              className="linkedInIcon"
-              variants={animationHelpers.createVariants("scale", 1, 1.35)}
-              initial="variantA"
-              whileHover="variantB"
-            >
-              <a
-                className="linkedInLinks text-light"
-                href="https://www.linkedin.com/in/guyshilo/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AiFillLinkedin size={40} />
-              </a>
-            </motion.div>
-          </div>
-        </motion.section>
+        <Developers
+          profileImgStyle={profileImgStyle}
+          NadavsLinkedIn={NadavsLinkedIn}
+          GuysLinkedIn={GuysLinkedIn}
+        />
         <motion.div className="aboutImage">
           <motion.img
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 90,
-              damping: 20,
-            }}
+            initial={FadeInAnimation.initialDefs}
+            animate={FadeInAnimation.animationDefs}
+            transition={FadeInAnimation.transitionDefs}
             src={aboutUsAlt}
             alt="aboutUs"
           />

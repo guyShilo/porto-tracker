@@ -7,8 +7,7 @@ $breakpoints: (
 );
 
 .portoProcess {
-    height: 90vh;
-
+  height: 90vh;
   background-color: rgba(224, 224, 224, 0.8);
   .processHeader {
     display: flex;
@@ -170,37 +169,37 @@ $breakpoints: (
 }
 
 @include media("<=tablet", "<=desktop") {
-    .portoProcess {
-        height: initial;
-    }
-    .progressBarContainer {
-        height: 100%;
-        width: 100%;
-        margin: 15px;
-        border-radius: 0;
-        .stepIndicator {
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-            .indicator-line {
-                width: 85vw;
-                margin: 10px;
-            }
-            .eachStep {
-                margin: 1.25rem;
-                flex-direction: row;
-                p {
-                    position: initial;
-                    margin: 1rem;
-                }
-            }
+  .portoProcess {
+    height: initial;
+  }
+  .progressBarContainer {
+    height: 100%;
+    width: 100%;
+    margin: 15px;
+    border-radius: 0;
+    .stepIndicator {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      .indicator-line {
+        width: 85vw;
+        margin: 10px;
+      }
+      .eachStep {
+        margin: 1.25rem;
+        flex-direction: row;
+        p {
+          position: initial;
+          margin: 1rem;
         }
+      }
     }
+  }
 
-    .stepMainDiv {
-        width: 100vw;
-        margin: 15px;
-    }
+  .stepMainDiv {
+    width: 100vw;
+    margin: 15px;
+  }
 }
 
 @include media("<=largePhone", "<=tablet") {

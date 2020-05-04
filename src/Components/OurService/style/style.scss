@@ -79,8 +79,10 @@ $breakpoints: (
     .ourServiceContent {
       width:  100vw;
       height: 70vh;
-      margin: 0;
+      margin-left: 15px;
+      margin-right: 15px;
       margin-top: 1rem;
+      padding: 0;
     }
   }
 }

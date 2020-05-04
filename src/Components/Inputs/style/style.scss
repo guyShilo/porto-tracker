@@ -3,6 +3,8 @@ $breakpoints: (phone: 320px, largePhone: 575px ,tablet: 768px, desktop: 1024px);
 $inputColor: whitesmoke;
 
 .mainInput {
+  display: flex;
+  flex-direction: column;
   input {
     direction: ltr;
     margin: 0;
@@ -47,6 +49,16 @@ $inputColor: whitesmoke;
     font-size: 17px;
     display: block;
     font-weight: 600;
+  }
+}
+
+.errorBox {
+  background: whitesmoke;
+  border-radius: 0.2rem;
+  text-align: center;
+  small {
+    font-size: 11px;
+    color: #dc3545 !important;
   }
 }
 

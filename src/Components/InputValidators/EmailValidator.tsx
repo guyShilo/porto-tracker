@@ -17,6 +17,7 @@ export const useEmailValidator: Hook = (emailState) => {
             let errors = {
               emailError: "",
             };
+            console.log(emailState)
             // Checking whether the email is empty or not, if it is, assign an error.
             if (emailState.trim() === "") {
               errors.emailError = "כתובת דוא״ל לא יכולה להיות ריק";
@@ -33,12 +34,11 @@ export const useEmailValidator: Hook = (emailState) => {
               errors,
               isValid: errors.emailError.length < 5,
         };
-      },
-      [emailState],
-  );
+      }, [emailState]);
   // Validate based on Email changes.
   useEffect(() => {
     handleValidation();
-  }, [emailState, handleValidation]);
+  },[handleValidation]);
+
   return handleValidation();
 };

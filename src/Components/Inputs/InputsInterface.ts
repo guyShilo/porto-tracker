@@ -37,7 +37,7 @@ export interface InputProps {
     },
     indicator: string
   ) => void;
-  validatedObject?: {
+  validatedObject: {
     emailState: string;
     errors: { emailError: string };
     isValid?: boolean | undefined;

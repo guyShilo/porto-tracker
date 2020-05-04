@@ -1,27 +1,36 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./style/style.scss";
-import {ButtonProps} from "./ButtonProps";
+import { ButtonProps } from "./ButtonProps";
+import { motion } from "framer-motion";
+import { animationHelpers } from "src/Utils";
 
-export const Button: React.FC<ButtonProps> = ({ showFunction, onClick, isDisabled, label }) => {
+export const Button: React.FC<ButtonProps> = ({
+  onClick,
+  isDisabled,
+  label,
+}) => {
   const [disabled, setDisabled] = useState(false);
   // If the string length IS NOT VALID - disable the submit button. - used with recaptcha
-  const whichButton = () => disabled ? 'disabledButton m-2' : 'mainButton m-2';
-  const handleDisabled = useCallback(
-      () => {
-        if (isDisabled) setDisabled(true);
-        else setDisabled(false);
-      },
-      [isDisabled],
-  );
+  const whichButton = () =>
+    disabled ? "disabledButton m-2" : "mainButton m-2";
+  const handleDisabled = useCallback(() => {
+    if (isDisabled) setDisabled(true);
+    else setDisabled(false);
+  }, [isDisabled]);
   useEffect(() => {
     handleDisabled();
     return () => {
-      handleDisabled()
-    }
+      handleDisabled();
+    };
   }, [handleDisabled, isDisabled]);
   return (
     <>
-      <div className={whichButton()}>
+      <motion.div
+        className={whichButton()}
+        variants={animationHelpers.createVariants("scale", 0.95, 1.1)}
+        initial="variantA"
+        whileHover="variantB"
+      >
         <button
           disabled={disabled}
           onClick={() => {
@@ -30,7 +39,7 @@ export const Button: React.FC<ButtonProps> = ({ showFunction, onClick, isDisable
         >
           {label}
         </button>
-      </div>
+      </motion.div>
     </>
   );
 };

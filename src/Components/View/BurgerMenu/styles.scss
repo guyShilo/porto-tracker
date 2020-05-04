@@ -6,17 +6,21 @@ $breakpoints: (
   desktop: 1700px,
 );
 
+.regulationsLink {
+    transform: translateY(12rem) translateX(0.5rem);
+    list-style: none;
+}
+
 .active {
     border-bottom: 2px solid #e7e7e7;
     border-radius: 5px;
     font-weight: bold;
-    transition: all 0.2ms;
 }
 
 .newBurgerMenu {
     outline: none !important;
     text-decoration: none !important;
-    button:focus {
+    button {
         outline: none !important;
         text-decoration: none !important;
     }
