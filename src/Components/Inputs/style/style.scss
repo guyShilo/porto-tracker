@@ -64,13 +64,14 @@ $inputColor: whitesmoke;
   }
 }
 
-@include media('>phone', '<=largePhone') {
+@include media('>=phone', '<=largePhone') {
   .mainInput {
     input {
       width: 40vw;
     }
     p {
-      margin-right: 1.5rem;
+      width: initial;
+      margin: 0;
     }
   }
   .trackingNumber {
@@ -82,26 +83,25 @@ $inputColor: whitesmoke;
       font-size: 0.7rem;
     }
     p {
-      margin-left: 1rem;
+      margin:0;
     }
   }
 }
 
-@include media('<=largePhone','<=tablet') {
+@include media('>largePhone', '<=desktop') {
   .mainInput {
     input {
       width: 40vw;
     }
     p {
-      margin-right: 2rem;
+      margin-right: 3rem;
     }
   }
   .trackingNumber {
     display: flex;
-    flex-wrap: wrap;
     width: 100%;
     input {
-      width: 15vw;
+      width: 21vw;
       font-size: 0.7rem;
     }
     p {

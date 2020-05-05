@@ -47,11 +47,11 @@ export const Process: React.FC = () => {
             initial="variantA"
             whileHover="variantB"
             whileTap={{ scale: 0.85 }}
-            className="btn btn-light p-2"
+            className="btn p-2"
             href="mailto: rcentrais.naturalizacao2@irn.mj.pt"
             target="_blank"
           >
-            <b className="m-1 text-success">לחצו עליי לשליחת מייל</b>
+            <b className="m-1 text-success">rcentrais.naturalizacao2@irn.mj.pt</b>
             {<AiOutlineMail size={25} className="text-success" />}
           </motion.a>
         </p>
@@ -67,10 +67,13 @@ export const Process: React.FC = () => {
             <br />
             <b> אנחנו ממליצים על הנוסח הבא:</b>
             <br />
-            <motion.button             variants={createVariants("scale", 0.95, 1.05)}
-            initial="variantA"
-            whileHover="variantB"
-            whileTap={{ scale: 0.85 }} className="m-1 btn-light btn-sm text-success">
+            <motion.button
+              variants={createVariants("scale", 0.95, 1.05)}
+              initial="variantA"
+              whileHover="variantB"
+              whileTap={{ scale: 0.85 }}
+              className="m-1 btn-light btn-sm text-success"
+            >
               <b> {!isCopied ? "העתק את המכתב" : "המכתב הועתק!"}</b>
               {!isCopied ? (
                 <AiOutlineCopy className="m-1" size={17} />

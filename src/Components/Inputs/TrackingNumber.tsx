@@ -81,10 +81,6 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({}) => {
       return;
     }
   };
-  // Updates every time the state updates.
-  useEffect(() => {
-    context.addTrackCode(number);
-  }, [context, number]);
   // Initiating an Inputs Array for cleaner code.
   const InputsArray = [
     {
@@ -105,7 +101,10 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({}) => {
   ];
   // Extracting the fade in animation from the utils file.
   const { FadeInAnimation } = animationHelpers;
-
+  // Updates every time the state updates.
+  useEffect(() => {
+    context.addTrackCode(number);
+  }, [context, number]);
   return (
     <div className="trackingNumber d-flex flex-column align-items-center p-1">
       <p className="text-center text-bold ">הכנס מספר מעקב</p>

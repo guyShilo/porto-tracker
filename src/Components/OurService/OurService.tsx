@@ -26,16 +26,17 @@ export const OurService: React.FC = () => {
           alt="backgroundImage"
         />
         <div className="ourServiceContent">
-          <p className="content-heading text-center">שלום</p>
+          <p className="text-center content-heading-pt-2">
+            באופן אוטומטי , מדי יום
+            <span className="content-heading-pt-1 text-center m-1 p-1">
+              PortuTrack
+            </span>
+            יתעדכן במצב תהליך הגשת הבקשה שלכם!
+          </p>
           <p className="text-center text-light">
-            <h1>
-              באופן אוטומטי, מדי יום PortuTrack יתעדכן במצב תהליך הגשת הבקשה
-              שלכם! 
-            </h1>
             <br />
-            <br />
-             אף אחד לא אוהב מיילים לא חשובים, אז אנחנו נעדכן אתכם רק
-            כשיש עדכון בתהליך שלכם.
+            אף אחד לא אוהב מיילים לא חשובים, אז אנחנו נעדכן אתכם רק כשיש עדכון
+            בתהליך שלכם.
             <br /> לאחר הרשמתכם לשירות, תוך 24 שעות, תקבלו מייל שמציין את מצבכם
             הנוכחי.
             <br /> החל ממייל זה, נמשיך לבדוק – אך נעדכן אתכם רק כאשר יהיה משהו

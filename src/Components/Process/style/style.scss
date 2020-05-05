@@ -43,7 +43,7 @@ $breakpoints: (
     justify-content: center;
     align-items: center;
     margin-top: -0.6rem;
-    .indicator-line {
+    >.indicator-line {
       height: 100%;
       width: 2px;
       background: #bdc3c7; /* fallback for old browsers */
@@ -62,6 +62,9 @@ $breakpoints: (
       flex-shrink: 1;
       flex-basis: 10%;
       margin-top: 0.7rem;
+      border-bottom: 2px solid #e7e7e7;
+      border-radius: 5px;
+      font-weight: bold;
     }
     .eachStep {
       cursor: pointer;
@@ -171,7 +174,7 @@ $breakpoints: (
     }
   }
 }
-@include media ('>=phone', '<=largePhone') {
+@include media(">=phone", "<=largePhone") {
   .progressBarContainer {
     height: 100%;
     width: 100%;

@@ -88,7 +88,7 @@ export const BurgerMenu: React.FC<{}> = () => {
                 className={decideStyle(link.path)}
               >
                 {link.linkName}
-                {index !== 4 ? <motion.hr className="bg-light" /> : null}
+                {index !== 5 ? <motion.hr className="bg-light" /> : null}
               </motion.li>
             </div>
           ))}

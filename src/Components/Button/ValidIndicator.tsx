@@ -11,7 +11,7 @@ export const ValidIndicator: React.FC<{
   const returnClass = () => {
     if (currentInputState.length >= 3 && isValid) return "text-success mt-4"; 
     if (currentInputState.length >= 3 && !isValid) return "text-danger mt-4"; 
-    return "text-light mt-4";
+    return "d-none text-light mt-4";
   };
   return (
     <motion.div

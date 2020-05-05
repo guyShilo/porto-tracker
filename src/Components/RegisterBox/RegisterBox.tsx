@@ -73,12 +73,6 @@ export const RegisterBox: React.FC = () => {
           hide={() => setLoading(false)}
           hideExitButton={true}
         />
-      ) : showRegulations ? (
-        <Overlay
-          Component={<Regulations />}
-          currentState={showRegulations}
-          hide={() => setShowRegulations(!showRegulations)}
-        />
       ) : (
         <div className="mainBox">
           <div className="InputsContainer">
