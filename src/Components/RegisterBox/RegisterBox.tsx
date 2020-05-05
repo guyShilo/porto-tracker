@@ -9,7 +9,6 @@ import { SwalFunctions, animationHelpers } from "../../Utils";
 import { ReCAPTCHA } from "react-google-recaptcha";
 import { Loader } from "../Loader";
 import { Overlay } from "../Overlay/Overlay";
-import { Regulations } from "../Regulations/Regulations";
 import { motion } from "framer-motion";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -77,21 +76,12 @@ export const RegisterBox: React.FC = () => {
         <div className="mainBox">
           <div className="InputsContainer">
             <div className="EmailInputDiv">
-              <div className="mailIndicator">
-                <ValidIndicator isValid={context.validatedEmail.isValid} currentInputState={context.validatedEmail.emailState} />
-              </div>
               <Email
                 validatedObject={context.validatedEmail}
                 errors={context.validatedEmail.errors}
               />
             </div>
             <div className="trackingNumberDiv">
-              <div className="trackingIndicator">
-                <ValidIndicator
-                  isValid={context.validatedTrackingNumber.isValid}
-                  currentInputState={context.validatedTrackingNumber.trackingNumber}
-                />
-              </div>
               <TrackingNumber
                 handleSubmit={null}
                 validatedObject={context.validatedTrackingNumber}

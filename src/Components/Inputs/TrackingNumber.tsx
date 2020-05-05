@@ -1,10 +1,9 @@
 import React, { useContext, createRef, useEffect, useState } from "react";
 import { TrackingNumberComponent } from "./InputsInterface";
-import StateContext from "../../Context/StateContext";
 import { Error } from "./Error";
-import { animationHelpers } from "../../Utils";
+import StateContext from "../../Context/StateContext";
 
-export const TrackingNumber: React.FC<TrackingNumberComponent> = ({}) => {
+export const TrackingNumber: React.FC<TrackingNumberComponent> = () => {
   // initiating tracking number state
   const [trackingNumberState, setTrackingNumber] = useState({
     boxOne: "",
@@ -32,8 +31,6 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({}) => {
   const splitToGroupsRegex = /.{4}/g;
   // regex to validate there is only numbers;
   const onlyNumbersRegex = new RegExp("^[0-9]+$");
-  // regex to numbers and Hyphen;
-  const regexWith = new RegExp("^[0-9]+$");
   // Handling onPaste event when the client pastes the tracking number.
   const handlePaste = (event: React.ClipboardEvent<HTMLFormElement>) => {
     let clipped: any[] | RegExpMatchArray | null = [];
@@ -99,18 +96,13 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({}) => {
       value: trackingNumberState.boxThree,
     },
   ];
-  // Extracting the fade in animation from the utils file.
-  const { FadeInAnimation } = animationHelpers;
   // Updates every time the state updates.
   useEffect(() => {
     context.addTrackCode(number);
-  }, [context, number]);
+  }, [number]);
   return (
     <div className="trackingNumber d-flex flex-column align-items-center p-1">
       <p className="text-center text-bold ">הכנס מספר מעקב</p>
-      <div className="w-50">
-        <Error validatedObject={{...context.validatedTrackingNumber, emailState: ''}} />
-      </div>
       <div className="mainTrackingInputs text-center col-sm-12">
         <form dir="ltr" onPaste={(event) => handlePaste(event)}>
           {InputsArray.map((eachInput, index) => (
@@ -134,6 +126,16 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({}) => {
           ))}
         </form>
       </div>
+      {trackingNumberState.boxTwo.length <= 3 ? null : (
+        <div className="trackingErrorDiv w-50">
+          <Error
+            validatedObject={{
+              ...context.validatedTrackingNumber,
+              emailState: "",
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };

@@ -17,15 +17,14 @@ export const Process: React.FC = () => {
   return (
     <div className="portoProcess">
       <div className="processHeader">
-        <h3 className="text-center p-1">
+        {/* <h3 className="text-center p-1">
           אז גם אתם רוצים להגשים את החלום הפורטוגלי?
-        </h3>
-        <p className="text-center">הכנו לכם הסבר קצר על התהליך הבקשה</p>
+        </h3> */}
+        <p className="text-center">הכנו לכם הסבר קצר על <b>תהליך הבקשה </b>לקבלת הדרכון הפורטוגלי</p>
       </div>
       <div className="d-flex justify-content-center">
         <ProgressBar />
       </div>
-      <hr className="bg-dark w-75" />
       <div
         className="processContent text-light"
         style={{
@@ -51,7 +50,9 @@ export const Process: React.FC = () => {
             href="mailto: rcentrais.naturalizacao2@irn.mj.pt"
             target="_blank"
           >
-            <b className="m-1 text-success">rcentrais.naturalizacao2@irn.mj.pt</b>
+            <b className="m-1 text-success">
+              rcentrais.naturalizacao2@irn.mj.pt
+            </b>
             {<AiOutlineMail size={25} className="text-success" />}
           </motion.a>
         </p>

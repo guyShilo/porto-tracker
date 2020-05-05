@@ -2,9 +2,9 @@ import React from "react";
 import { Routes } from "../Routes/Routes";
 import { Router } from "react-router-dom";
 import { history } from "../history";
+import { Header } from "src/Components/View/Header/Header";
 import GlobalState from "../Context/GlobalState";
 import GlobalMenuState from "../Context/GlobalMenuState";
-import { Header } from "src/Components/View/Header/Header";
 
 function App() {
   return (

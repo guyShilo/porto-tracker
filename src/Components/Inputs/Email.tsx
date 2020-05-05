@@ -1,39 +1,38 @@
 import React, { useContext, useState, useEffect } from "react";
-import "./style/style.scss";
 import { InputProps } from "./InputsInterface";
-import StateContext from "../../Context/StateContext";
 import { Error } from "./Error";
+import StateContext from "../../Context/StateContext";
 
-export const Email: React.FC<InputProps> = ({
-  errors,
-  buildColors,
-}) => {
-  const [currentEmail, setCurrentEmail] = useState('')
+import "./style/style.scss";
+export const Email: React.FC<InputProps> = ({ errors, buildColors }) => {
+  // Initiating a state for the current email.
+  const [currentEmail, setCurrentEmail] = useState("");
   // Importing the context.
   const context = useContext(StateContext);
   // handles the email input.
-  const handleChange = (input: string) => (
+  const handleEmailChange = (input: string) => (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     // buildColors(validatedObject, "emailValid");
     const value = e.target.value;
-    setCurrentEmail(value)
+    setCurrentEmail(value);
   };
+  // Updates every time the state updates.
   useEffect(() => {
-     context.addEmail(currentEmail);
-     console.log('emailing')
+    context.addEmail(currentEmail);
   }, [currentEmail]);
   return (
     <div className="p-2 m-1">
       <div className="mainInput">
         <p className="text-bold text-center">הכנס כתובת דוא״ל</p>
-        <Error validatedObject={{...context.validatedEmail, trackingNumber: ''}}/>
         <input
           value={currentEmail}
-          onChange={handleChange("email")}
+          onChange={handleEmailChange("email")}
           className="text-center"
           type="email"
-          required={true}
+        />
+        <Error
+          validatedObject={{ ...context.validatedEmail, trackingNumber: "" }}
         />
       </div>
     </div>

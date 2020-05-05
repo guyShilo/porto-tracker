@@ -33,7 +33,7 @@ export const OurService: React.FC = () => {
             </span>
             יתעדכן במצב תהליך הגשת הבקשה שלכם!
           </p>
-          <p className="text-center text-light">
+          <p className="text-center text-light p-3">
             <br />
             אף אחד לא אוהב מיילים לא חשובים, אז אנחנו נעדכן אתכם רק כשיש עדכון
             בתהליך שלכם.

@@ -20,11 +20,14 @@ export const useEmailValidator: EmailValidationHook = (emailState) => {
     // Checking the current state of the input to determine error and indicator display.
     const checkValidity = () => {
       if (errors.emailError.length > 5 && emailState.length === 0) {
-        return true;
+        return false;
       } else if (errors.emailError.length > 5 && emailState.length !== 0) {
         return false;
-      } else {
-        return true;
+      } else if (errors.emailError = "") {
+        return true
+      }
+      else {
+        return true
       }
     };
     // Return the final email, errors object, and boolean.

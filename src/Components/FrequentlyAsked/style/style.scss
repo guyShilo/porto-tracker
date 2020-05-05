@@ -9,6 +9,7 @@ $breakpoints: (
 .faqMain {
   width: 100vw;
   height: 90vh;
+  overflow: scroll;
   .faqHeader {
     width: 100vw;
     display: flex;
@@ -63,8 +64,9 @@ $breakpoints: (
   }
 }
 
-@include media("<phone"){
+@include media(">359"){
   .faqMain {
+    background-color: black;
     .faqHeader {
       flex-direction: row;
       justify-content: center;
@@ -93,10 +95,11 @@ $breakpoints: (
       align-items: center;
       width: 100vw;
       h1 {
-        font-size: 1.3rem;
+        font-size: 1rem;
         margin: auto
       }
       span {
+        font-size: 0.7rem;
         margin: auto
       }
     }

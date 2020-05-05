@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { useHistory } from "react-router";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { styles } from "./JStyles";
 import { animationHelpers } from "../../../Utils";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -12,10 +11,6 @@ import "./styles.scss";
 export const BurgerMenu: React.FC<{}> = () => {
   // Importing the Menu context.
   const context = useContext(MenuContext);
-  // Initiating the menu state.
-  const [isOpen] = useState({
-    isOpen: false,
-  });
   // Importing history object with useHistory hook.
   const history = useHistory();
   // Extracting the path name to a variable for reuse.

@@ -1,6 +1,8 @@
 import React from "react";
-import "./style/style.scss";
+import {Link} from 'react-router-dom'
 import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
+
+import "./style/style.scss";
 import logo from "../../../assets/logo.png";
 
 export const Header: React.FC = () => {
@@ -12,7 +14,9 @@ export const Header: React.FC = () => {
             <BurgerMenu />
           </div>
           <div className="col-sm-6 logoDiv">
-            <img className="logoImage text-center" src={logo} alt="logo" />
+            <Link to="/">
+              <img className="logoImage text-center" src={logo} alt="logo" />
+            </Link>
           </div>
         </div>
       </div>

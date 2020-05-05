@@ -50,16 +50,18 @@ $inputColor: whitesmoke;
     display: block;
     font-weight: 600;
   }
+  .trackingErrorDiv {
+    transform: translateY(-7rem);
+  }
 }
 
 .errorBox {
-  background: whitesmoke;
   border-radius: 0.2rem;
   text-align: center;
   margin: 0.5rem;
+  // background: rgba(255, 255, 255, 0.5);
   small {
     font-size: 11px;
-    color: #dc3545 !important;
     font-weight: bold;
   }
 }
@@ -67,7 +69,7 @@ $inputColor: whitesmoke;
 @include media('>=phone', '<=largePhone') {
   .mainInput {
     input {
-      width: 40vw;
+      width: 73vw;
     }
     p {
       width: initial;
@@ -79,11 +81,14 @@ $inputColor: whitesmoke;
     flex-wrap: wrap;
     width: auto !important;
     input {
-      width: 13vw;
+      width: 20vw;
       font-size: 0.7rem;
     }
     p {
       margin:0;
+    }
+    .trackingErrorDiv {
+      transform: translateY(0.5rem);
     }
   }
 }

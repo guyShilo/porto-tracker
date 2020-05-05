@@ -45,5 +45,6 @@ export const useTrackingValidator: TrackCodeValidationHook = (trackingNumber) =>
   useEffect(() => {
     ValidateTrackCode();
   }, [ValidateTrackCode]);
+  
   return ValidateTrackCode();
 };

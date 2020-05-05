@@ -13,6 +13,7 @@ $breakpoints: (
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  overflow: scroll;
   .boxHeader {
     width: 100vw;
     height: 10vh;
@@ -74,13 +75,6 @@ $breakpoints: (
       padding: 0.3rem;
     }
   }
-  div.trackingIndicator {
-    position: relative;
-    transform: translateX(-10rem) translateY(1.2rem);
-  }
-  div.mailIndicator {
-    transform: translateY(1.7rem);
-  }
   .registerPic {
     width: 35%;
     position: absolute;
@@ -136,24 +130,20 @@ $breakpoints: (
       height: 80vh;
       .InputsContainer {
         width: 100%;
-        .EmailInputDiv {
-          div.mailIndicator {
-            transform: translateY(1.7rem);
-          }
+        .captchaSection {
+          margin-right: 0;
         }
         .submitDiv {
           margin: 0;
           width: 100vw;
           background: rgb(47, 47, 47);
         }
-        div.trackingIndicator {
-          transform: translateY(0.1rem) translateX(0.1rem);
-        }
       }
     }
     .registerPic {
       display: none;
-      width: 55%;
+      width: 28%;
+      left: 0.5rem;
       bottom: 0;
     }
   }
@@ -173,7 +163,7 @@ $breakpoints: (
       }
     }
     .mainBox {
-      height: 80vh;
+      height: 82vh;
     }
     .registerPic {
       right: 1rem;

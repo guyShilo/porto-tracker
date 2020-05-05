@@ -3,7 +3,6 @@ import "./style/style.scss";
 import { GiExitDoor } from "react-icons/gi";
 import { motion } from "framer-motion";
 import { OverlayProps } from "./OverlayProps";
-import { animationHelpers } from "src/Utils";
 
 export const Overlay: React.FC<OverlayProps> = ({
   Component,
