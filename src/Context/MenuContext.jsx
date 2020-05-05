@@ -4,8 +4,8 @@ export default createContext({
     isMenuOpen: false,
     toggleMenu: () => {},
     stateChangeHandler: (newState) => newState,
-    checkAnimation: () => {},
-    animationVisible: '',
+    closeMenu: () => {},
+    menuAnimation: false,
     outerWrapperID: '',
     pageWrapID: ''
   });

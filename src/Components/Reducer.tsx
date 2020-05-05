@@ -1,47 +1,40 @@
-import {typeState, typeAction} from "./ReducerProps";
+import { typeState, typeAction } from "./ReducerProps";
 
 // Setting the Mail to the state.
-const addEmail = (
-    state: typeState,
-    Email: string
-    ) => {
-    const finalEmail = Email;
-    return {
-        ...state,
-        finalEmail,
-    };
+const addEmail = (state: typeState, Email: string) => {
+  const finalEmail = Email;
+  return {
+    ...state,
+    finalEmail,
+  };
 };
 // Setting the Track Code to the state.
-const addTrackCode = (
-    state: typeState,
-    TrackCode: string
-    ) => {
-    const finalTrackCode = TrackCode;
-    return {
-        ...state,
-        finalTrackCode,
-    };
+const addTrackCode = (state: typeState, TrackCode: string) => {
+  const finalTrackCode = TrackCode;
+  return {
+    ...state,
+    finalTrackCode,
+  };
 };
 // IN PROGRESS //
-const resetTrackCode = (
-    state: typeState,
-    TrackCode: string
-    ) => {
-    return {
-        ...state,
-        finalTrackCode: TrackCode,
-    };
+const resetTrackCode = (state: typeState, TrackCode: string) => {
+  return {
+    ...state,
+    finalTrackCode: TrackCode,
+  };
 };
 
 export const globalReducer = (state: typeState, action: typeAction) => {
     switch (action.type) {
         case "ADD_TRACKCODE":
-            return addTrackCode(state, action.value);
+        return addTrackCode(state, action.value);
         case "ADD_EMAIL":
-            return addEmail(state, action.value);
+        return addEmail(state, action.value);
         case "RESET_TRACKCODE":
-            return resetTrackCode(state, '');
-        default: 
-            return state;
+        return resetTrackCode(state, "");
+        case "VALIDATE":
+        return resetTrackCode(state, action.value);
+        default:
+        return state;
     }
 };

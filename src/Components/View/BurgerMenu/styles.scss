@@ -33,6 +33,9 @@ $breakpoints: (
         outline: none !important;
         text-decoration: none !important;
     }
+    button {
+        display: none;
+    }
 }
 
 @include media(">=phone", "<=largePhone") {

@@ -1,12 +1,10 @@
 import React, { useContext, createRef, useEffect, useState } from "react";
 import { TrackingNumberComponent } from "./InputsInterface";
 import StateContext from "../../Context/StateContext";
-import { motion } from "framer-motion";
+import { Error } from "./Error";
 import { animationHelpers } from "../../Utils";
 
-export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
-  validatedObject,
-}) => {
+export const TrackingNumber: React.FC<TrackingNumberComponent> = ({}) => {
   // initiating tracking number state
   const [trackingNumberState, setTrackingNumber] = useState({
     boxOne: "",
@@ -111,16 +109,9 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = ({
   return (
     <div className="trackingNumber d-flex flex-column align-items-center p-1">
       <p className="text-center text-bold ">הכנס מספר מעקב</p>
-      <motion.div
-        className="errorBox"
-        style={
-          trackingNumberState.boxThree.length !== 0
-            ? { display: "block" }
-            : { display: "none" }
-        }
-      >
-        <small>{validatedObject.errors?.trackingError}</small>
-      </motion.div>
+      <div className="w-50">
+        <Error validatedObject={{...context.validatedTrackingNumber, emailState: ''}} />
+      </div>
       <div className="mainTrackingInputs text-center col-sm-12">
         <form dir="ltr" onPaste={(event) => handlePaste(event)}>
           {InputsArray.map((eachInput, index) => (

@@ -1,27 +1,12 @@
 import { useCallback, useEffect } from "react";
+import {TrackCodeValidationHook} from './HooksTypes'
 
-type Hook = (
-  trackingNumber: string
-) => {
-  trackingNumber: string;
-  errors: {
-    trackingError: string;
-  };
-  isValid: boolean | null;
-};
-
-interface Errors {
-  trackingError: string;
-  isValid: boolean;
-}
-
-export const useTrackingValidator: Hook = (trackingNumber) => {
-  const validate = useCallback(() => {
+export const useTrackingValidator: TrackCodeValidationHook = (trackingNumber) => {
+  const ValidateTrackCode = useCallback(() => {
     // Initiating an empty error.
     let errors = {
       trackingError: "",
     };
-    console.log(trackingNumber)
     // Checking whether the number is empty or not, if it is, assign an error.
     if (trackingNumber.trim() === "") {
       errors.trackingError = "מספר המעקב לא יכול להיות ריק";
@@ -36,17 +21,29 @@ export const useTrackingValidator: Hook = (trackingNumber) => {
         errors.trackingError = "אורכו של מספר המעקב חייב להיות 12 תווים";
       }
     }
+    // Checking the current state of the input to determine error and indicator display.
+    const checkValidity = () => {
+      if (errors.trackingError.length > 5 && trackingNumber.length === 2) {
+        return true;
+      } else if (
+        errors.trackingError.length > 5 &&
+        trackingNumber.length !== 2
+      ) {
+        return false;
+      } else {
+        return true;
+      }
+    };
     // Return the final number, errors object, and boolean.
     return {
       trackingNumber,
       errors,
-      isValid: errors.trackingError.length < 5,
+      isValid: checkValidity(),
     };
   }, [trackingNumber]);
-
+    // Validate based on Track Code changes.
   useEffect(() => {
-    validate();
-  }, [validate]);
-
-  return validate();
+    ValidateTrackCode();
+  }, [ValidateTrackCode]);
+  return ValidateTrackCode();
 };

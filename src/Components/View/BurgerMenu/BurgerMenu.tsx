@@ -43,20 +43,25 @@ export const BurgerMenu: React.FC<{}> = () => {
     { linkName: "שאלות ותשובות", path: "/faq" },
     { linkName: "קצת עלינו", path: "/about" },
     { linkName: "הסבר על התהליך", path: "/process" },
-    { linkName: "תקנון האתר", path: "/regulations" },
+    // { linkName: "תקנון האתר", path: "/regulations" },
   ];
-  const [Animation, setAnimation] = useState(false);
   return (
-    <div onClick={() => setAnimation(!Animation)}>
+    <div>
       <Menu
-        burgerButtonClassName="customButton"
         isOpen={context.isMenuOpen}
-        onStateChange={context.stateChangeHandler(isOpen)}
+        onStateChange={(state) =>
+          context.stateChangeHandler({ newState: state })
+        }
         className="text-right"
         right
         styles={styles}
+        burgerButtonClassName="customButton"
         customBurgerIcon={
           <AiOutlineMenu
+            onClick={() => {
+              context.toggleMenu();
+              console.log("togglei");
+            }}
             className="btn"
             size={30}
           />
@@ -64,37 +69,28 @@ export const BurgerMenu: React.FC<{}> = () => {
       >
         <motion.ul
           style={{ outline: "none" }}
-          variants={animationHelpers.containerAnimation}
+          variants={animationHelpers.MenuAnimation}
           initial="hidden"
-          animate={Animation ? "visible" : "hidden"}
+          animate={context.menuAnimation ? "visible" : "hidden"}
           className="text-center"
         >
           {linksArray.map((link, index) => (
-            <Link
-              style={{ outline: "none", textDecoration: "none" }}
-              to={link.path}
-              onClick={() => {
-                context.toggleMenu();
-                setAnimation(!Animation);
-              }}
-              key={index + 1}
-            >
+            <div key={index++}>
               <motion.li
+                style={btnStyle}
                 onClick={() => {
-                  context.toggleMenu();
+                  context.closeMenu();
                   history.push(link.path);
                 }}
-                key={index + 1}
-                style={btnStyle}
                 variants={animationHelpers.itemAnimation}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className={decideStyle(link.path)}
               >
                 {link.linkName}
+                {index !== 4 ? <motion.hr className="bg-light" /> : null}
               </motion.li>
-              {index !== 5 ? <motion.hr className="bg-light" /> : null}
-            </Link>
+            </div>
           ))}
         </motion.ul>
       </Menu>

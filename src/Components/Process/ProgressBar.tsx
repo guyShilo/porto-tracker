@@ -22,8 +22,8 @@ export const ProgressBar: React.FC = () => {
         לחצו על שלב הבקשה הנוכחי שקיבלתם מ PortuTrack באימייל
       </p>
       <section className="stepIndicator">
-        {Steps.map((eachStep) => (
-          <>
+        {Steps.map((eachStep, index) => (
+          <div key={index++}> 
             <motion.div
               variants={animationHelpers.createVariants("scale", 0.95, 1.05)}
               initial="variantA"
@@ -39,7 +39,7 @@ export const ProgressBar: React.FC = () => {
             {eachStep.id !== 7 ? (
               <div className="indicator-line active"></div>
             ) : null}
-          </>
+          </div>
         ))}
         )}
       </section>

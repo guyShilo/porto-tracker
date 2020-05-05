@@ -30,6 +30,7 @@ export const Button: React.FC<ButtonProps> = ({
         variants={animationHelpers.createVariants("scale", 0.95, 1.1)}
         initial="variantA"
         whileHover="variantB"
+        whileTap={{scale: 0.9}}
       >
         <button
           disabled={disabled}

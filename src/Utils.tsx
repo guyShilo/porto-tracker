@@ -48,7 +48,19 @@ export const animationHelpers = {
       stiffness: 90,
       damping: 20,
     }
-  }
+  },
+  MenuAnimation: {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delay: 0,
+        when: "beforeChildren",
+        staggerChildren: 0.2,
+      },
+    },
+  },
 };
 
 export const SwalFunctions = {

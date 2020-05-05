@@ -5,11 +5,12 @@ import { motion } from "framer-motion";
 
 export const ValidIndicator: React.FC<{
   isValid: boolean | null;
-}> = ({ isValid }) => {
+  currentInputState: string
+}> = ({ isValid, currentInputState }) => {
   const { FadeInAnimation } = animationHelpers;
-
   const returnClass = () => {
-    if (isValid === true) return "text-success mt-4";
+    if (currentInputState.length >= 3 && isValid) return "text-success mt-4"; 
+    if (currentInputState.length >= 3 && !isValid) return "text-danger mt-4"; 
     return "text-light mt-4";
   };
   return (

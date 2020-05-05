@@ -1,11 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { animationHelpers } from "../../Utils";
-
+import { Link } from "react-router-dom";
 
 export const FaqContent: React.FC = () => {
   const { containerAnimation, itemAnimation } = animationHelpers;
-  
+
   const listItems = [
     "כאשר הבקשה שלכם תתקדם – נדע להתריע לכם על כך.",
     " כאשר נדרשת התערבות מצדכם, כמו למשל, צורך בהשלמת מסמכים – נדע לזהות זאת ולשלוח לכם מייל בכדי להפנות את תשומת לבכם לעניין.",
@@ -22,7 +22,7 @@ export const FaqContent: React.FC = () => {
         <b>אז איך נרשמים?</b> <br /> ההרשמה לשירות פשוטה ביותר, ונעשית באמצעות
         מספר המעקב וכתובת האימייל שלכם.
       </motion.p>
-      <p className="text-right">
+      <span className="text-light text-right">
         <b>איזה עדכונים אני אקבל ממכם?</b> <br /> אנו לא רוצים להעמיס עליכם
         בעדכונים מיותרים ולכן, נעדכן אותך רק בשינויים במצב הבקשה שלך. <br />{" "}
         נשלח אליכם אימל מהסיבות הבאות:
@@ -32,12 +32,12 @@ export const FaqContent: React.FC = () => {
           animate="visible"
         >
           {listItems.map((item, index) => (
-            <motion.li variants={itemAnimation} key={index}>
+            <motion.li className="" variants={itemAnimation} key={index}>
               {item}
             </motion.li>
           ))}
         </motion.ul>
-      </p>
+      </span>
       <p className="text-right">
         <b>אני חושש לשתף אתכם את המספר מעקב, מה לעשות?</b> כמה מילים בנושא
         פרטיות - הפרטיות היא עניין חשוב לנו. <br />
@@ -58,6 +58,15 @@ export const FaqContent: React.FC = () => {
       <p className="text-right">
         <b> אני רוצה להסיר את הרשמתי. </b> <br /> חבל לנו שלא התרשמת לטובה. תוכל
         לבצע זאת בלינק הזה נשמח לקבל ממך גם משוב מדוע החלטת להסיר את הרשמתך.
+      </p>
+      <p className="text-right">
+        <b>איך יראה המייל שאקבל מכם?</b> המייל שתקבלו יכלול את שבעת השלבים של
+        תהליך האזרחות, בדיוק כמו באתר הפורטוגלי!
+        <br />
+        המייל יציג בפניכם את השלב הנוכחי של בקשת האזרחות.
+        <Link className="btn p-1 text-light" to="/process">
+          <b>להסבר נוסף כנסו לכאן.</b>
+        </Link>
       </p>
     </div>
   );

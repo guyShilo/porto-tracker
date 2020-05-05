@@ -56,9 +56,11 @@ $inputColor: whitesmoke;
   background: whitesmoke;
   border-radius: 0.2rem;
   text-align: center;
+  margin: 0.5rem;
   small {
     font-size: 11px;
     color: #dc3545 !important;
+    font-weight: bold;
   }
 }
 
@@ -87,7 +89,6 @@ $inputColor: whitesmoke;
 
 @include media('<=largePhone','<=tablet') {
   .mainInput {
-    display: none;
     input {
       width: 40vw;
     }

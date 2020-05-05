@@ -15,6 +15,7 @@ export const Overlay: React.FC<OverlayProps> = ({
   return (
     <motion.div
       className="Modal"
+      style={{overflow: 'scroll'}}
     >
       <div className="d-flex justify-content-center mt-5">{Component}</div>
       <div className="w-100 text-center">

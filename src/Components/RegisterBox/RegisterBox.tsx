@@ -9,7 +9,8 @@ import { SwalFunctions, animationHelpers } from "../../Utils";
 import { ReCAPTCHA } from "react-google-recaptcha";
 import { Loader } from "../Loader";
 import { Overlay } from "../Overlay/Overlay";
-import { motion, AnimatePresence } from "framer-motion";
+import { Regulations } from "../Regulations/Regulations";
+import { motion } from "framer-motion";
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -33,31 +34,8 @@ export const RegisterBox: React.FC = () => {
   const [captchaValid, setCaptchaValid] = useState<boolean>(false);
   // Handling the loader state
   const [loading, setLoading] = useState(false);
-
-  // The state of the Validation Indicator.
-  // const [colorState, setColorState] = useState({
-  //   emailValid: !context.emailIsValid ? "text-danger" : "text-success",
-  //   trackingValid: !context.trackCodeIsValid ? "text-danger" : "text-success",
-  // });
-
-  // function that gets an object from the validation, hook and decides the state of the indicator.
-  // const buildColors = (
-  //   validatedObject: {
-  //     errors: {
-  //       emailError?: string;
-  //       trackingError?: string;
-  //     };
-  //     isValid?: boolean;
-  //   },
-  //   indicator: string
-  // ) => {
-  //   if (validatedObject.isValid === false) {
-  //     setColorState({ ...colorState, [indicator]: "text-danger" });
-  //   }
-  //   if (validatedObject.isValid === true) {
-  //     setColorState({ ...colorState, [indicator]: "text-success" });
-  //   }
-  // };
+  // Handling Checked regulatgions
+  const [showRegulations, setShowRegulations] = useState(false);
 
   const updateDB = async () => {
     const { finalTrackCode, finalEmail } = context;
@@ -95,28 +73,34 @@ export const RegisterBox: React.FC = () => {
           hide={() => setLoading(false)}
           hideExitButton={true}
         />
+      ) : showRegulations ? (
+        <Overlay
+          Component={<Regulations />}
+          currentState={showRegulations}
+          hide={() => setShowRegulations(!showRegulations)}
+        />
       ) : (
         <div className="mainBox">
           <div className="InputsContainer">
             <div className="EmailInputDiv">
               <div className="mailIndicator">
-                <ValidIndicator isValid={context.emailIsValid.isValid} />
+                <ValidIndicator isValid={context.validatedEmail.isValid} currentInputState={context.validatedEmail.emailState} />
               </div>
               <Email
-                // buildColors={buildColors}
-                validatedObject={context.emailIsValid}
-                errors={context.emailIsValid.errors}
+                validatedObject={context.validatedEmail}
+                errors={context.validatedEmail.errors}
               />
             </div>
             <div className="trackingNumberDiv">
               <div className="trackingIndicator">
-                <ValidIndicator isValid={context.trackCodeIsValid.isValid} />
+                <ValidIndicator
+                  isValid={context.validatedTrackingNumber.isValid}
+                  currentInputState={context.validatedTrackingNumber.trackingNumber}
+                />
               </div>
               <TrackingNumber
-                // buildColors={buildColors}
                 handleSubmit={null}
-                validatedObject={context.trackCodeIsValid}
-                currentState={context.finalTrackCode}
+                validatedObject={context.validatedTrackingNumber}
               />
             </div>
             <motion.div
@@ -131,6 +115,14 @@ export const RegisterBox: React.FC = () => {
                 setCaptcha={setCaptchaState}
               />
             </motion.div>
+            <div className="regulationsDiv">
+              <label
+                onClick={() => setShowRegulations(!showRegulations)}
+                className="text-light"
+              >
+                הרשמתך מהווה הסכמה<b className="p-1">לתנאי השימוש</b>
+              </label>
+            </div>
             <div className="submitDiv ">
               <Button
                 label="להמשך הרשמה"

@@ -31,7 +31,7 @@ $breakpoints: (
     background-color: rgb(47, 47, 47);
     z-index: 0;
     width: 100vw;
-    padding-top: 2rem;
+    padding-top: 0.5rem;
     .InputsContainer {
       display: flex;
       flex-direction: column;
@@ -59,15 +59,19 @@ $breakpoints: (
       padding: 0.5rem;
       margin-bottom: 3rem;
       margin-right: 1.5rem;
-      margin-top: 1rem;
-      height: 4rem;
+      height: 7rem;
+    }
+    .regulationsDiv {
+      label {
+        cursor: pointer;
+      }
     }
     .submitDiv {
       display: flex;
       justify-content: center;
-      margin-top: 1.5rem;
       margin-right: 2rem;
-      padding: 1rem;
+      // margin-top: 2rem;
+      padding: 0.3rem;
     }
   }
   div.trackingIndicator {
@@ -77,7 +81,7 @@ $breakpoints: (
   .registerPic {
     width: 35%;
     position: absolute;
-    bottom: -0.1rem;
+    bottom: 0rem;
     left: 1.5rem;
   }
 }
@@ -95,6 +99,13 @@ $breakpoints: (
       // .EmailInputDiv {
       //   // transform: translateX(1.8rem);
       // }
+      .InputsContainer { 
+        .submitDiv {
+          margin: 0;
+          width: 100vw;
+          background: rgb(47, 47, 47);
+        }
+      }
     }
     div.trackingIndicator {
       transform: translateY(0.1rem) translateX(0.1rem);
@@ -122,6 +133,11 @@ $breakpoints: (
       height: 80vh;
       .InputsContainer {
         width: 100%;
+        .submitDiv {
+          margin: 0;
+          width: 100vw;
+          background: rgb(47, 47, 47);
+        }
       }
       div.trackingIndicator {
         transform: translateY(0.1rem) translateX(0.1rem);

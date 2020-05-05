@@ -20,6 +20,10 @@ $breakpoints: (
       font-weight: bold;
     }
   }
+  .processContent {
+    width: 75vw;
+    margin: auto;
+  }
 }
 
 .progressBarContainer {
@@ -167,16 +171,51 @@ $breakpoints: (
     }
   }
 }
-
-@include media("<=tablet", "<=desktop") {
-  .portoProcess {
-    height: initial;
-  }
+@include media ('>=phone', '<=largePhone') {
   .progressBarContainer {
     height: 100%;
     width: 100%;
     margin: 15px;
     border-radius: 0;
+    .stepIndicator {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      .indicator-line {
+        width: 85vw;
+        margin: 10px;
+        align-self: center;
+      }
+      .eachStep {
+        margin: 1.25rem;
+        flex-direction: row;
+        p {
+          position: initial;
+          margin: 1rem;
+        }
+      }
+    }
+  }
+  .portoProcess {
+    .processContent {
+      width: 100vw;
+      border-radius: 0 !important;
+    }
+  }
+  .stepMainDiv {
+    width: 90vw;
+    height: 70vh;
+    text-align: center;
+    padding: 2.5rem;
+  }
+}
+@include media(">=largePhone", "<=tablet") {
+  .portoProcess {
+    height: initial;
+  }
+  .progressBarContainer {
+    margin: 15px;
+    width: 100vw;
     .stepIndicator {
       flex-direction: column;
       align-items: flex-start;
@@ -195,7 +234,6 @@ $breakpoints: (
       }
     }
   }
-
   .stepMainDiv {
     width: 100vw;
     margin: 15px;

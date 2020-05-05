@@ -7,14 +7,14 @@ export default createContext({
     resetTrackCode: "",
     finalTrackCode: "",
     finalEmail: "",
-    emailIsValid: {
+    validatedEmail: {
       emailState: '',
       errors: {
         emailError: ''
       },
       isValid: false
     },
-    trackCodeIsValid: {
+    validatedTrackingNumber: {
       trackingNumber: '',
       errors: {
         trackingError: ''
