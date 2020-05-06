@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { InputProps } from "./InputsInterface";
 import { Error } from "./Error";
 import StateContext from "../../Context/StateContext";
-
 import "./style/style.scss";
+
 export const Email: React.FC<InputProps> = ({ errors, buildColors }) => {
   // Initiating a state for the current email.
   const [currentEmail, setCurrentEmail] = useState("");

@@ -3,24 +3,22 @@ import { motion } from "framer-motion";
 import { animationHelpers } from "src/Utils";
 import { AiFillLinkedin } from "react-icons/ai";
 
-interface AboutDevelopers {
-  profileImgStyle: {
-    borderRadius: string;
-    border: string;
-    width: string;
-    margin: string;
-  };
-  NadavsLinkedIn: string;
-  GuysLinkedIn: string;
-}
+const NadavsLinkedIn =
+  "https://media-exp1.licdn.com/dms/image/C5603AQH_HYYqC_kRuA/profile-displayphoto-shrink_200_200/0?e=1593043200&v=beta&t=qXLJY4ig3Yf1hqCcH1rchBl6KNvw80q61Wg5wCAKhus";
+const GuysLinkedIn =
+  "https://media-exp1.licdn.com/dms/image/C4E03AQGFX8l9rHPNCg/profile-displayphoto-shrink_200_200/0?e=1593043200&v=beta&t=29CJcwhKzIrpdWvUv4h4UPMPzliwm0mTdutXfJz_4Io";
 
-export const Developers: React.FC<AboutDevelopers> = ({
-  profileImgStyle,
-  NadavsLinkedIn,
-  GuysLinkedIn,
-}) => {
+
+export const Developers: React.FC = () => {
   // Extracting the fade in animation from the utils file.
   const { FadeInAnimation } = animationHelpers;
+
+  const profileImgStyle = {
+    borderRadius: "50%",
+    border: "3px solid white",
+    width: "45%",
+    margin: "auto",
+  };
   return (
     <motion.section
       initial={FadeInAnimation.initialDefs}

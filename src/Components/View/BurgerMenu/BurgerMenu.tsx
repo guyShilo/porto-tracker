@@ -34,12 +34,12 @@ export const BurgerMenu: React.FC<{}> = () => {
   // Defining an Array which will be mapped over in order to display the buttons.
   const linksArray = [
     { linkName: "עמוד הבית", path: "/" },
-    { linkName: "הרשמה לשירות", path: "/registration" },
+    { linkName: "הצטרפו לשירות", path: "/registration" },
     { linkName: "שאלות ותשובות", path: "/faq" },
     { linkName: "קצת עלינו", path: "/about" },
     { linkName: "הסבר על התהליך", path: "/process" },
-    // { linkName: "תקנון האתר", path: "/regulations" },
   ];
+  
   return (
     <div>
       <Menu
@@ -55,7 +55,6 @@ export const BurgerMenu: React.FC<{}> = () => {
           <AiOutlineMenu
             onClick={() => {
               context.toggleMenu();
-              console.log("togglei");
             }}
             className="btn"
             size={30}
@@ -78,7 +77,6 @@ export const BurgerMenu: React.FC<{}> = () => {
                   history.push(link.path);
                 }}
                 variants={animationHelpers.itemAnimation}
-                whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className={decideStyle(link.path)}
               >

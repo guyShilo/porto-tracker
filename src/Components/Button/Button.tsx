@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
-import "./style/style.scss";
 import { ButtonProps } from "./ButtonProps";
 import { motion } from "framer-motion";
 import { animationHelpers } from "src/Utils";
+import "./style/style.scss";
 
 export const Button: React.FC<ButtonProps> = ({
   onClick,
@@ -30,7 +30,7 @@ export const Button: React.FC<ButtonProps> = ({
         variants={animationHelpers.createVariants("scale", 0.95, 1.1)}
         initial="variantA"
         whileHover="variantB"
-        whileTap={{scale: 0.9}}
+        whileTap={{ scale: 0.9 }}
       >
         <button
           disabled={disabled}

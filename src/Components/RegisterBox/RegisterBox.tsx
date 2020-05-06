@@ -63,7 +63,7 @@ export const RegisterBox: React.FC = () => {
   return (
     <div className="boxContainer">
       <div className="boxHeader">
-        <h1>הרשמה לשירות</h1>
+        <h1>הצטרפו לשירות</h1>
       </div>
       {loading ? (
         <Overlay

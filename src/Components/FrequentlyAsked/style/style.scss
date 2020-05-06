@@ -1,9 +1,9 @@
 @import "../../../include-media.scss";
 $breakpoints: (
-        phone: 320px,
-        largePhone: 575px,
-        tablet: 768px,
-        desktop: 1075px,
+  phone: 320px,
+  largePhone: 575px,
+  tablet: 768px,
+  desktop: 1075px,
 );
 
 .faqMain {
@@ -39,10 +39,10 @@ $breakpoints: (
     align-items: flex-start;
     flex-wrap: wrap;
     padding: 1rem;
-    background-color: rgb(47,47,47);
+    background-color: rgb(47, 47, 47);
     width: 100vw;
     p {
-      margin-right:1rem;
+      margin-right: 1rem;
       color: whitesmoke;
     }
   }
@@ -52,7 +52,6 @@ $breakpoints: (
     align-items: flex-end;
     background-color: rgba(36, 36, 36, 0.9);
     border-radius: 2rem;
-
   }
   img {
     width: 30%;
@@ -64,7 +63,7 @@ $breakpoints: (
   }
 }
 
-@include media(">359"){
+@include media(">359") {
   .faqMain {
     background-color: black;
     .faqHeader {
@@ -73,7 +72,7 @@ $breakpoints: (
       align-items: center;
       h1 {
         font-size: 1.1rem;
-        margin: auto
+        margin: auto;
       }
       span {
         display: none;
@@ -87,7 +86,6 @@ $breakpoints: (
     }
   }
 }
-
 // SMALL PHONES TO LARGER PHONES
 @include media(">=phone", "<=largePhone") {
   .faqMain {
@@ -96,11 +94,11 @@ $breakpoints: (
       width: 100vw;
       h1 {
         font-size: 1rem;
-        margin: auto
+        margin: auto;
       }
       span {
         font-size: 0.7rem;
-        margin: auto
+        margin: auto;
       }
     }
     img {
@@ -128,4 +126,3 @@ $breakpoints: (
     }
   }
 }
-

@@ -23,7 +23,7 @@ export const useEmailValidator: EmailValidationHook = (emailState) => {
         return false;
       } else if (errors.emailError.length > 5 && emailState.length !== 0) {
         return false;
-      } else if (errors.emailError = "") {
+      } else if (errors.emailError === "") {
         return true
       }
       else {
@@ -41,5 +41,6 @@ export const useEmailValidator: EmailValidationHook = (emailState) => {
   useEffect(() => {
     ValidateEmail();
   }, [ValidateEmail]);
+
   return ValidateEmail();
 };

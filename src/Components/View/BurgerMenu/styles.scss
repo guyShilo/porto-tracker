@@ -24,6 +24,7 @@ $breakpoints: (
         outline: none !important;
         text-decoration: none !important;
     }
+    
 }
 
 .customButton {
@@ -32,6 +33,7 @@ $breakpoints: (
     svg {
         outline: none !important;
         text-decoration: none !important;
+        padding: 0 !important;
     }
     button {
         display: none;

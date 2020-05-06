@@ -13,13 +13,11 @@ interface ErrorProps {
 }
 
 export const Error: React.FC<ErrorProps> = ({ validatedObject }) => {
-  const { emailState, trackingNumber, errors, isValid } = validatedObject;
-  const stringParam = emailState || trackingNumber;
   const { FadeInAnimation } = animationHelpers;
-  const errorComponentStyle = {
-    errorColor: "#dc3545",
-    validColor: "#5cb85c",
-  };
+  const { emailState, trackingNumber, errors, isValid } = validatedObject;
+
+  const stringParam = emailState || trackingNumber;
+  // Checks the validity of inputs to determine color.
   const checkText = () => {
     if (!isValid) {
       return Object.values(errors);
@@ -31,19 +29,25 @@ export const Error: React.FC<ErrorProps> = ({ validatedObject }) => {
       return "error";
     }
   };
-  const checkColor = () => (isValid ? "errorBox" : "errorBox");
+
+  // Defines the error and the valid hexa.
+  const errorComponentStyle = {
+    errorColor: "#dc3545",
+    validColor: "#5cb85c",
+  };
+  const checkColor = () =>
+    isValid ? errorComponentStyle.validColor : errorComponentStyle.errorColor;
+
   return (
     <motion.div
       initial={FadeInAnimation.initialDefs}
-      animate={ stringParam.length >= 3 ? FadeInAnimation.animationDefs : ''}
-      transition={{...FadeInAnimation.transitionDefs, delayChildren: 0.5}}
+      animate={stringParam.length >= 3 ? FadeInAnimation.animationDefs : ""}
+      transition={{ ...FadeInAnimation.transitionDefs, delayChildren: 0.5 }}
       className={checkColor()}
     >
       <small
         style={{
-          color: isValid
-            ? errorComponentStyle.validColor
-            : errorComponentStyle.errorColor,
+          color: checkColor(),
         }}
       >
         {checkText()}

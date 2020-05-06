@@ -66,23 +66,7 @@ $breakpoints: (
     }
   }
 }
-//362
-// @include media('>=phone', '>=largePhone'){
-//   .ourService {
-//     .ourServiceHeader {
-//       height: 5vh;
-//       h1 {
-//         display: none;
-//       }
-//       span {
-//         font-size: 1.2rem;
-//       }
-//     }
-//     .ourServiceContent {
-//       height: 100%;
-//     }
-//   }
-// }
+
 @include media('<largePhone') {
   .ourService {
     overflow: scroll;
@@ -99,7 +83,7 @@ $breakpoints: (
     }
     .ourServiceContent {
       width:  100vw;
-      height: 80vh;
+      height: 150%;
       margin-left: 15px;
       margin-right: 15px;
       margin-top: 1rem;
@@ -125,7 +109,7 @@ $breakpoints: (
     }
     .ourServiceContent {
       width: 100vw;
-      height: 60vh;
+      height: 150%;
       margin: 0;
       margin-top: 1rem;
         .content-links {

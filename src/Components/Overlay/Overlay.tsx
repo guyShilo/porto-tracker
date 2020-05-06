@@ -8,20 +8,18 @@ export const Overlay: React.FC<OverlayProps> = ({
   Component,
   currentState,
   hide,
-  hideExitButton
+  hideExitButton,
 }) => {
-  
   return (
-    <motion.div
-      className="Modal"
-      style={{overflow: 'scroll'}}
-    >
+    <motion.div className="Modal" style={{ overflow: "scroll" }}>
       <div className="d-flex justify-content-center mt-5">{Component}</div>
       <div className="w-100 text-center">
-        {!hideExitButton ? <button onClick={() => hide(!currentState)} className="m-3 hide btn">
-          <GiExitDoor className="text-light" size={40} />
-          <small className="p-1 text-light"> חזרה לעמוד</small>
-        </button> : null}
+        {!hideExitButton ? (
+          <button onClick={() => hide(!currentState)} className="m-3 hide btn">
+            <GiExitDoor className="text-light" size={40} />
+            <small className="p-1 text-light"> חזרה לעמוד</small>
+          </button>
+        ) : null}
       </div>
     </motion.div>
   );

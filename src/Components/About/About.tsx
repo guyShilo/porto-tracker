@@ -4,22 +4,12 @@ import { Developers } from "./Developers";
 import { animationHelpers } from "src/Utils";
 import aboutUsAlt from "../../assets/upToDate.svg";
 import "./style/style.scss";
-const NadavsLinkedIn =
-  "https://media-exp1.licdn.com/dms/image/C5603AQH_HYYqC_kRuA/profile-displayphoto-shrink_200_200/0?e=1593043200&v=beta&t=qXLJY4ig3Yf1hqCcH1rchBl6KNvw80q61Wg5wCAKhus";
-const GuysLinkedIn =
-  "https://media-exp1.licdn.com/dms/image/C4E03AQGFX8l9rHPNCg/profile-displayphoto-shrink_200_200/0?e=1593043200&v=beta&t=29CJcwhKzIrpdWvUv4h4UPMPzliwm0mTdutXfJz_4Io";
 
 export const About: React.FC = () => {
   document.title = "PortuTrack | קצת עלינו";
-
-  const profileImgStyle = {
-    borderRadius: "50%",
-    border: "3px solid white",
-    width: "45%",
-    margin: "auto",
-  };
+  
   // Extracting the fade in animation from the utils file.
-  const {FadeInAnimation} = animationHelpers
+  const { FadeInAnimation } = animationHelpers;
   return (
     <div className="">
       <div className="aboutContainer">
@@ -44,11 +34,7 @@ export const About: React.FC = () => {
             </p>
           </div>
         </div>
-        <Developers
-          profileImgStyle={profileImgStyle}
-          NadavsLinkedIn={NadavsLinkedIn}
-          GuysLinkedIn={GuysLinkedIn}
-        />
+        <Developers />
         <motion.div className="aboutImage">
           <motion.img
             initial={FadeInAnimation.initialDefs}

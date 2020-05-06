@@ -12,7 +12,7 @@ const GlobalMenuState = ({ children }) => {
         isMenuOpen: menuOpenState,
         toggleMenu: () => {
           setMenuOpenState(!menuOpenState);
-          setAnimation(!menuAnimation)
+          setAnimation(true)
         },
         stateChangeHandler: (newState) => {
           setMenuOpenState(newState.isOpen);

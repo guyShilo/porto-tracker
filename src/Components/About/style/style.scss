@@ -10,7 +10,6 @@ $breakpoints: (
   width: 100vw;
   height: 90vh;
   background-color: rgba(224, 224, 224, 0.8);
-  // box-shadow: 0px 8px 39px -5px rgba(0, 0, 0, 0.49);
   section.developers {
     display: flex;
     justify-content: space-around;
@@ -29,7 +28,6 @@ $breakpoints: (
       }
       .linkedInPic {
         margin-bottom: 0.3rem;
-        
         img {
           margin: 0.2rem;
         }
@@ -40,23 +38,19 @@ $breakpoints: (
     height: 10vh;
     background-color: #ba0018;
     box-shadow: 0px 8px 39px -5px rgba(0, 0, 0, 0.7);
-
     h1 {
       margin-right: 10rem;
       text-align: right;
-      // color: rgb(47, 47, 47);
-      // margin-top: 0.5rem;
       padding-top: 1rem;
       color: whitesmoke;
     }
   }
   .aboutContent {
     padding: 1rem;
-    // width: 70vw;
     display: flex;
     flex-wrap: wrap;
     width: 100vw;
-    background-color: rgb(47,47,47);
+    background-color: rgb(47, 47, 47);
     .content-text {
       text-align: right;
       margin: 0 3rem;
@@ -83,7 +77,7 @@ $breakpoints: (
     height: 90vh;
     overflow: scroll;
     section.developers {
-      background-color: rgb(47,47,47);
+      background-color: rgb(47, 47, 47);
       width: 100vw;
       padding: 1rem;
       margin: auto;
@@ -100,7 +94,6 @@ $breakpoints: (
         p {
           font-size: smaller;
           margin: auto;
-      
         }
       }
     }
@@ -114,7 +107,6 @@ $breakpoints: (
     }
     .aboutContent {
       width: 100vw;
-      height: 47vh;
       .content-text {
         p {
           font-size: 0.95rem;
