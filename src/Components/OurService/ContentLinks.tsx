@@ -18,8 +18,9 @@ export const ContentLinks: React.FC = () => {
       transition={FadeInAnimation.transitionDefs}
       className="content-links"
     >
-      {ButtonsArray.map((eachButton) => (
+      {ButtonsArray.map((eachButton, index) => (
         <motion.div
+        key={index++}
           variants={animationHelpers.createVariants("scale", 0.9, 1)}
           initial="variantA"
           whileHover="variantB"

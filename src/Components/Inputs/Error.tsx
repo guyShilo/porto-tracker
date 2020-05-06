@@ -43,7 +43,7 @@ export const Error: React.FC<ErrorProps> = ({ validatedObject }) => {
       initial={FadeInAnimation.initialDefs}
       animate={stringParam.length >= 3 ? FadeInAnimation.animationDefs : ""}
       transition={{ ...FadeInAnimation.transitionDefs, delayChildren: 0.5 }}
-      className={checkColor()}
+      className="errorBox"
     >
       <small
         style={{

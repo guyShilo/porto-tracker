@@ -18,7 +18,7 @@ export const OurService: React.FC = () => {
         <img
           style={{
             width: "100vw",
-            height: "90vh",
+            height: "100vh",
             zIndex: 1,
             position: "fixed",
           }}

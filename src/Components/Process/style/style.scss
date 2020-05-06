@@ -46,7 +46,7 @@ $breakpoints: (
     align-items: center;
     margin-top: -0.6rem;
     div.indicator-line {
-      display: none;
+      // display: none;
       width: 5vw;
       margin: 10px;
       height: 100%;
@@ -188,7 +188,7 @@ $breakpoints: (
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      .indicator-line {
+      div.indicator-line {
         width: 85vw;
         margin: 10px;
         align-self: center;
@@ -231,6 +231,7 @@ $breakpoints: (
       align-items: flex-start;
       justify-content: flex-start;
       .indicator-line {
+        display: block;
         width: 85vw;
         margin: 10px;
       }

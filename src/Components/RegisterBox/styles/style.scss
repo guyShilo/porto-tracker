@@ -83,40 +83,40 @@ $breakpoints: (
   }
 }
 
-@include media("<=phone") {
-  .boxContainer {
-    .boxHeader {
-      height: 10vh;
-      h1 {
-        margin-right: 4.3rem;
-      }
-    }
-    .mainBox {
-      padding: 1rem;
-      // .EmailInputDiv {
-      //   // transform: translateX(1.8rem);
-      // }
-      .InputsContainer {
-        .submitDiv {
-          margin: -15px;
-          width: 100vw;
-          background: rgb(47, 47, 47);
-        }
-      }
-    }
-    div.mailIndicator {
-      transform: translateY(1.7rem);
-    }
-    div.trackingIndicator {
-      transform: translateY(0.1rem) translateX(0.1rem);
-    }
-    .registerPic {
-      display: none;
-    }
-  }
-}
+// @include media("<=phone") {
+//   .boxContainer {
+//     .boxHeader {
+//       height: 10vh;
+//       h1 {
+//         margin-right: 4.3rem;
+//       }
+//     }
+//     .mainBox {
+//       padding: 1rem;
+//       // .EmailInputDiv {
+//       //   // transform: translateX(1.8rem);
+//       // }
+//       .InputsContainer {
+//         .submitDiv {
+//           margin: -15px;
+//           width: 100vw;
+//           background: rgb(47, 47, 47);
+//         }
+//       }
+//     }
+//     div.mailIndicator {
+//       transform: translateY(1.7rem);
+//     }
+//     div.trackingIndicator {
+//       transform: translateY(0.1rem) translateX(0.1rem);
+//     }
+//     .registerPic {
+//       display: none;
+//     }
+//   }
+// }
 
-@include media(">=phone", "<=largePhone") {
+@include media(">phone", "<=largePhone") {
   .boxContainer {
     .boxHeader {
       height: 10vh;
@@ -127,14 +127,27 @@ $breakpoints: (
       }
     }
     .mainBox {
-      height: 80vh;
+      height: 88.8%;
       .InputsContainer {
+        .EmailInputDiv {
+          margin-top: 10%;
+        }
+        .trackingNumberDiv {
+          margin-top: 5%;
+        }
         width: 100%;
         .captchaSection {
+          margin-top: 5%;
+          margin-bottom: 1.7rem;
           margin-right: 0;
         }
+        .regulationsDiv {
+          margin-top: 5%;
+          width: 100vw;
+          background: rgb(47, 47, 47);
+          text-align: center;
+        }
         .submitDiv {
-          margin: 0;
           width: 100vw;
           background: rgb(47, 47, 47);
         }

@@ -21,7 +21,7 @@ $breakpoints: (
     text-shadow: 1px 1px 8px rgba(148, 150, 150, 1);
     box-shadow: 0px 8px 39px -5px rgba(1, 1, 1, 0.7);
     text-align: center;
-    z-index: 3;
+    z-index: 2;
     // background-color: #ba0018;
     h1 {
       color: white;
@@ -30,12 +30,6 @@ $breakpoints: (
     span {
       color: white;
       font-weight: bold;
-    }
-    img.logoImage {
-      width: 25%;
-      position: fixed;
-      top: -1.5rem;
-      right: 4rem;
     }
   }
   .ourServiceContent {

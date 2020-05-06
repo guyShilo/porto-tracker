@@ -21,6 +21,7 @@ export const Email: React.FC<InputProps> = ({ errors, buildColors }) => {
   useEffect(() => {
     context.addEmail(currentEmail);
   }, [currentEmail]);
+  
   return (
     <div className="p-2 m-1">
       <div className="mainInput">

@@ -1,7 +1,5 @@
 export interface TrackingNumberComponent {
   setState?: React.Dispatch<React.SetStateAction<any>>;
-  // handleSubmit: (e: any, input: { boxOne: string; boxThree: string; boxTwo: string }) => void;
-  handleSubmit: null;
   buildColors?: (
     validatedObject: {
       errors: {

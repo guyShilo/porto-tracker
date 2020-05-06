@@ -4,7 +4,6 @@ import { Email } from "../Inputs/Email";
 import { Button } from "../Button/Button";
 import { TrackingNumber } from "../Inputs/TrackingNumber";
 import { Captcha } from "../Captcha/Captcha";
-import { ValidIndicator } from "../Button/ValidIndicator";
 import { SwalFunctions, animationHelpers } from "../../Utils";
 import { ReCAPTCHA } from "react-google-recaptcha";
 import { Loader } from "../Loader";
@@ -83,7 +82,6 @@ export const RegisterBox: React.FC = () => {
             </div>
             <div className="trackingNumberDiv">
               <TrackingNumber
-                handleSubmit={null}
                 validatedObject={context.validatedTrackingNumber}
               />
             </div>
