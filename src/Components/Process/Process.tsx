@@ -17,16 +17,15 @@ export const Process: React.FC = () => {
   return (
     <div className="portoProcess">
       <div className="processHeader">
-        {/* <h3 className="text-center p-1">
-          אז גם אתם רוצים להגשים את החלום הפורטוגלי?
-        </h3> */}
-        <p className="text-center">הכנו לכם הסבר קצר על <b>תהליך הבקשה </b>לקבלת הדרכון הפורטוגלי</p>
+        <p className="text-center">
+          הכנו לכם הסבר קצר על <b>תהליך הבקשה </b>לקבלת הדרכון הפורטוגלי
+        </p>
       </div>
       <div className="d-flex justify-content-center">
         <ProgressBar />
       </div>
       <div
-        className="processContent text-light"
+        className="processContent mt-4 text-light"
         style={{
           background: "rgba(47,47,47,0.8)",
           padding: "0.3rem",
