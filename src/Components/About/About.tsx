@@ -7,7 +7,7 @@ import "./style/style.scss";
 
 export const About: React.FC = () => {
   document.title = "PortuTrack | קצת עלינו";
-  
+
   // Extracting the fade in animation from the utils file.
   const { FadeInAnimation } = animationHelpers;
   return (
@@ -31,6 +31,17 @@ export const About: React.FC = () => {
               <br />
               חשוב שתדעו, השירות <b>PortuTrack</b> ניתן ללא תמורה ותחת הוצאות
               תחזוקה.
+              <br />
+              <a
+                className="text-light"
+                href="mailto:nadav.tarago@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <small style={{ fontWeight: "bold" }}>
+                  לשיתופי פעולה עסקיים - צרו קשר במייל nadav.tarago@gmail.com
+                </small>
+              </a>
             </p>
           </div>
         </div>

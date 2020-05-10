@@ -57,7 +57,7 @@ export const FaqContent: React.FC = () => {
       </p>
       <p className="text-right">
         <b> אני רוצה להסיר את הרשמתי. </b> <br /> חבל לנו שלא התרשמת לטובה. תוכל
-        לבצע זאת בלינק הזה נשמח לקבל ממך גם משוב מדוע החלטת להסיר את הרשמתך.
+        לבצע זאת <a style={{fontWeight: 'bold', color: 'white'}} className="text-bold" href="http://service.portutrack.com/unsubscribe" target="_blank" rel="noopener noreferrer">בלינק הזה</a> נשמח לקבל ממך גם משוב מדוע החלטת להסיר את הרשמתך.
       </p>
       <p className="text-right">
         <b>איך יראה המייל שאקבל מכם?</b> המייל שתקבלו יכלול את שבעת השלבים של

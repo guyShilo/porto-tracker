@@ -31,16 +31,15 @@ export const RegisterBox: React.FC = () => {
   // Handling modal appearance.
   const [captchaValid, setCaptchaValid] = useState<boolean>(false);
   // Handling the loader state
-  const [loading, setLoading] = useState(false);
-  // Handling Checked regulatgions
-  const [showRegulations, setShowRegulations] = useState(false);
+  const [loading, setLoading] = useState(false);  
 
   const updateDB = async () => {
     const { finalTrackCode, finalEmail } = context;
     setLoading(true);
     try {
       setCaptchaValid(true);
-      const request = axios.post("http://173.255.115.65/sendData", {
+      console.log(finalEmail, finalTrackCode)
+      const request = axios.post("http://service.portutrack.com/sendData", {
         Email: finalEmail,
         TrackCode: finalTrackCode,
         "g-recaptcha-response": CaptchaState,
@@ -98,12 +97,15 @@ export const RegisterBox: React.FC = () => {
               />
             </motion.div>
             <div className="regulationsDiv">
-              <label
-                onClick={() => setShowRegulations(!showRegulations)}
-                className="text-light"
+              <a
+                href="http://service.portutrack.com/useterms"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                הרשמתך מהווה הסכמה<b className="p-1">לתנאי השימוש</b>
-              </label>
+                <label className="text-light">
+                  הרשמתך מהווה הסכמה<b className="p-1">לתנאי השימוש</b>
+                </label>
+              </a>
             </div>
             <div className="submitDiv ">
               <Button
