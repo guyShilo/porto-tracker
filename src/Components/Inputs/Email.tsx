@@ -20,6 +20,7 @@ export const Email: React.FC<InputProps> = ({ errors, buildColors }) => {
   // Updates every time the state updates.
   useEffect(() => {
     context.addEmail(currentEmail);
+  // eslint-disable-next-line
   }, [currentEmail]);
   
   return (

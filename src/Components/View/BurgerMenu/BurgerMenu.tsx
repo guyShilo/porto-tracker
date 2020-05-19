@@ -30,6 +30,7 @@ export const BurgerMenu: React.FC<{}> = () => {
     outline: "none",
     listStyle: "none",
     fontSize: "1.3rem",
+    cursor: 'pointer'
   };
   // Defining an Array which will be mapped over in order to display the buttons.
   const linksArray = [

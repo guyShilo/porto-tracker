@@ -31,19 +31,22 @@ export const RegisterBox: React.FC = () => {
   // Handling modal appearance.
   const [captchaValid, setCaptchaValid] = useState<boolean>(false);
   // Handling the loader state
-  const [loading, setLoading] = useState(false);  
+  const [loading, setLoading] = useState(false);
 
   const updateDB = async () => {
     const { finalTrackCode, finalEmail } = context;
     setLoading(true);
     try {
       setCaptchaValid(true);
-      console.log(finalEmail, finalTrackCode)
-      const request = axios.post("http://service.portutrack.com/sendData", {
-        Email: finalEmail,
-        TrackCode: finalTrackCode,
-        "g-recaptcha-response": CaptchaState,
-      });
+      const request = axios.post(
+        "https://www.service.portutrack.com/sendData",
+        {
+          Email: finalEmail,
+          TrackCode: finalTrackCode,
+          "g-recaptcha-response": CaptchaState,
+        },
+        { timeout: 100 }
+      );
       const response = await request;
       if (response.data.isValid) {
         setLoading(false);
@@ -54,7 +57,21 @@ export const RegisterBox: React.FC = () => {
         setCaptchaValid(false);
       }
     } catch (error) {
-      alert(error);
+      if (String(error).indexOf("timeout") !== -1) {
+        await SwalFunctions.swalFailed(
+          {
+            isValid: false,
+            msgToUser: `אין תגובה מהשרת.
+             ברוב המקרים, נסיון נוסף יפתור את העניין.
+             אם הבעיה חוזרת, צור איתנו קשר: nadav.tarago@gmail.com`,
+          },
+          MySwal,
+          history
+        );
+      } else {
+        alert(error);
+      }
+      setLoading(false);
     }
   };
 
@@ -98,7 +115,7 @@ export const RegisterBox: React.FC = () => {
             </motion.div>
             <div className="regulationsDiv">
               <a
-                href="http://service.portutrack.com/useterms"
+                href="https://www.service.portutrack.com/useterms"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -110,7 +127,6 @@ export const RegisterBox: React.FC = () => {
             <div className="submitDiv ">
               <Button
                 label="להמשך הרשמה"
-                showFunction={() => null}
                 isDisabled={CaptchaState.length < 2}
                 onClick={() => {
                   updateDB();

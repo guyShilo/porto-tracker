@@ -6,16 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="PortuTrack" content="הדרך הכי יעילה לעקוב אחרי הדרכון שלך" />
+    <title>PortuTrack - עידכונים על האזרחות הפורטוגלית</title>
     <meta
       name="description"
-      content="עדכונים שוטפים, במייל, באופן אוטומטי ובחינם!"
+      content="דרכון פורטוגלי - עדכונים אישיים על תהליך האזרחות. באופן אוטומטי, ובחינם!"
     />
-    <head>
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
-      />
-    </head>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+  />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-166122110-1"
+    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"
       type="text/javascript"
@@ -33,9 +37,31 @@
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>PortuTrack - עידכונים על האזרחות הפורטוגלית</title>
   </head>
   <body>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-166122110-1");
+    </script>
+    <script>
+      const longUrl = "www.portutrack.com";
+      const shortUrl = "portutrack.com";
+      if (
+        longUrl == window.location.host &&
+        window.location.protocol != "https:"
+      ) {
+        window.location.protocol = "https";
+      } else if (
+        shortUrl == window.location.host &&
+        window.location.protocol != "https:"
+      ) {
+        window.location.protocol = "https";
+      }
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

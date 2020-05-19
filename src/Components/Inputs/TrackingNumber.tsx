@@ -57,7 +57,9 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = () => {
 
   // Checks whether the focus needs to be moved forward.
   const checkBoxes = () => {
+    // eslint-disable-next-line
     if (inputBoxOne.current?.value.length == 4) inputBoxTwo.current?.focus();
+    // eslint-disable-next-line
     if (inputBoxTwo.current?.value.length == 4) inputBoxThree.current?.focus();
   };
   // takes the input name and value and returns an object with the three inputs.
@@ -99,6 +101,7 @@ export const TrackingNumber: React.FC<TrackingNumberComponent> = () => {
   // Updates every time the state updates.
   useEffect(() => {
     context.addTrackCode(number);
+    // eslint-disable-next-line
   }, [number]);
   return (
     <div className="trackingNumber d-flex flex-column align-items-center p-1">

@@ -33,14 +33,14 @@ const GlobalState = ({ children }) => {
       dispatch({ type: "ADD_EMAIL", value });
     }, 700);
   };
-  
+
   // // returning errors object and isValid boolean, to handle UI errors. - Email
   const validatedEmail = useEmailValidator(finalEmail || initialState.Email);
   // // returning errors object and isValid boolean, to handle UI errors. - Tracking Number
   const validatedTrackingNumber = useTrackingValidator(
     finalTrackCode || initialState.TrackCode
   );
-  const isOkToBuild = (validatedEmail.isValid && validatedTrackingNumber.isValid)
+  const isOkToBuild = validatedEmail.isValid && validatedTrackingNumber.isValid;
   // Build new Email and Tracking Code after validation.
   const validateAndBuild = useCallback(() => {
     const Email = validatedEmail.emailState;
@@ -50,17 +50,18 @@ const GlobalState = ({ children }) => {
         Email,
         TrackCode,
         validatedEmail,
-        validatedTrackingNumber
+        validatedTrackingNumber,
       };
     } else {
-      return initialState
+      return initialState;
     }
-  },[initialState])
+    // eslint-disable-next-line
+  }, [initialState]);
 
   // Building the state every time the Email and TrackCode changes.
   useEffect(() => {
-    validateAndBuild()
-    console.log(isOkToBuild)
+    validateAndBuild();
+    // eslint-disable-next-line
   }, [isOkToBuild]);
 
   return (
@@ -69,7 +70,8 @@ const GlobalState = ({ children }) => {
         finalEmail: validateAndBuild().Email,
         finalTrackCode: validateAndBuild().TrackCode,
         validatedEmail: validateAndBuild().validatedEmail || validatedEmail,
-        validatedTrackingNumber: validateAndBuild().validatedTrackingNumber || validatedTrackingNumber,
+        validatedTrackingNumber:
+          validateAndBuild().validatedTrackingNumber || validatedTrackingNumber,
         addEmail,
         addTrackCode,
         resetEmail: "",
